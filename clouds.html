@@ -1,0 +1,34 @@
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="clouds.css">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script src="drawing_script.js"></script>
+	<script src="display_images.js"></script>
+	<script type="text/javascript">
+		(function($){
+			$(window).load(function(){
+			});
+		})(jQuery);
+	</script>
+</head>
+<body>
+	<div id="main">
+		<div id="images1" class="images"></div>
+		<div id="images2" class="images"></div>
+		<div class="menu_button"></div>
+		<div id="draw">
+			<div id="tools" class="menu_button">
+				<div id="eraser">Eraser</div>
+				<div id="pencil">Pencil</div>
+				<div id="save">Save</div>
+			</div>
+			<div id="canvas_holder">
+				<canvas id="my_canvas" style="border:1px solid #000000"></canvas>
+			</div>
+		</div>
+		<div id="content">
+			<p>Blah blah blah</p>
+		</div>
+	</div>
+</body>
+</html>
