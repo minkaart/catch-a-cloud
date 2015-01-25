@@ -22,7 +22,7 @@ $.ajax({
 	
 	
 	$my_var = print_r($_POST); //creates readable version of html POST
-	$my_JSON = 'image_JSON.txt';
+	$my_JSON = 'image_JSON.json';
 
 	$img = $_POST['img']; //holds image data from POST variable
 
@@ -43,10 +43,20 @@ $.ajax({
 	//writes image name and text to file as JSON
 	$text = $_POST['text'];
 	$img_arr = [$img_name => $text];
-	$img_JSON = json_encode($img_arr);
-	$json_handle = fopen($my_JSON, 'w+');
-	fwrite($json_handle, $img_JSON);
+	$img_JSON = ',"'.$img_name.'":"'.$text.'"}';
+
+	
+	$json_str = file_get_contents('image_JSON.json');
+	
+	$json_str = substr($json_str, 0, -1);
+	
+	$all_img = $json_str.$img_JSON; 
+
+
+	$json_handle = fopen($my_JSON, 'wb');
+	fwrite($json_handle, $all_img);
 	fclose($json_handle);
+	
 
 	
 

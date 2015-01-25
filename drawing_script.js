@@ -145,6 +145,7 @@
 		console.log("submit fired!");
 		var user_text = $('#user_text').val();
 		console.log("user text is: "+user_text);
+		event.preventDefault();
 		$.ajax({
 			type : "POST",
 			contentType: "application/x-www-form-urlencoded",
@@ -157,8 +158,6 @@
 			$("#text_input").hide();
 			console.log("Data Sent!");
 		});
-
-		event.preventDefault();
 	});
 
 	/**

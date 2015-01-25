@@ -39,15 +39,14 @@ var start_timer = setTimeout(function(){
 		initiatepage(containerArray, imageArray);
 		in_page = imageArray.length;
 		console.log(in_page);
-		//imageArray_ready = false;
 		clearTimeout(start_timer);
 	};
 }, 100);
 
 
 var update_timer = setInterval(function(){
-	console.log("checking...");
-	checkforupdate();
+	//console.log("checking...");
+	//checkforupdate();
 }, 1000);
 
 		function initiatepage(containerlist, imagelist) {
@@ -110,15 +109,16 @@ var update_timer = setInterval(function(){
 		//function dynamically populates imageArray based on files in "images" folder and displays the images scrolling - to only display the images and manually populate imageArray, use initiatepage()
 		function popimageArray(){
 			console.log("populating image array");
-			$.getJSON("get_images.php", function(data){
-				for (var i = 3; i < data.length; i++) {
-						//write in validation from file-system? possibly
-						console.log("writing: "+data[i]);
-						imageArray[i-3] = "images/"+data[i]; 
-					};						
-					imageArray_ready = true;
-					alert("data received!");	
-					console.log("1st image: "+imageArray[0]);		
+			$.getJSON("image_JSON.json", function(data){
+				console.log(data);
+				$.each(data, function(key, val){
+					console.log("writing: "+key);
+					imageArray.push("images/"+key);	
+					console.log("text: "+val);
+				});		
+				imageArray_ready = true;
+				alert("data received!");	
+				console.log("1st image: "+imageArray[0]);		
 			});
 			console.log("imageArray length"+imageArray.length);
 		}
@@ -154,15 +154,15 @@ var update_timer = setInterval(function(){
 		function checkforupdate(){
 			var images_in_file = 0;
 
-			$.getJSON("get_images.php", function(data){
+			$.get("check.php", function(data){
 					//note -3 for Mac OS file system.... change to two for linux or do other checking method
-					images_in_file = data.length - 3; 
+					images_in_file = data - 3; 
+					
 					images_ready = true; 
 					if(images_in_file > in_page){
 						update_needed = true; 
 					};
 			});
-			
 		}
 
 		//must be called before populating divs with new images
