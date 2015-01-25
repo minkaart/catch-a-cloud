@@ -1,4 +1,4 @@
-/**jQuery library to animate images in a continuous (infinite) loop - scrolling left across a page--needs imageArray to be set !! <NOTE TO ME> create a php function to set the imageArray put a set function in here? maybe
+/**jQuery library to animate images in a continuous (infinite) loop - scrolling left across a page
 
 TO DO: 
 - write function to set divs to appropriate css (see clouds.css) checkcss(){}
@@ -25,10 +25,11 @@ TO DO:
 		//holds the images to be displayed	
 		var imageArray = [];
 		var containerArray = [];
-		var holdingContainer = "#main";
+		var holdingContainer = "#images";
 		var imageArray_ready = false;
 		var in_page = 0; 
-		var update = false; 
+		var update_needed = false; 
+		var ani_2_running = false;
 		
 popimageArray();
 
@@ -38,25 +39,47 @@ var start_timer = setTimeout(function(){
 		initiatepage(containerArray, imageArray);
 		in_page = imageArray.length;
 		console.log(in_page);
+		//imageArray_ready = false;
 		clearTimeout(start_timer);
 	};
 }, 100);
 
+
+var update_timer = setInterval(function(){
+	console.log("checking...");
+	checkforupdate();
+}, 1000);
+
 		function initiatepage(containerlist, imagelist) {
 			console.log("initiating page");
+			populatedivs(containerlist, imagelist);
+
+			for (var i = 0; i < containerlist.length; i+=2) {
+				console.log("initiating animations");
+				console.log("containerlist at i: "+containerlist[i]);
+				console.log("containerlist at i+1 "+containerlist[i+1]);
+				apply_animations(containerlist[i], containerlist[i+1]);
+			};
+			
+		}	
+
+		//splits content divs into short(fill divs) and long and then populates them with imagecontent from imageArray 
+		function populatedivs(containerlist, imagelist){
+			console.log("populating divs");
 			var shorts = [];
 			var longs = []; 
 
 			$.each(containerlist, function(i, val){
 				console.log("containerlist total: "+containerlist);
-				reset_div(val);
 				if(i%2 == 0){
 					shorts.push(val);
 					console.log("pushing "+val+" to shorts");
+					$(val).css("left", 0);
 				}
 				else{
 					longs.push(val);
 					console.log("pushing "+val+" to longs");
+					reset_div(val);
 				};
 				console.log(shorts[0]);
 				console.log(longs[0]);
@@ -77,27 +100,21 @@ var start_timer = setTimeout(function(){
 			
 			var lengthdiff = imagelist.length - shortcontent;
 
-
 			for (var i = 0; i < lengthdiff; i++) {
 				$.each(longs, function(index, val){
 					looping(longs[index], imagelist);
-				})
+				});
 			};
+		}
 
-			for (var i = 0; i < containerlist.length; i+=2) {
-				console.log("initiating animations");
-				console.log("containerlist at i: "+containerlist[i]);
-				console.log("containerlist at i+1 "+containerlist[i+1]);
-				apply_animations(containerlist[i], containerlist[i+1]);
-			};
-			
-		}			
 		//function dynamically populates imageArray based on files in "images" folder and displays the images scrolling - to only display the images and manually populate imageArray, use initiatepage()
 		function popimageArray(){
 			console.log("populating image array");
 			$.getJSON("get_images.php", function(data){
-				for (var i = 2; i < data.length; i++) {
-						imageArray[i-2] = "images/"+data[i]; 
+				for (var i = 3; i < data.length; i++) {
+						//write in validation from file-system? possibly
+						console.log("writing: "+data[i]);
+						imageArray[i-3] = "images/"+data[i]; 
 					};						
 					imageArray_ready = true;
 					alert("data received!");	
@@ -106,7 +123,7 @@ var start_timer = setTimeout(function(){
 			console.log("imageArray length"+imageArray.length);
 		}
 
-		//calculates the #of rows needed and creates a list of content divs for rows
+		//calculates the #of rows needed based on window height and creates a list (array) of divs required to fill given height
 		function calculaterows (imageheight){
 			var win_height = $(window).height(); 
 			console.log("window height = "+win_height);
@@ -133,20 +150,32 @@ var start_timer = setTimeout(function(){
 				};
 		}
 
-		function checkForUpdate(){
+		//checks if new images have appeared on server, creates new imageArray of new images
+		function checkforupdate(){
+			var images_in_file = 0;
+
 			$.getJSON("get_images.php", function(data){
-					var images_in_file = data.length - 2; 
-					if (images_in_file > in_page) {
-							update = true; 
-							in_page = images_in_file;
-							popimageArray();
+					//note -3 for Mac OS file system.... change to two for linux or do other checking method
+					images_in_file = data.length - 3; 
+					images_ready = true; 
+					if(images_in_file > in_page){
+						update_needed = true; 
 					};
-				});
+			});
+			
+		}
+
+		//must be called before populating divs with new images
+		//stops animations and returns current values as left: and width: 
+		function stopanimation(targetdiv){
+			targetdiv = $(targetdiv);
+			targetdiv.stop(); 
+			var offset = targetdiv.offset();
 		}
 
 		//appends an image to any given target div
-		function imagedisplay(targetdiv, imagelist) {
-			$(targetdiv).append('<img src="'+imagelist[0]+'">');
+		function imagedisplay(targetdiv, image) {
+			$(targetdiv).append('<img src="'+image+'">');
 		}
 
 		//loops through imageArray and appends each image to a given target div - maintains first un-used image at position [0] in the array
@@ -155,7 +184,7 @@ var start_timer = setTimeout(function(){
 			var newvalue = imagelist[0];
 			imagelist.shift();
 			imagelist.push(newvalue);
-			imagedisplay(targetdiv, imagelist);
+			imagedisplay(targetdiv, newvalue);
 		}
 
 		//checks if the width of an image-populated div is greater than the width of the window 
@@ -169,13 +198,13 @@ var start_timer = setTimeout(function(){
 			}
 		}
 
-				//function to update width and animation duration variables	
-				//NOTE: Consider moving animation duration vars out of here 
+		//function to update width and animation duration variables	
+		//NOTE: Consider moving animation duration vars out of here 
 		function update_vars(div1, div2){
 			div1_width = $(div1).width(); //should be just < or = win_width -- verify possible removal
 			console.log("div 1 width = "+div1_width);
 			div2_width = $(div2).width();
-			console.log("div 1 width = "+div2_width);
+			console.log("div 2 width = "+div2_width);
 			win_width = $(window).width();
 					
 			//first animation calculations
@@ -185,9 +214,6 @@ var start_timer = setTimeout(function(){
 			//second animation calculations
 			ani2_width = div2_width+win_width;
 			ani2_duration = (ani2_width/px_rate)*2000; 
-
-			//verify possible removal 
-			var ani_interval = ani2_duration + ani1_duration/2;
 		}
 
 		//sets the "left" property of the target div to reset location 
@@ -209,7 +235,6 @@ var start_timer = setTimeout(function(){
 				queue: true,
 				duration: ani1_duration,
 					step: function(value_left){
-						console.log("div1_first_run = "+div1_first_run);
 						if(value_left < 1){
 							if(div1_first_run){
 								div1_first_run = false;
@@ -227,12 +252,12 @@ var start_timer = setTimeout(function(){
 		function animatediv2(target1, target2){
 			var div2_first_run = true; 
 			var goal_left = win_width - div2_width;
+			ani_2_running = true; 
 			$(target2).animate({left : ["-="+ani2_width, "linear"]},
 				{
 				queue: true,
 				duration: ani2_duration, 
 					step: function(target_left){
-						console.log("div2_first_run = "+div2_first_run);
 						if(target_left < goal_left){
 							if(div2_first_run){
 								div2_first_run = false;
@@ -241,10 +266,17 @@ var start_timer = setTimeout(function(){
 						};
 					},	
 					complete: function(){
-						reset_div(target2);
-						div2_first_run = true;
+						if(update_needed){
+							location.reload();
+						}
+						else {
+							reset_div(target2);
+							div2_first_run = true; 
+						};
+						
 					}
 				});
+			
 		}
 
 			});

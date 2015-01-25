@@ -90,17 +90,97 @@
 		set_drawing_params(drawing_params, ctx); 
 	});
 
+	$('#bold').click(function(){
+		drawing_params.lineWidth = '10';
+		set_drawing_params(drawing_params, ctx); 
+	});
+
+	$('#thin').click(function(){
+		drawing_params.lineWidth = '5';
+		set_drawing_params(drawing_params, ctx); 
+	});
+
+	$('#black').click(function(){
+		drawing_params.strokeStyle = 'black';
+		set_drawing_params(drawing_params, ctx); 
+	});
+
+	$('#white').click(function(){
+		drawing_params.strokeStyle = 'white';
+		set_drawing_params(drawing_params, ctx); 
+	});
+
+	$('#yellow').click(function(){
+		drawing_params.strokeStyle = 'yellow';
+		set_drawing_params(drawing_params, ctx); 
+	});
+	
+	$('#green').click(function(){
+		drawing_params.strokeStyle = 'green';
+		set_drawing_params(drawing_params, ctx); 
+	});
+
+	$('#blue').click(function(){
+		drawing_params.strokeStyle = 'blue';
+		set_drawing_params(drawing_params, ctx); 
+	});
+
+	$('#red').click(function(){
+		drawing_params.strokeStyle = 'red';
+		set_drawing_params(drawing_params, ctx); 
+	});
+
+	$('#reset').click(function(){
+		ctx.clearRect(0,0,canvas.width,canvas.height); 
+	});
+
 	$("#save").click(function(){
 		imageData = canvas.toDataURL("image/png");
 		console.log(imageData);
+		$("#draw").hide();
+		$("#text_input").show();
+	});
+
+	$("#text_input").submit(function(event){
+		console.log("submit fired!");
+		var user_text = $('#user_text').val();
+		console.log("user text is: "+user_text);
 		$.ajax({
 			type : "POST",
 			contentType: "application/x-www-form-urlencoded",
-			url: "sandbox.php",
-			data: {img : imageData}, 
+			url: "saveimage.php",
+			data: {
+				img : imageData,
+				text : user_text
+			}, 
 		}).done(function(o){
+			$("#text_input").hide();
 			console.log("Data Sent!");
-		})
-	})
+		});
+
+		event.preventDefault();
+	});
+
+	/**
+ 
+<script>
+$( "form" ).submit(function( event ) {
+  if ( $( "input:first" ).val() === "correct" ) {
+    $( "span" ).text( "Validated..." ).show();
+    return;
+  }
+ 
+  $( "span" ).text( "Not valid!" ).show().fadeOut( 1000 );
+  event.preventDefault();
+});
+</script>**/
+
+
+/****/
+
+
+
+
+
 });
 })(jQuery);

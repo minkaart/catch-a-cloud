@@ -2,6 +2,10 @@ body {
 	background-color: #DEF7FF;
 }
 
+.button {
+	cursor: pointer;
+}
+
 #main {
 	width: 100%;
 	height: 100%;
@@ -9,18 +13,30 @@ body {
 	text-align: center;
 }
 
-.menu_button {
+#home_menu {
 	position: absolute;
+	border-width: 5px;
+	width: 20%;
 	background-color: white;
-	top: 0px;
-	left: 0px;
-	width: 5%;
-	height: 5%;
-	display: block;
+	top: 10%;
+}
+
+#menu_button {
+	position: absolute;
+	border-width: 5%;
+	border-radius: 5%;
 }
 
 .menu {
+	background-color: white;
+	top: 2%;
+	left: 2%;
+	width: 5%;
+	display: block;
+}
 
+.menu img {
+	width: 100%;
 }
 
 img {
@@ -48,7 +64,7 @@ img {
 	}
 
 #content {
-	display: none;
+	display: block;
 	top: 30%;
 	width: 600px;
 	height: 40%;
@@ -57,27 +73,119 @@ img {
 } 
 
 #draw {
-	display: none;
-	width: 800px;
+	background-color: white;
+	display: block;
+}
+
+.in {
+	display: block;
+	width: 80%;
 	height: 60%;
 	top: 20%;
 	margin: 0 auto;
-	background-color: yellow;
+	position: absolute;
+	background-color: white;
+	border-radius: 10px;
+}
+
+#text_input {
+	display: block;	
+}
+
+#user_text {
+	width: 80%;
+	height: 20%;
+}
+
+#submit_button {
+	top: 80%;
+	left: 70%;
+	position: absolute;
 }
 
 #canvas_holder {
-		width: 90%;
+		width: 80%;
 		height: 90%;
+		right: 2%; 
+		top: 5%;
 		position: absolute;
-		top: 10px;
-		left: 100px;
-		background-color: yellow;
+		background-color: #DEF7FF;
 	}
 
-#tools {
-		width: 100px;
-		top: 10px;
-		position: absolute;
-		left: 0px;
-		border: 5px;
-	}
+table {
+	border-collapse: collapse;
+	margin: 4%;
+}
+
+td {
+	border: 1px solid black;
+}
+
+th {
+	border-style: none;
+}
+
+th, td {
+	text-align: center; 
+}
+
+#tool_menu {
+	top: 10%;
+	margin-left: 0%;
+	position: absolute;
+}
+
+.tools {
+	width: 10%;
+	position: relative;
+	left: 0px;
+}
+
+.tools img {
+	width: 50%;
+	margin: 0 auto;
+}
+
+.color {	
+	position: relative;
+}
+
+.color img {
+	width: 100%;
+}
+
+#black {
+	background-color: black;
+}
+
+#yellow {
+	background-color: yellow;
+}
+
+#red {
+	background-color: red;
+}
+
+#green {
+	background-color: green;
+}
+
+#blue {
+	background-color: blue;
+}
+
+#white {
+	background-color: white;
+}
+
+.functions {
+	margin-left: 3%;
+	margin-right: 3%;
+}
+
+
+
+
+
+
+
