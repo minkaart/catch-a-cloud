@@ -1,9 +1,8 @@
-/**jQuery library to animate images in a continuous (infinite) loop - scrolling left across a page
+/**jQuery library? to animate images in a continuous (infinite) loop - scrolling left across a page
 
 TO DO: 
 - write function to set divs to appropriate css (see clouds.css) checkcss(){}
 - allows you to reuse looping() when updating divs after a cloud has been drawn
-- find a way to evenly disperse images within the target div margin-auto? http://stackoverflow.com/questions/7245018/how-to-evenly-distribute-elements-in-a-div-next-to-each-other use table-display  
 **/
 
 (function($){
@@ -27,42 +26,54 @@ TO DO:
 		var containerArray = [];
 		var holdingContainer = "#images";
 		var imageArray_ready = false;
+		var imageObjects = [];
 		var in_page = 0; 
 		var update_needed = false; 
-		var ani_2_running = false;
-		
-popimageArray();
+		var ani_2_running = false;	
 
-var start_timer = setTimeout(function(){
-	if(imageArray_ready){
-		calculaterows(400);
-		initiatepage(containerArray, imageArray);
-		in_page = imageArray.length;
-		console.log(in_page);
-		clearTimeout(start_timer);
-	};
-}, 100);
+pageload();
 
+		function pageload(){
+			popimageArray();
 
-var update_timer = setInterval(function(){
-	//console.log("checking...");
-	//checkforupdate();
-}, 1000);
+			var start_timer = setTimeout(function(){
+				if(imageArray_ready){
+					calculaterows(400);
+					initiatepage(containerArray, imageObjects);
+					in_page = imageArray.length;
+					console.log(in_page);
+					clearTimeout(start_timer);
+				};
+			}, 100);
+		}
+
+		function update(){
+			console.log("updating...");
+			imageArray = [];
+			imageArray_ready = false;
+			imageObjects = [];
+			containerArray = [];
+			in_page = 0; 
+			
+			$(".images").empty();
+			$("#images").empty();
+			pageload();
+
+			update_needed = false; 
+		}
+
 
 		function initiatepage(containerlist, imagelist) {
 			console.log("initiating page");
 			populatedivs(containerlist, imagelist);
 
 			for (var i = 0; i < containerlist.length; i+=2) {
-				console.log("initiating animations");
-				console.log("containerlist at i: "+containerlist[i]);
-				console.log("containerlist at i+1 "+containerlist[i+1]);
 				apply_animations(containerlist[i], containerlist[i+1]);
 			};
 			
 		}	
 
-		//splits content divs into short(fill divs) and long and then populates them with imagecontent from imageArray 
+		//splits content divs into short(fill divs) and long and then populates them with imagecontent from imageObjects 
 		function populatedivs(containerlist, imagelist){
 			console.log("populating divs");
 			var shorts = [];
@@ -73,7 +84,7 @@ var update_timer = setInterval(function(){
 				if(i%2 == 0){
 					shorts.push(val);
 					console.log("pushing "+val+" to shorts");
-					$(val).css("left", 0);
+					reset_div(val);
 				}
 				else{
 					longs.push(val);
@@ -104,21 +115,34 @@ var update_timer = setInterval(function(){
 					looping(longs[index], imagelist);
 				});
 			};
+			var longwidth = checkwidth(longs[longs.length-1]);
+			if(longwidth){
+				do{
+					for (var i = 0; i < longs.length; i++) {
+						looping(longs[i], imagelist);
+					};
+					longwidth = checkwidth(longs[longs.length-1]);
+				}while(longwidth)
+			};
+			//add check for longs at least winwidth here
 		}
 
-		//function dynamically populates imageArray based on files in "images" folder and displays the images scrolling - to only display the images and manually populate imageArray, use initiatepage()
+		//function dynamically populates imageObjects based on image JSON file based on files in "images" folder and displays the images scrolling - to only display the images and manually populate imageObject, use initiatepage() alone with imageObject
 		function popimageArray(){
 			console.log("populating image array");
 			$.getJSON("image_JSON.json", function(data){
 				console.log(data);
 				$.each(data, function(key, val){
 					console.log("writing: "+key);
-					imageArray.push("images/"+key);	
+					var imageObject = {
+						"image_ref" : "images/"+key,
+						"obj_text" : val
+					};
+					imageObjects.push(imageObject);
+					imageArray.push(key);	
 					console.log("text: "+val);
 				});		
-				imageArray_ready = true;
-				alert("data received!");	
-				console.log("1st image: "+imageArray[0]);		
+				imageArray_ready = true;		
 			});
 			console.log("imageArray length"+imageArray.length);
 		}
@@ -152,12 +176,15 @@ var update_timer = setInterval(function(){
 
 		//checks if new images have appeared on server, creates new imageArray of new images
 		function checkforupdate(){
+			console.log("checking...");
 			var images_in_file = 0;
 
 			$.get("check.php", function(data){
 					//note -3 for Mac OS file system.... change to two for linux or do other checking method
-					images_in_file = data - 3; 
-					
+					console.log("files # from check "+data)
+					console.log("in_page "+in_page);
+					images_in_file = data; 
+					console.log("images_in_file "+images_in_file);
 					images_ready = true; 
 					if(images_in_file > in_page){
 						update_needed = true; 
@@ -174,22 +201,25 @@ var update_timer = setInterval(function(){
 		}
 
 		//appends an image to any given target div
-		function imagedisplay(targetdiv, image) {
-			$(targetdiv).append('<img src="'+image+'">');
+		function imagedisplay(targetdiv, image, text) {
+			$(targetdiv).append('<figure><img src="'+image+'"><figcaption>'+text+'</figcaption></figure>');
 		}
 
 		//loops through imageArray and appends each image to a given target div - maintains first un-used image at position [0] in the array
 		//to use: targetdiv is the id value "#somediv" && imagelist is an array of images to be appended to the div "imageArray" 
 		function looping(targetdiv, imagelist){
-			var newvalue = imagelist[0];
+			var newobject = imagelist[0];
+			var newimage = newobject.image_ref;
+			var newtext = newobject.obj_text; 
 			imagelist.shift();
-			imagelist.push(newvalue);
-			imagedisplay(targetdiv, newvalue);
+			imagelist.push(newobject);
+			imagedisplay(targetdiv, newimage, newtext);
 		}
 
 		//checks if the width of an image-populated div is greater than the width of the window 
 		function checkwidth(targetdiv){
-			var imgcount = $(targetdiv + ' img').length;
+			var imgcount = $(targetdiv + ' figure').length;
+			console.log("images in "+targetdiv+" are "+imgcount);
 			if ((imgcount * 200) < (win_width-199)){
 				return true;
 			}
@@ -229,6 +259,7 @@ var update_timer = setInterval(function(){
 		}
 
 		function animatediv1(target1, target2){
+			update_vars(target1, target2);
 			var div1_first_run = true; 
 			$(target1).animate({left : ["-="+ani1_width, "linear"]},
 				{
@@ -239,11 +270,13 @@ var update_timer = setInterval(function(){
 							if(div1_first_run){
 								div1_first_run = false;
 								animatediv2(target1, target2);	
+								console.log("animating target 2");
 							};
 						};
 					},
 					complete: function(){
 						reset_div(target1);
+						checkforupdate();
 						div1_first_run = true; 
 					}
 				});
@@ -262,12 +295,14 @@ var update_timer = setInterval(function(){
 							if(div2_first_run){
 								div2_first_run = false;
 								animatediv1(target1, target2);
+								console.log("animating target 1");
 							};
 						};
 					},	
 					complete: function(){
 						if(update_needed){
-							location.reload();
+							$(".images").stop();
+							update();
 						}
 						else {
 							reset_div(target2);
@@ -278,6 +313,16 @@ var update_timer = setInterval(function(){
 				});
 			
 		}
+
+		$(window).focusout(function(){
+			$(".images").stop();
+		}
+		);
+
+		$(window).focusin(function(){
+			update();
+		}
+		);
 
 			});
 });

@@ -25,6 +25,7 @@ body {
 	position: absolute;
 	border-width: 5%;
 	border-radius: 5%;
+	display: block;
 }
 
 .menu {
@@ -39,29 +40,34 @@ body {
 	width: 100%;
 }
 
-img {
-	width: 200px;
+#images {
+	height: 301px;
+	position: absolute;
+	}
+
+.images {
+	top: 0px;
+	display: table;
+	table-layout: fixed;
+	white-space: nowrap;
+	position: absolute;
+	}
+
+.images figure {
+	display: table-cell;
+	text-align: center;
+}
+
+figure {
+	width: 250px;
 	position: relative;
-	display: inline;
+	display: inline-block;
 	top: 0px;	
 	}
 
-#images {
-	height: 301px;
-	left: 1200px;
-	}
-
-#images2 {
-	height: 301px;
-	left: 1200px;
-		}
-
-.images {
-	position: absolute;
-	top: 0px;
-	display: inline-block;
-	white-space: nowrap;
-	}
+figure img {
+	width: 200px;
+}
 
 #content {
 	display: block;
