@@ -4,30 +4,76 @@
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 	<script src="drawing_script.js"></script>
 	<script src="display_images.js"></script>
-	
+
 	<script type="text/javascript">
 	(function($){
-	$(window).load(function(){
-		$("#content").hide();
+	$(document).ready(function(){
+
+
+		var mbh = $("#menu_button img").height();
+		
+		$("#about_content").hide();
 		$("#text_input").hide();
+		$("#home_menu").hide();
+		$("#home_menu").css("top", mbh+0.1*mbh);
 		$("#images").css("top", function(){
-			var mbh = $("#menu_button img").height();
 			console.log("menu button is "+mbh+"high");
-			var newtop = mbh + mbh*0.5;
+			var newtop = mbh + mbh*0.7;
 			return newtop;
 		})
-		//$('#draw').hide();
+		$("#start_button").hide();
+		//$("#draw").hide();
+		//$("#images").hide();
+
+		$("#add").click( function(){
+			$("#draw").show();
+		});
+
+		$("#view").click( function(){
+			$("#images").show();
+			pageload();
+		});
+
+		$("#about").click(function(){
+			$("#about_content").show();
+		});
+
+		$(".close_button").click(function(){
+			var par = $(this).parent();
+			$(par).hide();
+		});
+
+		$("#menu_button").click(function(){
+			$("#home_menu").toggle(500);
+		});
+
+		$("#text_button").click(function(){
+			$("figcaption").toggle();
+		});
+
 	});
 	})(jQuery);
 	</script>
 </head>
 <body>
-	<div id="main">
-		<div id="images"></div>
-		<div id="home_menu" class="menu"></div>
-		<div id="menu_button" class="menu button"><img src="icons/menu.svg" /></div>
-		<div id="draw" class="in">
-		<div id="tool_menu">
+	<div id="images"></div>
+	<div id="home_menu" class="menu">
+		<div id="about" class="home button">ABOUT</div>
+		<div id="add" class="home button">ADD CLOUD</div>
+		<div id="view" class="home button">VIEW THE CLOUDS</div>
+	</div>
+	
+	<div id="menu_button" class="menu button"><img src="icons/menu.svg" /></div>
+	<div id="text_button" class="start_stop button"><span>TEXT</span></div>
+	<div id="stop_button" class="start_stop button"><span>STOP</span></div>
+	<div id="start_button" class="start_stop button"><span>START</span></div>
+
+	<div id="draw" class="in">
+		<div id="instructions"><span>Please draw a cloud</span></div>
+		<div id="canvas_close" class="button close_button"><img src="icons/close.svg" /></div>
+
+		<div id="drawing_area">
+			<div id="tool_menu">
 			<table class="tools">
 				<tr>
 					<td id="eraser" class="button"><img src="icons/eraser.svg" /></td>
@@ -38,6 +84,7 @@
 					<td id="thin" class="weight button"><img src="icons/thin.svg" /></td>
 				</tr>
 			</table> 
+			
 			<table class="tools" id="colors">
 				<th colspan="3">COLOR</th>
 				<tr>
@@ -51,25 +98,34 @@
 					<td id="red" class="color button"><img src="icons/square.png" /></td>
 				</tr>
 			</table>
-			<table class="functions"> 
-				<tr><th id="save" class="button"> <span>SAVE</span> </th></tr>
-				<tr><th id="reset" class="button"> <span>RESET</span> </th></tr>
-				<tr><th id="no" class="button"> <span>NO THANKS</span> </th></tr>  
-			</table>
-		</div>
-		<div id="canvas_holder">
-			<canvas id="my_canvas" style="border:1px solid #000000"></canvas>
-		</div>
-		</div>
-		<form id="text_input" class="in">
-			<label for="user_text">Does your cloud need some text? Enter here. (140 char max)</label>
-			<input type="text" maxlength="140" id="user_text"></input>
-			<div id="submit_button">
-				<button type="submit" value="Submit">Submit</button>
+			
 			</div>
-		</form>
-		<div id="content" class="in">
-			<p>Blah blah blah</p>
+		
+			<div id="canvas_holder">
+				<canvas id="my_canvas" style="border:1px solid #000000"></canvas>
+			</div>
+
+			<div id="functions"> 
+					<div id="save" class="functions button">SAVE</div>
+					<div id="reset" class="functions button">RESET</div>
+					<div id="no" class="functions button">CLOSE</div>
+			</div>
+		</div>
+
+	</div>
+	
+	<form id="text_input" class="in">
+		<label for="user_text">Does your cloud need some text? Enter here. (140 char max)</label>
+		<input type="textarea" maxlength="140" id="user_text"></input>
+		<div id="submit_button">
+			<button type="submit" value="Submit">Submit</button>
+		</div>
+	</form>
+
+	<div id="about_content" class="in">
+		<div class="button close_button"><img src="icons/close.svg" /></div>
+		<div style="margin: 5%">
+			<header>ABOUT</header><p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
 		</div>
 	</div>
 </body>

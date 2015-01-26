@@ -4,40 +4,76 @@ body {
 
 .button {
 	cursor: pointer;
+	border-radius: 5px;
+}
+
+.close_button {
+	position: absolute;
+	padding: 2%;
+	right: 0px;
+	top: 0px;
+	display: block;
+	height: 4%;
+}
+
+.close_button img {
+	height: 100%;
 }
 
 #main {
 	width: 100%;
 	height: 100%;
 	float: none;
-	text-align: center;
 }
 
 #home_menu {
 	position: absolute;
-	border-width: 5px;
-	width: 20%;
+	padding-right: 3%;
+	padding-top: 3%;
+	padding-bottom: 2%; 
+	border-radius: 5px; 
 	background-color: white;
-	top: 10%;
+	text-align: left;
+}
+
+.home {
+	top: 5%;
+	margin: 3%;
+	width: 100%;
+	display: block;
+	text-align: left;
 }
 
 #menu_button {
 	position: absolute;
 	border-width: 5%;
-	border-radius: 5%;
 	display: block;
-}
-
-.menu {
-	background-color: white;
-	top: 2%;
-	left: 2%;
-	width: 5%;
-	display: block;
+	width: 4%;
 }
 
 .menu img {
 	width: 100%;
+}
+
+.start_stop {
+	position: absolute;
+	border-width: 5%;
+	border-radius: 5px;
+	right: 2%;
+	width: 10%;
+	display: block;
+	text-align: right;
+	background-color: white;
+	padding: 2px;
+}
+
+#text_button {
+	right: 16%;
+	width: 10%;
+	height: 4%;
+	text-align: center;
+	vertical-align: middle; 
+	padding-top: 1%;
 }
 
 #images {
@@ -59,39 +95,32 @@ body {
 }
 
 figure {
-	width: 250px;
 	position: relative;
 	display: inline-block;
 	top: 0px;	
 	}
 
-figure img {
-	width: 200px;
-}
 
-#content {
-	display: block;
-	top: 30%;
-	width: 600px;
-	height: 40%;
-	background-color: blue;
-	margin: 0 auto;
-} 
+#about_content {
+	padding: 4%;
+}
 
 #draw {
 	background-color: white;
 	display: block;
+	margin: 2%;
 }
 
 .in {
 	display: block;
 	width: 80%;
-	height: 60%;
+	left: 10%;
+	height: 70%;
 	top: 20%;
-	margin: 0 auto;
 	position: absolute;
 	background-color: white;
 	border-radius: 10px;
+	margin: 0 auto;
 }
 
 #text_input {
@@ -109,12 +138,20 @@ figure img {
 	position: absolute;
 }
 
+#instructions {
+	width: 70%;
+	left: 15%;
+	position: relative;
+	padding: 1%;
+}
+
 #canvas_holder {
-		width: 80%;
-		height: 90%;
-		right: 2%; 
-		top: 5%;
-		position: absolute;
+		width: 75%;
+		height: 70%; 
+		left: 20%;
+		top: 10%;
+		position: relative;
+		margin: 1%;
 		background-color: #DEF7FF;
 	}
 
@@ -137,12 +174,11 @@ th, td {
 
 #tool_menu {
 	top: 10%;
-	margin-left: 0%;
 	position: absolute;
 }
 
 .tools {
-	width: 10%;
+	width: 15%;
 	position: relative;
 	left: 0px;
 }
@@ -158,6 +194,38 @@ th, td {
 
 .color img {
 	width: 100%;
+}
+
+
+.functions {
+	position: relative;
+	bottom: 0px;
+	margin-bottom: 0;
+	margin-left: 1.5%;
+	margin-right: 2%;
+	float: right;
+	padding: 1%;
+	background-color: #999999;
+	width: 15%;
+	text-align: center;
+}
+
+#functions {
+	position: absolute;
+	bottom: 2%;
+	display: block;
+	width: 100%;
+}
+
+button {
+	position: relative;
+	bottom: 0px;
+	margin-bottom: 0;
+	margin-left: 1.5%;
+	margin-right: 2%;
+	float: right;
+	padding: 1%;
+	background-color: #999999;
 }
 
 #black {
@@ -184,10 +252,7 @@ th, td {
 	background-color: white;
 }
 
-.functions {
-	margin-left: 3%;
-	margin-right: 3%;
-}
+
 
 
 

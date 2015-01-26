@@ -1,5 +1,5 @@
 (function($){
-	$(window).load(function(){
+	$(document).ready(function(){
 	//canvas variables
 	var canvas = $("#my_canvas").get(0);
 	var j_canvas = $("#my_canvas");
@@ -37,10 +37,8 @@
 	
 	//sets drawing parameters
 	function set_drawing_params(params, context){
-		console.log("setting drawing params for "+context);
 		var ctx = context; 
 		$.each(params, function(key, value){
-			console.log(key + ":" + value);
 			ctx[key] = value;
 		})
 
@@ -49,7 +47,6 @@
 	//pt1 (start) & pt2 (end) should be points, held as arrays of x,y coordinates : context should be a reference to the context of an html5 canvas element
 	function draw_line(pt1, pt2, context){
 		var ctx = context;
-		console.log("drawing line in"+context+" from "+pt1+" to "+pt2)
 		ctx.beginPath();
 		ctx.moveTo(pt1.x, pt1.y);
 		ctx.lineTo(pt2.x, pt2.y);
@@ -66,17 +63,33 @@
 		var off = j_canvas.offset();
 		last_mouse.x = (event.pageX - off.left);
 		last_mouse.y = (event.pageY - off.top);
+		j_canvas.touchmove(function(event){
+			mouse.x = (event.pageX - off.left);
+			mouse.y = (event.pageY- off.top);
+			draw_line(last_mouse, mouse, ctx);
+			last_mouse.x = mouse.x;
+			last_mouse.y = mouse.y;
+		});
+		$(document).touchend(function(){
+		j_canvas.unbind("mousemove");
+	});
+	});
+
+	//mobile - touchscreen
+	j_canvas.bind('touchstart', function(event){
+		preventDefault();
+		var off = j_canvas.offset();
+		last_mouse.x = (event.pageX - off.left);
+		last_mouse.y = (event.pageY - off.top);
 		j_canvas.mousemove(function(event){
 			mouse.x = (event.pageX - off.left);
 			mouse.y = (event.pageY- off.top);
 			draw_line(last_mouse, mouse, ctx);
-			console.log("the cursor was at: "+last_mouse.x+","+last_mouse.y);
 			last_mouse.x = mouse.x;
 			last_mouse.y = mouse.y;
-			console.log("the cursor is now at: "+mouse.x+","+mouse.y);
 		});
 		$(document).mouseup(function(){
-		j_canvas.unbind("mousemove");
+		j_canvas.unbind("touchstart");
 	});
 	});
 
@@ -136,15 +149,13 @@
 
 	$("#save").click(function(){
 		imageData = canvas.toDataURL("image/png");
-		console.log(imageData);
+		ctx.clearRect(0,0,canvas.width,canvas.height);
 		$("#draw").hide();
 		$("#text_input").show();
 	});
 
 	$("#text_input").submit(function(event){
-		console.log("submit fired!");
 		var user_text = $('#user_text').val();
-		console.log("user text is: "+user_text);
 		event.preventDefault();
 		$.ajax({
 			type : "POST",
@@ -156,30 +167,17 @@
 			}, 
 		}).done(function(o){
 			$("#text_input").hide();
-			console.log("Data Sent!");
 		});
 	});
 
-	/**
- 
-<script>
-$( "form" ).submit(function( event ) {
-  if ( $( "input:first" ).val() === "correct" ) {
-    $( "span" ).text( "Validated..." ).show();
-    return;
-  }
- 
-  $( "span" ).text( "Not valid!" ).show().fadeOut( 1000 );
-  event.preventDefault();
-});
-</script>**/
+	$("#canvas_close").click(function(){
+		ctx.clearRect(0,0,canvas.width,canvas.height);
+	});
 
-
-/****/
-
-
-
-
+	$(window).resize(function(){
+		set_width();
+		set_height();
+	});
 
 });
 })(jQuery);
