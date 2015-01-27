@@ -9,29 +9,64 @@
 	(function($){
 	$(document).ready(function(){
 
+	/**	if($(window).width() < $(window).height()){
+			addmobile();
+		} 
+		else if($(window).width() < 800){
+			addmobile();
+		}
+		else {
+			removemobile();
+		}
 
-		var mbh = $("#menu_button img").height();
+		function addmobile(){
+			$("#images").hide();
+			$("#menu_button").addClass("mobile");
+			$(".start_stop").addClass("mobile");
+			$("#images").addClass("mobile");
+			$("#draw").addClass("mobile");
+			$("#draw").removeClass("in");
+			$("#canvas_holder").addClass("mobile");	
+			$(".tools").addClass("mobile");
+			$("#functions").removeClass("functions");
+			$("body").css("font-size", "10pt");
+			$("#tool_menu").hide();
+			$("#mobile_tool_menu").show();	
+		}
+
+		function removemobile(){
+			$("#menu_button").removeClass("mobile");
+			$(".start_stop").removeClass("mobile");
+			$("#images").removeClass("mobile");
+			$("#draw").removeClass("mobile");
+			$("#draw").removeClass("in");
+			$("#canvas_holder").removeClass("mobile");
+			$("#tool_menu").removeClass("mobile");		
+			$(".tools").removeClass("mobile");
+			$("#functions").addClass("functions");
+			$("body").css("font-size", "12pt");
+			$("#tool_menu").show();
+			$("#mobile_tool_menu").hide();
+		}
+	**/
 		
 		$("#about_content").hide();
-		$("#text_input").hide();
+		$("#text_form").hide();
 		$("#home_menu").hide();
-		$("#home_menu").css("top", mbh+0.1*mbh);
-		$("#images").css("top", function(){
+		//$("#home_menu").css("top", mbh+0.1*mbh);
+		/**$("#images").css("top", function(){
 			console.log("menu button is "+mbh+"high");
 			var newtop = mbh + mbh*0.7;
 			return newtop;
-		})
+		});**/
 		$("#start_button").hide();
 		//$("#draw").hide();
+		//$("#text_form").show();
 		//$("#images").hide();
 
 		$("#add").click( function(){
 			$("#draw").show();
-		});
-
-		$("#view").click( function(){
-			$("#images").show();
-			pageload();
+			$("#tool_menu").show();
 		});
 
 		$("#about").click(function(){
@@ -56,75 +91,61 @@
 	</script>
 </head>
 <body>
-	<div id="images"></div>
-	<div id="home_menu" class="menu">
-		<div id="about" class="home button">ABOUT</div>
-		<div id="add" class="home button">ADD CLOUD</div>
-		<div id="view" class="home button">VIEW THE CLOUDS</div>
-	</div>
-	
-	<div id="menu_button" class="menu button"><img src="icons/menu.svg" /></div>
-	<div id="text_button" class="start_stop button"><span>TEXT</span></div>
-	<div id="stop_button" class="start_stop button"><span>STOP</span></div>
-	<div id="start_button" class="start_stop button"><span>START</span></div>
 
+	<div id="images"></div>
+	<div id="header">
+		<div id="menu_button" class="button"><img src="icons/menu.svg" /></div>
+		<div id="about" class="button_text button"><span>ABOUT</span></div>
+		<div id="add" class="button_text button"><span>ADD CLOUD</span></div>
+		<div id="text_button" class="button_text button"><span>TEXT</span></div>		
+		<div id="stop_button" class="start_stop button"><img src="icons/stop.svg" /></div>
+		<div id="start_button" class="start_stop button"><img src="icons/start.svg" /></div>
+	</div>
+
+	<div id="home_menu" class=""></div>
+	
 	<div id="draw" class="in">
-		<div id="instructions"><span>Please draw a cloud</span></div>
+		<div class="instructions"><span>Please draw a cloud</span></div>
 		<div id="canvas_close" class="button close_button"><img src="icons/close.svg" /></div>
 
-		<div id="drawing_area">
-			<div id="tool_menu">
-			<table class="tools">
-				<tr>
-					<td id="eraser" class="button"><img src="icons/eraser.svg" /></td>
-					<td id="pencil" class="button"><img src="icons/pencil.svg" /></td>
-				</tr>	
-				<tr>
-					<td id="bold" class="weight button"><img src="icons/bold.svg" /></td>
-					<td id="thin" class="weight button"><img src="icons/thin.svg" /></td>
-				</tr>
-			</table> 
-			
-			<table class="tools" id="colors">
-				<th colspan="3">COLOR</th>
-				<tr>
-					<td id="black" class="color button"><img src="icons/square.png" /></td>
-					<td id="white" class="color button"><img src="icons/square.png" /></td>
-					<td id="yellow" class="color button"><img src="icons/square.png" /></td> 
-				</tr>
-				<tr>	
-					<td id="green" class="color button"><img src="icons/square.png" /></td>
-					<td id="blue" class="color button"><img src="icons/square.png" /></td>
-					<td id="red" class="color button"><img src="icons/square.png" /></td>
-				</tr>
-			</table>
-			
-			</div>
 		
-			<div id="canvas_holder">
-				<canvas id="my_canvas" style="border:1px solid #000000"></canvas>
-			</div>
-
-			<div id="functions"> 
-					<div id="save" class="functions button">SAVE</div>
-					<div id="reset" class="functions button">RESET</div>
-					<div id="no" class="functions button">CLOSE</div>
-			</div>
+		<div id="canvas_holder" style="border:1px solid #000000">
+			<canvas id="my_canvas"></canvas>
 		</div>
+
+		<div id="functions"> 
+				<div id="save" class="function button">SAVE</div>
+				<div id="reset" class="function button">RESET</div>
+				<div id="no" class="function button">CLOSE</div>
+		</div>
+	</div>
 
 	</div>
+
+	<div id="tool_menu">
+		<div id="eraser" class="tool button"><img src="icons/eraser.svg" /></div>
+		<div id="pencil" class="tool button"><img src="icons/pencil.svg" /></div>
+		<div id="bold" class="button_text tool button"><span>BOLD</span></div>
+		<div id="thin" class="button_text tool button"><span>thin</span></div>
+		<div id="black" class="tool button"><img src="icons/black.svg" /></div>
+		<div id="white" class="tool button"><img src="icons/white.svg" /></div>
+		<div id="yellow" class="tool button"><img src="icons/yellow.svg" /></div>
+		<div id="green" class="tool button"><img src="icons/green.svg" /></div>
+		<div id="blue" class="tool button"><img src="icons/blue.svg" /></div>
+		<div id="red" class="tool button"><img src="icons/red.svg" /></div>
+	</div>
 	
-	<form id="text_input" class="in">
-		<label for="user_text">Does your cloud need some text? Enter here. (140 char max)</label>
-		<input type="textarea" maxlength="140" id="user_text"></input>
-		<div id="submit_button">
-			<button type="submit" value="Submit">Submit</button>
-		</div>
-	</form>
+	<div id="text_form" class="in">
+		<div id="text_label" class="instructions">Does your cloud need some text? </br> Please enter it here. (40 char max)</div>
+		<form id="text_input">
+			<input type="text" maxlength="40" id="user_text"></input>
+			<div id="submit_button"><input type="submit" value="Submit"></input></div>
+		</form>
+	</div>
 
 	<div id="about_content" class="in">
 		<div class="button close_button"><img src="icons/close.svg" /></div>
-		<div style="margin: 5%">
+		<div>
 			<header>ABOUT</header><p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
 		</div>
 	</div>

@@ -54,12 +54,41 @@ pageload();
 			imageObjects = [];
 			containerArray = [];
 			in_page = 0; 
-			
 			$(".images").empty();
 			$("#images").empty();
-			pageload();
 
-			update_needed = false; 
+			popimageArray();
+
+			var start_timer = setTimeout(function(){
+				if(imageArray_ready){
+					calculaterows(img_height);
+					populatedivs(containerArray, imageObjects);
+					in_page = imageArray.length;
+
+					for (var i = 0; i < containerArray.length; i+=2) {
+						update_vars(containerArray[i], containerArray[i+1]);
+						$(containerArray[i]).css("left", "0");
+						//console.log("animating 1");
+						$(containerArray[i]).animate({left : ["-="+win_width, "linear"]},
+							{
+							queue: true,
+							duration: ani1_duration*0.5,
+							complete: function(){
+								reset_div(containerArray[i]);
+							}
+						});
+						//console.log("animating 2");
+						animatediv2(containerArray[i], containerArray[i+1]);
+						$("#start_button").hide();
+						$("#stop_button").show();
+						update_needed = false;
+
+					};
+
+				};
+			}, 100);
+			
+			 
 		}
 
 
@@ -169,14 +198,10 @@ pageload();
 			});
 		}
 
-		//must be called before populating divs with new images
-		//stops animations and returns current values as left: and width: 
+		//stops animations 
 		function stopanimation(containerlist){
 			$(".images").stop();
 			for (var i = 0; i < containerlist.length; i++) {
-				console.log(i);
-				console.log(i/2);
-				console.log(containerlist[i]);
 				if(i%2 == 0){
 					$(containerlist[i]).css("left", "0");
 				}
@@ -286,7 +311,8 @@ pageload();
 					},	
 					complete: function(){
 						if(update_needed){
-							$(".images").stop();
+							console.log("update detected");
+							stopanimation(containerArray);
 							update();
 						}
 						else {
@@ -300,23 +326,23 @@ pageload();
 		}
 
 		$(window).focusout(function(){
+			console.log("focus out");
 			stopanimation(containerArray);
 		});
 
 		$(window).focusin(function(){
+			console.log("focus in");
 			update();
 		});
 
 		$("#stop_button").click(function(){
+			console.log("stop button");
 			stopanimation(containerArray);
-			$("#start_button").show();
-			$("#stop_button").hide();
 		});
 
 		$("#start_button").click(function(){
+			console.log("start button");
 			update();
-			$("#start_button").hide();
-			$("#stop_button").show();
 		});
 	});
 }(jQuery));				

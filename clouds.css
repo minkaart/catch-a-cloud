@@ -1,203 +1,208 @@
-body {
+body, html {
 	background-color: #DEF7FF;
+	font-size: 12pt; 
 }
 
+/**BUTTONS**/
+
+/**all buttons**/
 .button {
 	cursor: pointer;
 	border-radius: 5px;
+	display: inline;
+}
+
+/**all images (buttons)**/
+.button img {
+	width: 35px;
+	margin: 5px;
+	display: inline;
+}
+
+/* buttons containing only text*/
+.button_text {
+	width: 90px;
+	height: 35px;
+	display: table;
+	position: absolute;
+	background-color: #999999;
+	overflow: hidden;
+	text-align: center;
+	margin: 3px;
+}
+
+.button_text span {
+	display: table-cell;
+	vertical-align: middle;
+}
+
+/**target specific buttons*/
+#about {
+	left: 0px;
+}
+
+#text_button {
+	left: 102px;
+}
+
+#add {
+	left: 204px;
+}
+
+#header .button_text {
+	top: 4px;
+	margin-right: 6px; 
+	margin-left: 6px;
 }
 
 .close_button {
 	position: absolute;
-	padding: 2%;
-	right: 0px;
-	top: 0px;
-	display: block;
-	height: 4%;
+	right: 5px;
+	top: 5px;
+	display: inline-block;
 }
 
 .close_button img {
-	height: 100%;
-}
-
-#main {
-	width: 100%;
-	height: 100%;
-	float: none;
-}
-
-#home_menu {
-	position: absolute;
-	padding-right: 3%;
-	padding-top: 3%;
-	padding-bottom: 2%; 
-	border-radius: 5px; 
-	background-color: white;
-	text-align: left;
-}
-
-.home {
-	top: 5%;
-	margin: 3%;
-	width: 100%;
-	display: block;
-	text-align: left;
-}
-
-#menu_button {
-	position: absolute;
-	border-width: 5%;
-	display: block;
-	width: 4%;
-}
-
-.menu img {
-	width: 100%;
+	width: 20px;
 }
 
 .start_stop {
 	position: absolute;
-	border-width: 5%;
-	border-radius: 5px;
-	right: 2%;
-	width: 10%;
-	display: block;
-	text-align: right;
-	background-color: white;
-	padding: 2px;
+	right: 0px;
+	top: 2px;
 }
 
-#text_button {
-	right: 16%;
-	width: 10%;
-	height: 4%;
-	text-align: center;
-	vertical-align: middle; 
-	padding-top: 1%;
+#menu_button {
+	display: none;
+}
+
+
+/*CONTAINERS*/
+#header {
+	width: 100%;
+	height: 50px;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	background-color: white;
 }
 
 #images {
-	height: 301px;
-	position: absolute;
-	}
+	width: 100%;
+	top: 50px;
+	position: fixed;
+	display: block;
+}
 
+.in {
+	display: block;
+	width: 80%;
+	left: 80px;
+	height: 70%;
+	top: 70px;
+	position: fixed;
+	background-color: white;
+	border-radius: 10px;
+}
+
+#about_content {
+	padding: 4%;
+}
+
+.instructions {
+	width: 70%;
+	left: 10%;
+	top: 5%;
+	position: absolute;
+	padding: 1%;
+}
+
+
+
+/*TOOL MENU*/
+#tool_menu {
+	top: 50px;
+	left: 0px;
+	position: fixed;
+	width: 60px;
+	background-color: white;
+}
+
+.tool {
+	display: inline-table;
+	position: relative;
+}
+
+#bold {
+	width: 50px;
+	height: 50px;
+}
+
+#thin {
+	width: 50px;
+	height: 50px;
+}
+
+
+
+/*MOBILE*/
+#menu_button.mobile {
+	display: inline;
+}
+
+#header .button_text.mobile {
+	display: none;
+}
+
+
+
+/*image targets*/
 .images {
 	top: 0px;
 	display: table;
 	table-layout: fixed;
 	white-space: nowrap;
 	position: absolute;
-	}
+}
 
 .images figure {
-	display: table-cell;
+	display: inline-table;
 	text-align: center;
-}
-
-figure {
 	position: relative;
-	display: inline-block;
 	top: 0px;	
-	}
-
-
-#about_content {
-	padding: 4%;
+	margin: 5px;
 }
 
+
+
+/*DRAWING CONTAINERS*/
 #draw {
 	background-color: white;
 	display: block;
-	margin: 2%;
 }
 
-.in {
+#draw.mobile {
+	width: 100%;
+	height: 75%;
 	display: block;
-	width: 80%;
-	left: 10%;
-	height: 70%;
-	top: 20%;
 	position: absolute;
 	background-color: white;
-	border-radius: 10px;
-	margin: 0 auto;
-}
-
-#text_input {
-	display: block;	
-}
-
-#user_text {
-	width: 80%;
-	height: 20%;
-}
-
-#submit_button {
-	top: 80%;
-	left: 70%;
-	position: absolute;
-}
-
-#instructions {
-	width: 70%;
-	left: 15%;
-	position: relative;
-	padding: 1%;
-}
-
-#canvas_holder {
-		width: 75%;
-		height: 70%; 
-		left: 20%;
-		top: 10%;
-		position: relative;
-		margin: 1%;
-		background-color: #DEF7FF;
-	}
-
-table {
-	border-collapse: collapse;
-	margin: 4%;
-}
-
-td {
-	border: 1px solid black;
-}
-
-th {
-	border-style: none;
-}
-
-th, td {
-	text-align: center; 
-}
-
-#tool_menu {
-	top: 10%;
-	position: absolute;
-}
-
-.tools {
-	width: 15%;
-	position: relative;
+	top: 40px;
+	margin: 0%;
 	left: 0px;
 }
 
-.tools img {
-	width: 50%;
-	margin: 0 auto;
+#canvas_holder {
+	width: 80%;
+	height: 70%; 
+	left: 10%;
+	top: 15%;
+	position: absolute;
+	margin: 1%;
+	background-color: #DEF7FF;
 }
 
-.color {	
-	position: relative;
-}
-
-.color img {
-	width: 100%;
-}
-
-
-.functions {
+.function {
 	position: relative;
 	bottom: 0px;
 	margin-bottom: 0;
@@ -217,40 +222,44 @@ th, td {
 	width: 100%;
 }
 
-button {
+
+
+/*TOOLS*/
+.tools {
+	width: 15%;
 	position: relative;
-	bottom: 0px;
-	margin-bottom: 0;
-	margin-left: 1.5%;
-	margin-right: 2%;
-	float: right;
-	padding: 1%;
-	background-color: #999999;
+	left: 0px;
 }
 
-#black {
-	background-color: black;
+
+/*TEXT FORM*/
+#text_label {
+	left: 10px;
+	top: 10px;
 }
 
-#yellow {
-	background-color: yellow;
+#text_input {
+	position: absolute;
+	top: 50px;
+	left: 20px;
+	width: 100%;
 }
 
-#red {
-	background-color: red;
+#user_text {
+	width: 90%;
+	
 }
 
-#green {
-	background-color: green;
+#submit_button {
+	position: absolute;
+	top: 70px;
+	right: 40px;
+	
 }
 
-#blue {
-	background-color: blue;
-}
 
-#white {
-	background-color: white;
-}
+
+
 
 
 

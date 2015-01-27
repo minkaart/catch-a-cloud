@@ -63,24 +63,6 @@
 		var off = j_canvas.offset();
 		last_mouse.x = (event.pageX - off.left);
 		last_mouse.y = (event.pageY - off.top);
-		j_canvas.touchmove(function(event){
-			mouse.x = (event.pageX - off.left);
-			mouse.y = (event.pageY- off.top);
-			draw_line(last_mouse, mouse, ctx);
-			last_mouse.x = mouse.x;
-			last_mouse.y = mouse.y;
-		});
-		$(document).touchend(function(){
-		j_canvas.unbind("mousemove");
-	});
-	});
-
-	//mobile - touchscreen
-	j_canvas.bind('touchstart', function(event){
-		preventDefault();
-		var off = j_canvas.offset();
-		last_mouse.x = (event.pageX - off.left);
-		last_mouse.y = (event.pageY - off.top);
 		j_canvas.mousemove(function(event){
 			mouse.x = (event.pageX - off.left);
 			mouse.y = (event.pageY- off.top);
@@ -89,8 +71,28 @@
 			last_mouse.y = mouse.y;
 		});
 		$(document).mouseup(function(){
-		j_canvas.unbind("touchstart");
+		j_canvas.unbind("mousemove");
 	});
+	});
+
+	//mobile - touchscreen
+	j_canvas.on('touchstart', function(event){
+		event.preventDefault();
+		var off = j_canvas.offset();
+		last_mouse.x = (event.pageX - off.left);
+		last_mouse.y = (event.pageY - off.top);
+		j_canvas.on('touchmove', function(event){
+			event.preventDefault();
+			mouse.x = (event.pageX - off.left);
+			mouse.y = (event.pageY- off.top);
+			draw_line(last_mouse, mouse, ctx);
+			last_mouse.x = mouse.x;
+			last_mouse.y = mouse.y;
+		});
+		$(document).on('touchend', function(event){
+			event.preventDefault();
+			j_canvas.unbind("touchmove");
+		});
 	});
 
 	$('#eraser').click(function(){
@@ -151,7 +153,8 @@
 		imageData = canvas.toDataURL("image/png");
 		ctx.clearRect(0,0,canvas.width,canvas.height);
 		$("#draw").hide();
-		$("#text_input").show();
+		$("#text_form").show();
+		$("#tool_menu").hide();
 	});
 
 	$("#text_input").submit(function(event){
@@ -166,12 +169,13 @@
 				text : user_text
 			}, 
 		}).done(function(o){
-			$("#text_input").hide();
+			$("#text_form").hide();
 		});
 	});
 
 	$("#canvas_close").click(function(){
 		ctx.clearRect(0,0,canvas.width,canvas.height);
+		$("#tool_menu").hide();
 	});
 
 	$(window).resize(function(){
