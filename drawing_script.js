@@ -126,79 +126,24 @@
         jQueryDocument.on("mousemove", onMouseEvent);
     }
 
-    j_canvas.mousedown(function(event){
+    j_canvas.on('touchmousedown', function(event){
+    	console.log("mousedown");
 		var off = j_canvas.offset();
 		last_mouse.x = (event.pageX - off.left);
 		last_mouse.y = (event.pageY - off.top);
-		j_canvas.mousemove(function(event){
+		j_canvas.on('touchmousemove', function(event){
 			mouse.x = (event.pageX - off.left);
 			mouse.y = (event.pageY- off.top);
 			draw_line(last_mouse, mouse, ctx);
 			last_mouse.x = mouse.x;
 			last_mouse.y = mouse.y;
 		});
-		$(document).mouseup(function(){
+		$(document).on('touchmouseup',function(){
 		j_canvas.unbind("mousemove");
 		});
 	});
 
-	/**j_canvas.mousedown(function(event){
-		var off = j_canvas.offset();
-		last_mouse.x = (event.pageX - off.left);
-		last_mouse.y = (event.pageY - off.top);
-		j_canvas.mousemove(function(event){
-			mouse.x = (event.pageX - off.left);
-			mouse.y = (event.pageY- off.top);
-			draw_line(last_mouse, mouse, ctx);
-			last_mouse.x = mouse.x;
-			last_mouse.y = mouse.y;
-		});
-		$(document).mouseup(function(){
-		j_canvas.unbind("mousemove");
-		});
-	});
-
-	j_canvas.bind('touchstart', function(event){
-		var off = j_canvas.offset();
-		last_mouse.x = (event.originalEvent.pageX - off.left);
-		last_mouse.y = (event.originalEvent.pageY - off.top);
-		preventDefault();
-		j_canvas.bind('touchmove', function(event){
-			mouse.x = (event.originalEvent.pageX - off.left);
-			mouse.y = (event.originalEvent.pageY- off.top);
-			draw_line(last_mouse, mouse, ctx);
-			last_mouse.x = mouse.x;
-			last_mouse.y = mouse.y;
-			preventDefault();
-		});
-		$(document).bind('touchend', function(){
-			j_canvas.unbind("touchmove");
-			preventDefault();
-		});
-	});**/
-
-	//mobile - touchscreen
-	/**
-	j_canvas.bind('touchstart', function(event){
-		var off = j_canvas.offset();
-		var xy = extractXY(event.originalEvent.touches[0]);
-		last_mouse.x = (xy.x - off.left);
-		last_mouse.y = (xy.y - off.top);
-		event.preventDefault();
-		j_canvas.bind('touchmove', function(event){
-			var xy = extractXY(event.originalEvent.touches[0]);
-			mouse.x = (xy.x - off.left);
-			mouse.y = (xy.x - off.left);
-			draw_line(last_mouse, mouse, ctx);
-			event.preventDefault();
-			last_mouse.x = mouse.x;
-			last_mouse.y = mouse.y;
-		});
-		$(document).bind('touchend', function(event){
-			j_canvas.unbind("touchmove");
-			event.preventDefault();
-		});
-	});**/
+	
 
 	$('#eraser').click(function(){
 		drawing_params.globalCompositeOperation = 'destination-out';
