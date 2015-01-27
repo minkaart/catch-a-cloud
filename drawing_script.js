@@ -76,7 +76,7 @@
 	});
 
 	//mobile - touchscreen
-	j_canvas.on('touchstart', function(event){
+	/**j_canvas.on('touchstart', function(event){
 		event.preventDefault();
 		var off = j_canvas.offset();
 		last_mouse.x = (event.pageX - off.left);
@@ -93,7 +93,7 @@
 			event.preventDefault();
 			j_canvas.unbind("touchmove");
 		});
-	});
+	});**/
 
 	$('#eraser').click(function(){
 		drawing_params.globalCompositeOperation = 'destination-out';
