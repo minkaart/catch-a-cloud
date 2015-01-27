@@ -59,20 +59,87 @@
 	set_height();
 	set_drawing_params(drawing_params, ctx);
 
-	j_canvas.mousedown(function(event){
+	/* == GLOBAL DECLERATIONS == */
+    TouchMouseEvent = {
+        DOWN: "touchmousedown",
+        UP: "touchmouseup",
+        MOVE: "touchmousemove"
+    }
+   
+    /* == EVENT LISTENERS == */
+    var onMouseEvent = function(event) {
+        var type;
+        
+        switch (event.type) {
+            case "mousedown": type = TouchMouseEvent.DOWN; break;
+            case "mouseup":   type = TouchMouseEvent.UP;   break;
+            case "mousemove": type = TouchMouseEvent.MOVE; break;
+            default: 
+                return;
+        }
+        
+        var touchMouseEvent = normalizeEvent(type, event, event.pageX, event.pageY);      
+        $(event.target).trigger(touchMouseEvent); 
+    }
+    
+    var onTouchEvent = function(event) {
+        var type;
+        
+        switch (event.type) {
+            case "touchstart": type = TouchMouseEvent.DOWN; break;
+            case "touchend":   type = TouchMouseEvent.UP;   break;
+            case "touchmove":  type = TouchMouseEvent.MOVE; break;
+            default: 
+                return;
+        }
+        
+        var touch = event.originalEvent.touches[0];
+        var touchMouseEvent;
+        
+        if (type == TouchMouseEvent.UP) 
+            touchMouseEvent = normalizeEvent(type, event, null, null);
+        else 
+            touchMouseEvent = normalizeEvent(type, event, touch.pageX, touch.pageY);
+        
+        $(event.target).trigger(touchMouseEvent); 
+    }
+    
+    /* == NORMALIZE == */
+    var normalizeEvent = function(type, original, x, y) {
+        return $.Event(type, {
+            pageX: x,
+            pageY: y,
+            originalEvent: original
+        });
+    }
+    
+    /* == LISTEN TO ORIGINAL EVENT == */
+    var jQueryDocument = $(document);
+   
+    if ("ontouchstart" in window) {
+        jQueryDocument.on("touchstart", onTouchEvent);
+        jQueryDocument.on("touchmove", onTouchEvent);
+        jQueryDocument.on("touchend", onTouchEvent); 
+    } else {
+        jQueryDocument.on("mousedown", onMouseEvent);
+        jQueryDocument.on("mouseup", onMouseEvent);
+        jQueryDocument.on("mousemove", onMouseEvent);
+   	}
+
+	j_canvas.on('touchmousedown', function(event){
 		var off = j_canvas.offset();
 		last_mouse.x = (event.pageX - off.left);
 		last_mouse.y = (event.pageY - off.top);
-		j_canvas.mousemove(function(event){
+		j_canvas.on('touchmousemove', function(event){
 			mouse.x = (event.pageX - off.left);
 			mouse.y = (event.pageY- off.top);
 			draw_line(last_mouse, mouse, ctx);
 			last_mouse.x = mouse.x;
 			last_mouse.y = mouse.y;
 		});
-		$(document).mouseup(function(){
-		j_canvas.unbind("mousemove");
-	});
+		$(document).on('touchmouseup', (function(){
+			j_canvas.unbind("touchmousemove");
+		}));
 	});
 
 	//mobile - touchscreen
