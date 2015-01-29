@@ -59,6 +59,8 @@
 	set_height();
 	set_drawing_params(drawing_params, ctx);
 
+	//GIT HUB GIST TO NORMALIZE TOUCH/MOUSE ACTIONS//
+
 	/* == GLOBAL DECLERATIONS == */
     TouchMouseEvent = {
         DOWN: "touchmousedown",
@@ -127,7 +129,6 @@
     }
 
     j_canvas.on('touchmousedown', function(event){
-    	console.log("mousedown");
 		var off = j_canvas.offset();
 		last_mouse.x = (event.pageX - off.left);
 		last_mouse.y = (event.pageY - off.top);
@@ -139,7 +140,7 @@
 			last_mouse.y = mouse.y;
 		});
 		$(document).on('touchmouseup',function(){
-		j_canvas.unbind("mousemove");
+			j_canvas.unbind("touchmousemove");
 		});
 	});
 
@@ -225,6 +226,12 @@
 
 	$("#canvas_close").click(function(){
 		ctx.clearRect(0,0,canvas.width,canvas.height);
+		$("#tool_menu").hide();
+	});
+
+	$("#no").click(function(){
+		ctx.clearRect(0,0,canvas.width,canvas.height);
+		$("#draw").hide();
 		$("#tool_menu").hide();
 	});
 

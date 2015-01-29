@@ -10,8 +10,9 @@ TO DO:
 				
 	//note: change these globals to objects.
 		var win_width = $(window).width(); //holds the width of the browser window
-		var img_width = win_width*.3;
-		var img_height = img_width;
+		var img_width = win_width/4;
+		var img_height = img_width*0.75;
+		var img_margin = 0; 
 		var rows = 0; //number of rows to display images
 		var div1_width = 0; //holds width of first animated series (gap fill)
 		var div2_width = 0; //holds width of second animated series - remaining images
@@ -31,7 +32,7 @@ TO DO:
 		var imageObjects = [];
 		var in_page = 0; 
 		var update_needed = false; 
-		var ani_2_running = false;	
+		var ani_running = false;	
 
 pageload();
 
@@ -72,12 +73,14 @@ pageload();
 						$(containerArray[i]).animate({left : ["-="+win_width, "linear"]},
 							{
 							queue: true,
-							duration: ani1_duration*0.5,
+							duration: ani1_duration/2,
 							complete: function(){
 								reset_div(containerArray[i]);
+								console.log("reset div "+containerArray[i]+" to "+win_width);
 							}
 						});
-						//console.log("animating 2");
+						console.log("animating 2");
+						ani_running = true;
 						animatediv2(containerArray[i], containerArray[i+1]);
 						$("#start_button").hide();
 						$("#stop_button").show();
@@ -145,6 +148,9 @@ pageload();
 					longwidth = checkwidth(longs[longs.length-1]);
 				}while(longwidth)
 			};
+
+			$(".images figure").css("margin-right", image_margin);
+
 			//add check for longs at least winwidth here
 		}
 
@@ -165,8 +171,8 @@ pageload();
 
 		//calculates the #of rows needed based on window height and creates a list (array) of divs required to fill given height
 		function calculaterows (imageheight){
-			var win_height = $(window).height() - 0.05*$(window).height(); 
-			var rows = win_height/imageheight;
+			var win_height = $(window).height(); 
+			var rows = win_height/imageheight>>0;
 			var divs = rows*2;
 			for (var i = 0; i < divs; i+=2) {
 					containerArray.push("#images"+i);
@@ -201,6 +207,7 @@ pageload();
 		//stops animations 
 		function stopanimation(containerlist){
 			$(".images").stop();
+			ani_running = false;
 			for (var i = 0; i < containerlist.length; i++) {
 				if(i%2 == 0){
 					$(containerlist[i]).css("left", "0");
@@ -236,6 +243,8 @@ pageload();
 				return true;
 			}
 			else {
+				var diff = win_width - (imgcount*img_width);
+				image_margin = diff/imgcount; 
 				return false;
 			}
 		}
@@ -269,6 +278,7 @@ pageload();
 		}
 
 		function animatediv1(target1, target2){
+			ani_running = true;
 			update_vars(target1, target2);
 			var div1_first_run = true; 
 			$(target1).animate({left : ["-="+ani1_width, "linear"]},
@@ -295,7 +305,7 @@ pageload();
 		function animatediv2(target1, target2){
 			var div2_first_run = true; 
 			var goal_left = win_width - div2_width;
-			ani_2_running = true; 
+			console.log("div 2: "+div2_width);
 			$(target2).animate({left : ["-="+ani2_width, "linear"]},
 				{
 				queue: true,
@@ -326,23 +336,27 @@ pageload();
 		}
 
 		$(window).focusout(function(){
-			console.log("focus out");
-			stopanimation(containerArray);
+			if (ani_running) {
+				stopanimation(containerArray);
+			};
 		});
 
 		$(window).focusin(function(){
-			console.log("focus in");
-			update();
+			if (!ani_running) {
+				update();
+			};	
 		});
 
 		$("#stop_button").click(function(){
-			console.log("stop button");
-			stopanimation(containerArray);
+			if (ani_running) {
+				stopanimation(containerArray);
+			};
 		});
 
 		$("#start_button").click(function(){
-			console.log("start button");
-			update();
+			if (!ani_running) {
+				update();
+			};
 		});
 	});
 }(jQuery));				

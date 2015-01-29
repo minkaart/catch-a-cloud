@@ -1,7 +1,8 @@
 <html>
 <head>
 	<link rel="stylesheet" type="text/css" href="clouds.css">
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>-->
+	<script src="jquery.min.js"></script>
 	<script src="drawing_script.js"></script>
 	<script src="display_images.js"></script>
 
@@ -10,69 +11,19 @@
 	<script type="text/javascript">
 	(function($){
 	$(document).ready(function(){
-
-	/**	if($(window).width() < $(window).height()){
-			addmobile();
-		} 
-		else if($(window).width() < 800){
-			addmobile();
-		}
-		else {
-			removemobile();
-		}
-
-		function addmobile(){
-			$("#images").hide();
-			$("#menu_button").addClass("mobile");
-			$(".start_stop").addClass("mobile");
-			$("#images").addClass("mobile");
-			$("#draw").addClass("mobile");
-			$("#draw").removeClass("in");
-			$("#canvas_holder").addClass("mobile");	
-			$(".tools").addClass("mobile");
-			$("#functions").removeClass("functions");
-			$("body").css("font-size", "10pt");
-			$("#tool_menu").hide();
-			$("#mobile_tool_menu").show();	
-		}
-
-		function removemobile(){
-			$("#menu_button").removeClass("mobile");
-			$(".start_stop").removeClass("mobile");
-			$("#images").removeClass("mobile");
-			$("#draw").removeClass("mobile");
-			$("#draw").removeClass("in");
-			$("#canvas_holder").removeClass("mobile");
-			$("#tool_menu").removeClass("mobile");		
-			$(".tools").removeClass("mobile");
-			$("#functions").addClass("functions");
-			$("body").css("font-size", "12pt");
-			$("#tool_menu").show();
-			$("#mobile_tool_menu").hide();
-		}
-	**/
 		
 		$("#about_content").hide();
 		$("#text_form").hide();
 		$("#home_menu").hide();
-		//$("#home_menu").css("top", mbh+0.1*mbh);
-		/**$("#images").css("top", function(){
-			console.log("menu button is "+mbh+"high");
-			var newtop = mbh + mbh*0.7;
-			return newtop;
-		});**/
 		$("#start_button").hide();
-		//$("#draw").hide();
-		//$("#text_form").show();
-		//$("#images").hide();
-
+	
 		$("#add").click( function(){
-			$("#draw").show();
-			$("#tool_menu").show();
+			$("#draw").toggle();
+			$("#tool_menu").toggle();
 		});
 
 		$("#about").click(function(){
-			$("#about_content").show();
+			$("#about_content").toggle();
 		});
 
 		$(".close_button").click(function(){
@@ -81,12 +32,18 @@
 		});
 
 		$("#menu_button").click(function(){
-			$("#home_menu").toggle(500);
+			$("#home_menu").slideDown(500);
 		});
 
 		$("#text_button").click(function(){
 			$("figcaption").toggle();
 		});
+
+		console.log($(window).width());
+
+		if($(window).width() < 500){
+		$(".start_stop span").hide();
+	};
 
 	});
 	})(jQuery);
@@ -99,15 +56,15 @@
 		<div id="menu_button" class="button"><img src="icons/menu.svg" /></div>
 		<div id="about" class="button_text button"><span>ABOUT</span></div>
 		<div id="add" class="button_text button"><span>ADD CLOUD</span></div>
-		<div id="text_button" class="button_text button"><span>TEXT</span></div>		
-		<div id="stop_button" class="start_stop button"><img src="icons/stop.svg" /></div>
-		<div id="start_button" class="start_stop button"><img src="icons/start.svg" /></div>
+		<div id="text_button" class="button_text button"><span>TOGGLE TEXT</span></div>		
+		<div id="stop_button" class="start_stop button"><span>START ANIMATION</span><img src="icons/stop.svg" /></div>
+		<div id="start_button" class="start_stop button"><span>STOP ANIMATION</span><img src="icons/start.svg" /></div>
 	</div>
 
 	<div id="home_menu" class=""></div>
 	
 	<div id="draw" class="in">
-		<div class="instructions"><span>Please draw a cloud</span></div>
+		<div class="instructions">Please draw a cloud, drawing tools are to the left <br /><span> NOTE: some older mobile OS and devices not supporting html5 may not interact with the drawing interface as expected.  In this case, it is recommended that users access the application from a computer, laptop or later generation device. </span></div>
 		<div id="canvas_close" class="button close_button"><img src="icons/close.svg" /></div>
 
 		

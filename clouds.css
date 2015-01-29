@@ -1,6 +1,7 @@
 body, html {
 	background-color: #DEF7FF;
-	font-size: 12pt; 
+	font-size: 10pt; 
+	font-family: "Comic Sans MS", sans-serif; 
 }
 
 /**BUTTONS**/
@@ -68,8 +69,15 @@ body, html {
 
 .start_stop {
 	position: absolute;
-	right: 0px;
+	right: 20px;
 	top: 2px;
+}
+
+.start_stop span {
+	position: absolute;
+	bottom: 5px;
+	right: 40px;
+	text-align: center; 
 }
 
 #menu_button {
@@ -85,13 +93,6 @@ body, html {
 	top: 0px;
 	left: 0px;
 	background-color: white;
-}
-
-#images {
-	width: 100%;
-	top: 50px;
-	position: fixed;
-	display: block;
 }
 
 .in {
@@ -110,14 +111,41 @@ body, html {
 }
 
 .instructions {
-	width: 70%;
+	width: 80%;
 	left: 10%;
-	top: 5%;
+	top: 0px;
 	position: absolute;
 	padding: 1%;
 }
 
+.instructions span {
+	font-size: 8px; 
+}
 
+#images {
+	width: 100%;
+	top: 50px;
+	position: fixed;
+	display: inline-block;
+}
+
+/*image targets*/
+.images {
+	top: 0px;
+	/*display: table;
+	table-layout: fixed;*/
+	vertical-align: top;
+	white-space: nowrap;
+	position: absolute;
+}
+
+.images figure {
+	display: inline-table;
+	text-align: center;
+	position: relative;
+	top: 0px;	
+	margin: 5px;
+}
 
 /*TOOL MENU*/
 #tool_menu {
@@ -155,26 +183,6 @@ body, html {
 }
 
 
-
-/*image targets*/
-.images {
-	top: 0px;
-	display: table;
-	table-layout: fixed;
-	white-space: nowrap;
-	position: absolute;
-}
-
-.images figure {
-	display: inline-table;
-	text-align: center;
-	position: relative;
-	top: 0px;	
-	margin: 5px;
-}
-
-
-
 /*DRAWING CONTAINERS*/
 #draw {
 	background-color: white;
@@ -196,10 +204,11 @@ body, html {
 	width: 80%;
 	height: 70%; 
 	left: 10%;
-	top: 15%;
+	top: 20%;
 	position: absolute;
 	margin: 1%;
 	background-color: #DEF7FF;
+	cursor: crosshair;
 }
 
 .function {
