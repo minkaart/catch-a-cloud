@@ -40,7 +40,7 @@
 		var ctx = context; 
 		$.each(params, function(key, value){
 			ctx[key] = value;
-		})
+		});
 
 	}
 

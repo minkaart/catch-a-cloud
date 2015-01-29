@@ -42,6 +42,7 @@ $.ajax({
 
 	//writes image name and text to file as JSON
 	$text = $_POST['text'];
+	$text = str_replace('"',"&quot;", $text);
 	$img_arr = [$img_name => $text];
 	$img_JSON = ',"'.$img_name.'":"'.$text.'"}';
 
