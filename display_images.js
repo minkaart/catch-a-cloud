@@ -149,7 +149,7 @@ pageload();
 				}while(longwidth)
 			};
 
-			$(".images figure").css("margin-right", image_margin);
+			//$(".images figure").css("margin-right", image_margin);
 
 			//add check for longs at least winwidth here
 		}
