@@ -238,6 +238,7 @@ pageload();
 
 		//checks if the width of an image-populated div is greater than the width of the window 
 		function checkwidth(targetdiv){
+			console.log(targetdiv);
 			var imgcount = $(targetdiv + ' figure').length;
 			if ((imgcount * img_width) < (win_width-img_width)){
 				return true;
