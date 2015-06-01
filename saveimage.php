@@ -45,7 +45,7 @@ $s3->registerStreamWrapper();
 	$all_img = $json_str.$img_JSON; 
 
 
-	$json_handle = fopen('s3:'.$bucket.'/image_JSON.json', 'wb');
+	$json_handle = fopen('s3:'.$bucket.'//image_JSON.json', 'wb');
 	fwrite($json_handle, $all_img);
 	fclose($json_handle);
 	
