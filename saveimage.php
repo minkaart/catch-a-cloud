@@ -39,12 +39,12 @@ $s3->registerStreamWrapper();
 
 	
 	//$json_str = file_get_contents('image_JSON.json');
-	$json_str = file_get_contents('s3:'.$bucket.'/image_JSON.json');
+	$json_str = file_get_contents('s3:'.$bucket.'//image_JSON.json');
 	$json_str = substr($json_str, 0, -1);
 	
 	$all_img = $json_str.$img_JSON; 
 
-	
+
 	$json_handle = fopen('s3:'.$bucket.'/image_JSON.json', 'wb');
 	fwrite($json_handle, $all_img);
 	fclose($json_handle);
