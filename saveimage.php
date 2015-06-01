@@ -24,9 +24,8 @@ $bucket = getenv('S3_BUCKET')?: die('No "S3 Bucket" config var found in env!');
 	//$file = UPLOAD_DIR . $img_name;
 
 	//puts image data into created file
-	try {$success = $s3->upload($bucket, $img_name, $data, "public-read"); } catch(Exception $e) {
-		console.log('Upload Error');
-		console.log($e);
+	try {$success = $s3->upload($bucket."/images/", $img_name, $data, "public-read"); } catch(Exception $e) {
+		alert("upload error");
 	}
 
 //	file_put_contents($file, $data);
@@ -34,7 +33,7 @@ $bucket = getenv('S3_BUCKET')?: die('No "S3 Bucket" config var found in env!');
 	//writes image name and text to file as JSON
 	$text = $_POST['text'];
 	$text = str_replace('"',"&quot;", $text);
-	$img_arr = [$img_name => $text];
+	//$img_obj = [$img_name => $text];
 	$img_JSON = ',"'.$img_name.'":"'.$text.'"}';
 
 	
