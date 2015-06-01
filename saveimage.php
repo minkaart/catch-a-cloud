@@ -24,7 +24,10 @@ $bucket = getenv('S3_BUCKET')?: die('No "S3 Bucket" config var found in env!');
 	//$file = UPLOAD_DIR . $img_name;
 
 	//puts image data into created file
-	$success = $s3->upload($bucket, $img_name, $data, "public-read");
+	try {$success = $s3->upload($bucket, $img_name, $data, "public-read"); } catch(Exception $e) {
+		console.log('Upload Error');
+		console.log($e);
+	}
 
 //	file_put_contents($file, $data);
 
