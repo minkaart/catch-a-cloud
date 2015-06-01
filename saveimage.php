@@ -1,24 +1,10 @@
 <?php 
-
-/** script that saves image data sent from jQuery AJAX to UPLOAD_DIR 
-AJAX POST DATA = 
-	$.ajax({
-			type : "POST", 
-			contentType: "application/x-www-form-urlencoded",
-			url: "sandbox.php", <-- references php script
-			data: {img : imageData}, <-- JSON object
-
-NOTE: Possibly hold more data about the image such as associated text. 
-$.ajax({
-			type : "POST",
-			contentType: "application/x-www-form-urlencoded",
-			url: "sandbox.php",
-			data: {img : imageData,
-					text : something,
-					location: something etc....},
-**/
+require('vendor/autoload.php');
+//get environment variables for AWS 
+$s3 = Aws\S3\S3Client::factory();
+$bucket = getenv('S3_BUCKET')?: die('No "S3 Bucket" config var found in env!');
 	
-	define('UPLOAD_DIR', 'images/'); //sets UPLOAD_DIR to images/ folder
+//define('UPLOAD_DIR', $bucket+'/images/'); //sets UPLOAD_DIR to images/ folder
 	
 	
 	$my_var = print_r($_POST); //creates readable version of html POST
@@ -35,10 +21,12 @@ $.ajax({
 
 	//creates file to hold image data at appropriate location
 	$img_name = uniqid().'.png';
-	$file = UPLOAD_DIR . $img_name;
+	//$file = UPLOAD_DIR . $img_name;
 
 	//puts image data into created file
-	$success = file_put_contents($file, $data);
+	$success = $s3->upload($bucket, $img_name, $data, "public-read");
+
+//	file_put_contents($file, $data);
 
 	//writes image name and text to file as JSON
 	$text = $_POST['text'];
