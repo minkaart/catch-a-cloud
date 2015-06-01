@@ -1,4 +1,11 @@
 {
+    "name": "minka/clouds_php",
+    "authors": [
+        {
+            "name": "minkaart",
+            "email": "theartist@minkaart.net"
+        }
+    ],
     "require": {
         "aws/aws-sdk-php": "~2.6"
     }
