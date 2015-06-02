@@ -16,10 +16,14 @@ $s3->registerStreamWrapper();
 ));
 **/
 
+try {
+	$json_str = file_get_contents('s3://'.$bucket.'/image_JSON.json');
+} catch(Exception $e){
+	
+}
 
-$json_str = file_get_contents('s3://'.$bucket.'/image_JSON.json');
 
 echo $json_str;
-print $json_str; 
+//print $json_str; 
 
 ?>
