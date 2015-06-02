@@ -160,10 +160,12 @@ pageload();
 			$.getJSON("get_images.php").done(function(data){
 				console.log(data);
 				$.each(data, function(key, val){
+					console.log(key+":"+value);
 					var imageObject = {
 						"image_ref" : "https://euroclouds.s3.amazonaws.com/images/"+key,
 						"obj_text" : val
 					};
+					console.log("imageObject:"+imageObject);
 					imageObjects.push(imageObject);
 					imageArray.push(key);	
 				});		
