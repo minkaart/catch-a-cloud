@@ -44,7 +44,8 @@ pageload();
 					calculaterows(img_height);
 					initiatepage(containerArray, imageObjects);
 					in_page = imageArray.length;
-				});
+				};
+			});
 
 	/**		var start_timer = setTimeout(function(){
 				console.log("imageArray_ready: "+imageArray_ready);
