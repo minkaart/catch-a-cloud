@@ -173,8 +173,6 @@ pageload();
 				});		
 				//make this a callback instead! 
 				imageArray_ready = true;		
-			}).fail(function(){
-				console.log("I got nothing!!");
 			});
 		}
 
