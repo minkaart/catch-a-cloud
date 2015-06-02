@@ -41,6 +41,7 @@ pageload();
 			popimageArray();
 
 			var start_timer = setTimeout(function(){
+				console.log("imageArray_ready: "+imageArray_ready);
 				if(imageArray_ready){
 					calculaterows(img_height);
 					initiatepage(containerArray, imageObjects);
