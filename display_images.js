@@ -38,9 +38,15 @@ pageload();
 
 		function pageload(){
 
-			popimageArray();
+			popimageArray(function(){
+				console.log("imageArray_ready: "+imageArray_ready);
+				if(imageArray_ready){
+					calculaterows(img_height);
+					initiatepage(containerArray, imageObjects);
+					in_page = imageArray.length;
+				});
 
-			var start_timer = setTimeout(function(){
+	/**		var start_timer = setTimeout(function(){
 				console.log("imageArray_ready: "+imageArray_ready);
 				if(imageArray_ready){
 					calculaterows(img_height);
@@ -48,7 +54,7 @@ pageload();
 					in_page = imageArray.length;
 				};
 			}, 100);
-		}
+		}**/
 
 		function update(){
 			imageArray = [];
@@ -156,7 +162,7 @@ pageload();
 		}
 
 		//function dynamically populates imageObjects based on image JSON file based on files in "images" folder and displays the images scrolling - to only display the images and manually populate imageObject, use initiatepage() alone with imageObject
-		function popimageArray(){
+		function popimageArray(callback){
 			console.log("populating images");
 			$.getJSON("get_images.php").done(function(data){
 				console.log(data);
@@ -171,7 +177,8 @@ pageload();
 					imageObjects.push(imageObject);
 					imageArray.push(key);	
 				});		
-				//make this a callback instead! 
+				//make this a callback instead!
+				callback(); 
 				imageArray_ready = true;
 				console.log("popimageArray complete!");		
 			});
