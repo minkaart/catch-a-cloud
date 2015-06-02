@@ -53,8 +53,8 @@ pageload();
 					initiatepage(containerArray, imageObjects);
 					in_page = imageArray.length;
 				};
-			}, 100);
-		}**/
+			}, 100);**/
+		}
 
 		function update(){
 			imageArray = [];
