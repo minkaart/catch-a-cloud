@@ -162,7 +162,7 @@ pageload();
 				$.each(data, function(key, val){
 					console.log(key+":"+val);
 					var imageObject = {
-						"image_ref" : "https://euroclouds.s3.amazonaws.com/images/"+key,
+						"image_ref" : "https://euroclouds.s3.amazonaws.com/"+key,
 						"obj_text" : val
 					};
 					console.log("imageObject:"+imageObject);
