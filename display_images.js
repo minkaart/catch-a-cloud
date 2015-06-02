@@ -172,7 +172,8 @@ pageload();
 					imageArray.push(key);	
 				});		
 				//make this a callback instead! 
-				imageArray_ready = true;		
+				imageArray_ready = true;
+				console.log("popimageArray complete!");		
 			});
 		}
 
