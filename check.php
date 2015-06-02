@@ -1,5 +1,5 @@
 <?php
-
+require('vendor/autoload.php');
 $s3 = Aws\S3\S3Client::factory();
 $bucket = getenv('S3_BUCKET')?: die('No "S3 Bucket" config var found in env!');
 
