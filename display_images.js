@@ -180,10 +180,10 @@ pageload();
 					imageObjects.push(imageObject);
 					imageArray.push(key);	
 				});		
-							//make this a callback instead		
-			});
-			imageArray_ready = true;
-			console.log("popimageArray complete!");	
+							//make this a callback instead	
+			imageArray_ready = true;	
+			console.log("popimageArray complete!");
+			});	
 
 			//myCallback(imageObjects, imageArray);
 		}
