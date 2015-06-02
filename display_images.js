@@ -178,10 +178,12 @@ pageload();
 					imageArray.push(key);	
 				});		
 				//make this a callback instead!
-				callback(); 
+				
 				imageArray_ready = true;
 				console.log("popimageArray complete!");		
 			});
+
+			callback();
 		}
 
 		//calculates the #of rows needed based on window height and creates a list (array) of divs required to fill given height
