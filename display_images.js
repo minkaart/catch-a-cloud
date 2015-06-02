@@ -38,23 +38,25 @@ pageload();
 
 		function pageload(){
 
-			popimageArray(function(imageObjects, imageArray){
+			popimageArray(
+				/**function(imageObjects, imageArray){
 				console.log("imageArray_ready: "+imageArray_ready);
 				if(imageArray_ready){
 					calculaterows(img_height);
 					initiatepage(containerArray, imageObjects);
 					in_page = imageArray.length;
 				};
-			});
+			}**/
+			);
 
-	/**		var start_timer = setTimeout(function(){
+			var start_timer = setTimeout(function(){
 				console.log("imageArray_ready: "+imageArray_ready);
 				if(imageArray_ready){
 					calculaterows(img_height);
 					initiatepage(containerArray, imageObjects);
 					in_page = imageArray.length;
 				};
-			}, 100);**/
+			}, 100);
 		}
 
 		function update(){
@@ -163,7 +165,7 @@ pageload();
 		}
 
 		//function dynamically populates imageObjects based on image JSON file based on files in "images" folder and displays the images scrolling - to only display the images and manually populate imageObject, use initiatepage() alone with imageObject
-		function popimageArray(myCallback){
+		function popimageArray(){
 			console.log("populating images");
 			$.getJSON("get_images.php").done(function(data){
 				console.log(data);
@@ -184,7 +186,7 @@ pageload();
 				console.log("popimageArray complete!");		
 			});
 
-			myCallback(imageObjects, imageArray);
+			//myCallback(imageObjects, imageArray);
 		}
 
 		//calculates the #of rows needed based on window height and creates a list (array) of divs required to fill given height
