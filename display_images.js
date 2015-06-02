@@ -60,6 +60,7 @@ pageload();
 		}
 
 		function update(){
+			console.log("updating");
 			imageArray = [];
 			imageArray_ready = false;
 			imageObjects = [];
