@@ -190,7 +190,11 @@ pageload();
 					imageObjects.push(imageObject);
 					imageArray.push(key);	
 				});		
-				imageArray_ready = true;		
+				imageArray_ready = true;
+				calculaterows(img_height);
+				initiatepage(containerArray, imageObjects);
+				in_page = imageArray.length;
+				$.ajaxSetup( { "async": false } );		
 			});
 		}
 
