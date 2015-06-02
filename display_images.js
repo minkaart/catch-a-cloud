@@ -182,7 +182,7 @@ pageload();
 			$.getJSON("get_images.php", function(data){
 				$.each(data, function(key, val){
 					var imageObject = {
-						"image_ref" : "https://euroclouds.s3.amazonaws.com/"+key,
+						"image_ref" : key,
 						"obj_text" : val
 					};
 					imageObjects.push(imageObject);
