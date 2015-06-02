@@ -165,7 +165,8 @@ pageload();
 						"image_ref" : "https://euroclouds.s3.amazonaws.com/"+key,
 						"obj_text" : val
 					};
-					console.log("imageObject:"+imageObject);
+					console.log("image_ref: "+imageObject.image_ref);
+					console.log("object_text: "+imageObject.obj_text);
 					imageObjects.push(imageObject);
 					imageArray.push(key);	
 				});		
