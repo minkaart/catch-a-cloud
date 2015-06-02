@@ -38,6 +38,7 @@ pageload();
 
 		function pageload(){
 
+			$.ajaxSetup( { "async": true } );
 			popimageArray();
 
 			var start_timer = setTimeout(function(){
@@ -45,6 +46,7 @@ pageload();
 					calculaterows(img_height);
 					initiatepage(containerArray, imageObjects);
 					in_page = imageArray.length;
+					$.ajaxSetup( { "async": false } );
 				};
 			}, 100);
 		}
