@@ -156,10 +156,10 @@ pageload();
 
 		//function dynamically populates imageObjects based on image JSON file based on files in "images" folder and displays the images scrolling - to only display the images and manually populate imageObject, use initiatepage() alone with imageObject
 		function popimageArray(){
-			$.getJSON("http://euroclouds.s3.amazonaws.com/image_JSON.json", function(data){
+			$.getJSON("https://euroclouds.s3.amazonaws.com/image_JSON.json", function(data){
 				$.each(data, function(key, val){
 					var imageObject = {
-						"image_ref" : "euroclouds.s3.amazonaws.com/images/"+key,
+						"image_ref" : "https://euroclouds.s3.amazonaws.com/images/"+key,
 						"obj_text" : val
 					};
 					imageObjects.push(imageObject);
