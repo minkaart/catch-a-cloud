@@ -179,10 +179,10 @@ pageload();
 		}
 
 		function popimageArray(){
-			$.getJSON("get_images.php", function(data){
+			$.getJSON("image_JSON.json", function(data){
 				$.each(data, function(key, val){
 					var imageObject = {
-						"image_ref" : key,
+						"image_ref" : "https://euroclouds.s3.amazonaws.com/images/"+key,
 						"obj_text" : val
 					};
 					imageObjects.push(imageObject);
