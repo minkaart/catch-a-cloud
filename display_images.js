@@ -210,6 +210,7 @@ pageload();
 
 		//checks if new images have appeared on server, creates new imageArray of new images
 		function checkforupdate(){
+/**			console.log("checking for update");
 			var images_in_file = 0;
 
 			$.get("check.php", function(data){
@@ -220,7 +221,7 @@ pageload();
 						update_needed = true; 
 					};
 			});
-		}
+**/		}
 
 		//stops animations 
 		function stopanimation(containerlist){
