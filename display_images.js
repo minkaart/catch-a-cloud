@@ -38,6 +38,19 @@ pageload();
 
 		function pageload(){
 
+			popimageArray();
+
+			var start_timer = setTimeout(function(){
+				if(imageArray_ready){
+					calculaterows(img_height);
+					initiatepage(containerArray, imageObjects);
+					in_page = imageArray.length;
+				};
+			}, 100);
+		}
+
+/**		function pageload(){
+
 			popimageArray(
 				/**function(imageObjects, imageArray){
 				console.log("imageArray_ready: "+imageArray_ready);
@@ -47,7 +60,7 @@ pageload();
 					in_page = imageArray.length;
 				};
 			}**/
-			);
+/**			);
 
 			var start_timer = setTimeout(function(){
 				console.log("imageArray_ready: "+imageArray_ready);
@@ -58,7 +71,7 @@ pageload();
 				};
 			}, 100);
 		}
-
+**/
 		function update(){
 			console.log("updating");
 			imageArray = [];
@@ -165,8 +178,22 @@ pageload();
 			//add check for longs at least winwidth here
 		}
 
-		//function dynamically populates imageObjects based on image JSON file based on files in "images" folder and displays the images scrolling - to only display the images and manually populate imageObject, use initiatepage() alone with imageObject
 		function popimageArray(){
+			$.getJSON("image_JSON.json", function(data){
+				$.each(data, function(key, val){
+					var imageObject = {
+						"image_ref" : "images/"+key,
+						"obj_text" : val
+					};
+					imageObjects.push(imageObject);
+					imageArray.push(key);	
+				});		
+				imageArray_ready = true;		
+			});
+		}
+
+		//function dynamically populates imageObjects based on image JSON file based on files in "images" folder and displays the images scrolling - to only display the images and manually populate imageObject, use initiatepage() alone with imageObject
+/**		function popimageArray(){
 			console.log("populating images");
 			$.getJSON("get_images.php", function(data){
 				console.log(data);
@@ -189,7 +216,7 @@ pageload();
 
 			//myCallback(imageObjects, imageArray);
 		}
-
+**/
 		//calculates the #of rows needed based on window height and creates a list (array) of divs required to fill given height
 		function calculaterows (imageheight){
 			var win_height = $(window).height(); 
@@ -213,7 +240,7 @@ pageload();
 
 		//checks if new images have appeared on server, creates new imageArray of new images
 		function checkforupdate(){
-/**			console.log("checking for update");
+		console.log("checking for update");
 			var images_in_file = 0;
 
 			$.get("check.php", function(data){
@@ -224,7 +251,7 @@ pageload();
 						update_needed = true; 
 					};
 			});
-**/		}
+		}
 
 		//stops animations 
 		function stopanimation(containerlist){
