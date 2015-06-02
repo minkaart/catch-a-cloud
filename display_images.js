@@ -184,6 +184,7 @@ pageload();
 							//make this a callback instead	
 			imageArray_ready = true;	
 			console.log("popimageArray complete!");
+			return ; 
 			});	
 
 			//myCallback(imageObjects, imageArray);
