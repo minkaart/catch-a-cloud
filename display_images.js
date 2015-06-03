@@ -34,7 +34,8 @@ TO DO:
 		var update_needed = false; 
 		var ani_running = false;	
 
-pageload(false);
+//pageload(false);
+load_route(false);
 
 		function pageload(update){
 			popimageArray(function(){
@@ -43,15 +44,7 @@ pageload(false);
 		}
 
 		function update(update){
-			console.log("updating");
-			imageArray = [];
-			imageArray_ready = false;
-			imageObjects = [];
-			containerArray = [];
-			in_page = 0; 
-			$(".images").empty();
-			$("#images").empty();
-
+			
 			popimageArray(function(){
 				load_route(update);
 			});	
@@ -60,35 +53,51 @@ pageload(false);
 		//determines whether population is an update or an initial pageload based on update value (passed) and calls respective functions accordingly - either populates divs anew or appends new data to existing divs. 
 		function load_route(update){
 			if (update){
-				calculaterows(img_height);
-				populatedivs(containerArray, imageObjects);
-				in_page = imageArray.length;
 
-				for (var i = 0; i < containerArray.length; i+=2) {
-					update_vars(containerArray[i], containerArray[i+1]);
-					$(containerArray[i]).css("left", "0");
-					//console.log("animating 1");
-					$(containerArray[i]).animate({left : ["-="+win_width, "linear"]},
-						{
-						queue: true,
-						duration: ani1_duration/2,
-						complete: function(){
-							reset_div(containerArray[i]);
-							console.log("reset div "+containerArray[i]+" to "+win_width);
-						}
-					});
-					console.log("animating 2");
-					ani_running = true;
-					animatediv2(containerArray[i], containerArray[i+1]);
-					$("#start_button").hide();
-					$("#stop_button").show();
-				};
+				console.log("updating");
+				imageArray = [];
+				imageArray_ready = false;
+				imageObjects = [];
+				containerArray = [];
+				in_page = 0; 
+				$(".images").empty();
+				$("#images").empty();
+
+				popimageArray(function(){
+					calculaterows(img_height);
+					populatedivs(containerArray, imageObjects);
+					in_page = imageArray.length;
+
+					for (var i = 0; i < containerArray.length; i+=2) {
+						update_vars(containerArray[i], containerArray[i+1]);
+						$(containerArray[i]).css("left", "0");
+						//console.log("animating 1");
+						$(containerArray[i]).animate({left : ["-="+win_width, "linear"]},
+							{
+							queue: true,
+							duration: ani1_duration/2,
+							complete: function(){
+								reset_div(containerArray[i]);
+								console.log("reset div "+containerArray[i]+" to "+win_width);
+							}
+						});
+						console.log("animating 2");
+						ani_running = true;
+						animatediv2(containerArray[i], containerArray[i+1]);
+						$("#start_button").hide();
+						$("#stop_button").show();
+					};	
+				});
+
+				
 			}
 			else
 			{
-				calculaterows(img_height);
-				initiatepage(containerArray, imageObjects);
-				in_page = imageArray.length;
+				popimageArray(function(){
+					calculaterows(img_height);
+					initiatepage(containerArray, imageObjects);
+					in_page = imageArray.length;
+				});	
 			}
 		}
 
@@ -322,7 +331,7 @@ pageload(false);
 						if(update_needed){
 							console.log("update detected");
 							stopanimation(containerArray);
-							update(true);
+							load_route(true);
 						}
 						else {
 							reset_div(target2);
@@ -342,7 +351,7 @@ pageload(false);
 
 		$(window).focusin(function(){
 			if (!ani_running) {
-				update(true);
+				load_route(true);
 			};	
 		});
 
@@ -354,7 +363,7 @@ pageload(false);
 
 		$("#start_button").click(function(){
 			if (!ani_running) {
-				update(true);
+				load_route(true);
 			};
 		});
 	});
