@@ -220,8 +220,9 @@
 				text : user_text
 			}, 
 		}).done(function(o){
-			$("#user_text").html("");
+			//$("#user_text").html("");
 			$("#text_form").hide();
+			$("#text_form").reset();
 		});
 	});
 
