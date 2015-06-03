@@ -220,7 +220,7 @@
 				text : user_text
 			}, 
 		}).done(function(o){
-			$("#text_input").reset();
+			$("#user_text").reset();
 			$("#text_form").hide();
 		});
 	});
