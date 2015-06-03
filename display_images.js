@@ -121,7 +121,7 @@ pageload(false);
 			$(".images").empty();
 			$("#images").empty();
 
-			popimageArray(true, function(){
+			popimageArray(function(){
 				load_route(update);
 			});
 
@@ -223,12 +223,13 @@ pageload(false);
 			$.getJSON("get_images.php", function(data){
 				$.each(data, function(key, val){
 					var imageObject = {
-						"image_ref" : "https://euroclouds.s3.amazonaws.com/images/"+key,
+						"image_ref" : "https://euroclouds.s3.amazonaws.com/"+key,
 						"obj_text" : val
 					};
 					imageObjects.push(imageObject);
 					imageArray.push(key);	
 				});		
+				console.log("calling pageloadCallback");
 				pageloadCallback();		
 			});
 		}
