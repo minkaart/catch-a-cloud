@@ -37,20 +37,24 @@ TO DO:
 pageload(false);
 
 		function pageload(update){
-
-			//$.ajaxSetup( { "async": true } );
 			popimageArray(function(){
 				load_route(update);
 			});
+		}
 
-			/**var start_timer = setTimeout(function(){
-				if(imageArray_ready){
-					calculaterows(img_height);
-					initiatepage(containerArray, imageObjects);
-					in_page = imageArray.length;
-					$.ajaxSetup( { "async": false } );
-				};
-			}, 100);**/
+		function update(update){
+			console.log("updating");
+			imageArray = [];
+			imageArray_ready = false;
+			imageObjects = [];
+			containerArray = [];
+			in_page = 0; 
+			$(".images").empty();
+			$("#images").empty();
+
+			popimageArray(function(){
+				load_route(update);
+			});	
 		}
 
 		//determines whether population is an update or an initial pageload based on update value (passed) and calls respective functions accordingly - either populates divs anew or appends new data to existing divs. 
@@ -87,78 +91,6 @@ pageload(false);
 				in_page = imageArray.length;
 			}
 		}
-
-/**		function pageload(){
-
-			popimageArray(
-				/**function(imageObjects, imageArray){
-				console.log("imageArray_ready: "+imageArray_ready);
-				if(imageArray_ready){
-					calculaterows(img_height);
-					initiatepage(containerArray, imageObjects);
-					in_page = imageArray.length;
-				};
-			}**/
-/**			);
-
-			var start_timer = setTimeout(function(){
-				console.log("imageArray_ready: "+imageArray_ready);
-				if(imageArray_ready){
-					calculaterows(img_height);
-					initiatepage(containerArray, imageObjects);
-					in_page = imageArray.length;
-				};
-			}, 100);
-		}
-**/
-		function update(update){
-			console.log("updating");
-			imageArray = [];
-			imageArray_ready = false;
-			imageObjects = [];
-			containerArray = [];
-			in_page = 0; 
-			$(".images").empty();
-			$("#images").empty();
-
-			popimageArray(function(){
-				load_route(update);
-			});
-
-			/**var start_timer = setTimeout(function(){
-				if(imageArray_ready){
-					calculaterows(img_height);
-					populatedivs(containerArray, imageObjects);
-					in_page = imageArray.length;
-
-					for (var i = 0; i < containerArray.length; i+=2) {
-						update_vars(containerArray[i], containerArray[i+1]);
-						$(containerArray[i]).css("left", "0");
-						//console.log("animating 1");
-						$(containerArray[i]).animate({left : ["-="+win_width, "linear"]},
-							{
-							queue: true,
-							duration: ani1_duration/2,
-							complete: function(){
-								reset_div(containerArray[i]);
-								console.log("reset div "+containerArray[i]+" to "+win_width);
-							}
-						});
-						console.log("animating 2");
-						ani_running = true;
-						animatediv2(containerArray[i], containerArray[i+1]);
-						$("#start_button").hide();
-						$("#stop_button").show();
-						update_needed = false;
-
-					};
-
-				};
-			}, 100);
-			**/
-			 
-		}
-
 
 		function initiatepage(containerlist, imagelist) {
 			populatedivs(containerlist, imagelist);
@@ -234,33 +166,6 @@ pageload(false);
 			});
 		}
 
-
-
-		//function dynamically populates imageObjects based on image JSON file based on files in "images" folder and displays the images scrolling - to only display the images and manually populate imageObject, use initiatepage() alone with imageObject
-/**		function popimageArray(){
-			console.log("populating images");
-			$.getJSON("get_images.php", function(data){
-				console.log(data);
-				$.each(data, function(key, val){
-					console.log(key+":"+val);
-					var imageObject = {
-						"image_ref" : "https://euroclouds.s3.amazonaws.com/"+key,
-						"obj_text" : val
-					};
-					console.log("image_ref: "+imageObject.image_ref);
-					console.log("object_text: "+imageObject.obj_text);
-					imageObjects.push(imageObject);
-					imageArray.push(key);	
-				});		
-							//make this a callback instead	
-			imageArray_ready = true;	
-			console.log("popimageArray complete!");
-			return ; 
-			});	
-
-			//myCallback(imageObjects, imageArray);
-		}
-**/
 		//calculates the #of rows needed based on window height and creates a list (array) of divs required to fill given height
 		function calculaterows (imageheight){
 			var win_height = $(window).height(); 
