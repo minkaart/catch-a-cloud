@@ -34,21 +34,58 @@ TO DO:
 		var update_needed = false; 
 		var ani_running = false;	
 
-pageload();
+pageload(false);
 
-		function pageload(){
+		function pageload(update){
 
-			$.ajaxSetup( { "async": true } );
-			popimageArray();
+			//$.ajaxSetup( { "async": true } );
+			popimageArray(function(){
+				load_route(update);
+			});
 
-			var start_timer = setTimeout(function(){
+			/**var start_timer = setTimeout(function(){
 				if(imageArray_ready){
 					calculaterows(img_height);
 					initiatepage(containerArray, imageObjects);
 					in_page = imageArray.length;
 					$.ajaxSetup( { "async": false } );
 				};
-			}, 100);
+			}, 100);**/
+		}
+
+		//determines whether population is an update or an initial pageload based on update value (passed) and calls respective functions accordingly - either populates divs anew or appends new data to existing divs. 
+		function load_route(update){
+			if (update){
+				calculaterows(img_height);
+				populatedivs(containerArray, imageObjects);
+				in_page = imageArray.length;
+
+				for (var i = 0; i < containerArray.length; i+=2) {
+					update_vars(containerArray[i], containerArray[i+1]);
+					$(containerArray[i]).css("left", "0");
+					//console.log("animating 1");
+					$(containerArray[i]).animate({left : ["-="+win_width, "linear"]},
+						{
+						queue: true,
+						duration: ani1_duration/2,
+						complete: function(){
+							reset_div(containerArray[i]);
+							console.log("reset div "+containerArray[i]+" to "+win_width);
+						}
+					});
+					console.log("animating 2");
+					ani_running = true;
+					animatediv2(containerArray[i], containerArray[i+1]);
+					$("#start_button").hide();
+					$("#stop_button").show();
+				};
+			}
+			else
+			{
+				calculaterows(img_height);
+				initiatepage(containerArray, imageObjects);
+				in_page = imageArray.length;
+			}
 		}
 
 /**		function pageload(){
@@ -74,7 +111,7 @@ pageload();
 			}, 100);
 		}
 **/
-		function update(){
+		function update(update){
 			console.log("updating");
 			imageArray = [];
 			imageArray_ready = false;
@@ -84,9 +121,11 @@ pageload();
 			$(".images").empty();
 			$("#images").empty();
 
-			popimageArray();
+			popimageArray(true, function(){
+				load_route(update);
+			});
 
-			var start_timer = setTimeout(function(){
+			/**var start_timer = setTimeout(function(){
 				if(imageArray_ready){
 					calculaterows(img_height);
 					populatedivs(containerArray, imageObjects);
@@ -116,7 +155,7 @@ pageload();
 
 				};
 			}, 100);
-			
+			**/
 			 
 		}
 
@@ -180,7 +219,7 @@ pageload();
 			//add check for longs at least winwidth here
 		}
 
-		function popimageArray(){
+		function popimageArray(pageloadCallback){
 			$.getJSON("get_images.php", function(data){
 				$.each(data, function(key, val){
 					var imageObject = {
@@ -190,13 +229,11 @@ pageload();
 					imageObjects.push(imageObject);
 					imageArray.push(key);	
 				});		
-				imageArray_ready = true;
-				calculaterows(img_height);
-				initiatepage(containerArray, imageObjects);
-				in_page = imageArray.length;
-				$.ajaxSetup( { "async": false } );		
+				pageloadCallback();		
 			});
 		}
+
+
 
 		//function dynamically populates imageObjects based on image JSON file based on files in "images" folder and displays the images scrolling - to only display the images and manually populate imageObject, use initiatepage() alone with imageObject
 /**		function popimageArray(){
@@ -379,7 +416,7 @@ pageload();
 						if(update_needed){
 							console.log("update detected");
 							stopanimation(containerArray);
-							update();
+							update(true);
 						}
 						else {
 							reset_div(target2);
@@ -399,7 +436,7 @@ pageload();
 
 		$(window).focusin(function(){
 			if (!ani_running) {
-				update();
+				update(true);
 			};	
 		});
 
@@ -411,7 +448,7 @@ pageload();
 
 		$("#start_button").click(function(){
 			if (!ani_running) {
-				update();
+				update(true);
 			};
 		});
 	});
