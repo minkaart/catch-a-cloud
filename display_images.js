@@ -34,21 +34,7 @@ TO DO:
 		var update_needed = false; 
 		var ani_running = false;	
 
-//pageload(false);
 load_route(false);
-
-		function pageload(update){
-			popimageArray(function(){
-				load_route(update);
-			});
-		}
-
-		function update(update){
-			
-			popimageArray(function(){
-				load_route(update);
-			});	
-		}
 
 		//determines whether population is an update or an initial pageload based on update value (passed) and calls respective functions accordingly - either populates divs anew or appends new data to existing divs. 
 		function load_route(update){
@@ -198,7 +184,7 @@ load_route(false);
 
 		//checks if new images have appeared on server, creates new imageArray of new images
 		function checkforupdate(){
-		console.log("checking for update");
+			console.log("checking for update");
 			var images_in_file = 0;
 
 			$.get("check.php", function(data){
