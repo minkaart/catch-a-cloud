@@ -5,7 +5,7 @@ $s3 = Aws\S3\S3Client::factory();
 $bucket = getenv('S3_BUCKET')?: die('No "S3 Bucket" config var found in env!');
 $s3->registerStreamWrapper();
 
-$data = array('total' => 0, 'first_30' => "", 'more' => false, 'error' => "error: ");
+//$data = array('total' => 0, 'first_30' => "", 'more' => false, 'error' => "error: ");
 
 try {
 	$image_json = file_get_contents('s3://'.$bucket.'/image_JSON.json');
@@ -13,7 +13,7 @@ try {
 	}
 
 
-$images = json_decode($image_json);
+/*$images = json_decode($image_json);
 if count($images) > 30 {
 	$data['total'] = count($images);
 	print "data total: "+$data['total'];
@@ -35,6 +35,6 @@ else {
 }
 
 print "echoing $data as: ".$data;
-echo json_encode($data);
+echo json_encode($data);*/
 
 ?>
