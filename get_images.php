@@ -5,12 +5,16 @@ $s3 = Aws\S3\S3Client::factory();
 $bucket = getenv('S3_BUCKET')?: die('No "S3 Bucket" config var found in env!');
 $s3->registerStreamWrapper();
 
-//$data = array('total' => 0, 'first_30' => "", 'more' => false, 'error' => "error: ");
+$data = array('total' => 0, 'first_30' => "", 'more' => false, 'error' => "error: ");
 
 try {
 	$image_json = file_get_contents('s3://'.$bucket.'/image_JSON.json');
 } catch(Exception $e){
 	}
+
+$data[first_30] = $image_json;
+
+echo $data;
 
 
 /*$images = json_decode($image_json);
