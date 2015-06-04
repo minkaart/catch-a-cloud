@@ -5,11 +5,6 @@ $s3 = Aws\S3\S3Client::factory();
 $bucket = getenv('S3_BUCKET')?: die('No "S3 Bucket" config var found in env!');
 $s3->registerStreamWrapper();
 	
-//define('UPLOAD_DIR', $bucket+'/images/'); //sets UPLOAD_DIR to images/ folder
-	
-	
-	//$my_var = print_r($_POST); //creates readable version of html POST
-	//$my_JSON = 'image_JSON.json';
 
 	$img = $_POST['img']; //holds image data from POST variable
 
@@ -22,29 +17,27 @@ $s3->registerStreamWrapper();
 
 	//creates file to hold image data at appropriate location
 	$img_name = 'images/'.uniqid().'.png';
-	//$file = UPLOAD_DIR . $img_name;
-
+	
 	//puts image data into created file
 	try {$success = $s3->upload($bucket, $img_name, $data, "public-read"); }
 		catch(Exception $e) {
+			echo "error uploading image file";
 		}
 
-//	file_put_contents($file, $data);
 
-	//writes image name and text to file as JSON
+	
+
+	//creates JSON formatting for image file name
 	$text = $_POST['text'];
 	$text = str_replace('"',"&quot;", $text);
-	//$img_obj = [$img_name => $text];
-	$img_JSON = ',"'.$img_name.'":"'.$text.'"}';
+	$img_JSON = '{"'.$img_name.'":"'.$text.'",';
 
-	
-	//$json_str = file_get_contents('image_JSON.json');
+	//gets json string from server and adds json formatted text the string
 	$json_str = file_get_contents('s3://'.$bucket.'/image_JSON.json');
-	$json_str = substr($json_str, 0, -1);
-	
-	$all_img = $json_str.$img_JSON; 
+	$json_str = substr($json_str, 1);
+	$all_img = $img_JSON.$json_str; 
 
-
+	//writes image name and text to file as JSON
 	$json_handle = fopen('s3://'.$bucket.'/image_JSON.json', 'wb');
 	fwrite($json_handle, $all_img);
 	fclose($json_handle);
