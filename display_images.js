@@ -359,7 +359,11 @@ load_route(false);
 		$("#stop_button").click(function(){
 			if (ani_running) {
 				stopanimation(containerArray);
+				ani_running = false; 
 			};
+			reset_div("#div1");
+			$("#div2").css("left", 0);
+			$("#div2").css("overflow", "auto");
 		});
 
 		$("#load_more").click(function(){
@@ -368,9 +372,9 @@ load_route(false);
 		})
 
 		$("#start_button").click(function(){
-			if (!ani_running) {
-				load_route(true);
-			};
+			reset_div("#div2");
+			load_route(true);
+
 		});
 
 		$("window").resize(function(){

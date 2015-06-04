@@ -4,7 +4,7 @@ $s3 = Aws\S3\S3Client::factory();
 $bucket = getenv('S3_BUCKET')?: die('No "S3 Bucket" config var found in env!');
 $s3->registerStreamWrapper();
 
-$dir = $bucket."/images";
+$dir = "s3://".$bucket."/images/";
 
 try {
 	$image_list = scandir($dir);	
