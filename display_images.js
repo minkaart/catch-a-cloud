@@ -31,7 +31,6 @@ TO DO:
 		var imageArray = [];
 		var containerArray = [];
 		var holdingContainer = "#images";
-		var imageArray_ready = false;
 		var imageObjects = [];
 		var update_needed = false; 
 		var ani_running = false;	
@@ -44,7 +43,6 @@ load_route(false);
 
 				console.log("updating");
 				imageArray = [];
-				imageArray_ready = false;
 				imageObjects = [];
 				containerArray = [];
 				in_page = 0; 
@@ -69,7 +67,7 @@ load_route(false);
 								console.log("reset div "+containerArray[i]+" to "+win_width);
 							}
 						});
-						console.log("animating 2");
+						//console.log("animating 2");
 						ani_running = true;
 						animatediv2(containerArray[i], containerArray[i+1]);
 						$("#start_button").hide();
@@ -149,21 +147,19 @@ load_route(false);
 		}
 
 		function popimageArray(pageloadCallback){
-			console.log("calling get_images...");
-			$.getJSON("get_images.php", {"req_type": "full", "start_val": start_val}, function(data){
-				console.log("data 1-30: "+data.first_30);
-				console.log(data.error);
+			//console.log("calling get_images...");
+			$.getJSON("get_images.php", {"start_val": start_val}, function(data){
+				//console.log("data 1-30: "+data.first_30);
+				//console.log(data.error);
 				on_server = data.total;
-				console.log(data.total);
-				console.log(data.more);
+				//console.log(data.total);
+				//console.log(data.more);
 				more_images = data.more;
 				if (more_images){
 					$("#load_more").show();
 				}
 				var image_json = $.parseJSON(data.first_30);
 				$.each(image_json, function(key, val){
-					console.log("key: "+key);
-					console.log("val: "+val);
 					var imageObject = {
 						"image_ref" : "https://euroclouds.s3.amazonaws.com/"+key,
 						"obj_text" : val
@@ -172,7 +168,6 @@ load_route(false);
 					imageObjects.push(imageObject);
 					imageArray.push(key);	
 				});		
-				console.log("calling pageloadCallback");
 				pageloadCallback();		
 			});
 		}
@@ -369,6 +364,13 @@ load_route(false);
 		$("#start_button").click(function(){
 			if (!ani_running) {
 				load_route(true);
+			};
+		});
+
+		$("window").resize(function(){
+			win_width = $(window).width();
+			if($(window).width() < 500){
+				$(".start_stop span").hide();
 			};
 		});
 	});

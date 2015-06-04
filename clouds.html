@@ -44,10 +44,8 @@
 		});
 
 		$("#reset_button").click(function(){
-			$(document).reload();
+			$.reload();
 		});
-
-		console.log($(window).width());
 
 		if($(window).width() < 500){
 		$(".start_stop span").hide();
