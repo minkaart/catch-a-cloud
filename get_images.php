@@ -19,7 +19,7 @@ if count($images) > 30 {
 	$data['total'] = count($images);
 	print_r("data total: "+$data['total'];
 	$length = $_POST['start_val'] * 30; 
-	print_r("length: ".$length)
+	print_r("length: ".$length);
 	$images = array_slice($images, 0, $length);
 	$data['first_30'] = json_encode($images);
 	if($start+30<=count($images)){
