@@ -20,7 +20,7 @@ $image_json = str_replace('#', "", $image_json);
 
 $images = json_decode($image_json);
 //$data[error] = 'error: '.$image_json.json_last_error();
-$data[error] = 'var dump: '.var_dump($images);
+$data[error] = 'var dump: '.print_r($images, true);
 //$data[error] = "error: ".$images;
 $data[total] = count($images); 
 
