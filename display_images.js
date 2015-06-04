@@ -352,7 +352,7 @@ load_route(false);
 				ani_running = false; 
 			};
 			reset_div("#images1");
-			$("#images1").css("left", 0);
+			$("#images1").css("left", "0px");
 		});
 
 		$("#load_more").click(function(){
