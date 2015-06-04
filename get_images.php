@@ -12,28 +12,28 @@ try {
 } catch(Exception $e){
 	}
 
-//$data[first_30] = $image_json;
+$data[first_30] = $image_json;
 
 $images = json_decode($image_json);
-//$data[total] = count($images); 
+$data[total] = count($images); 
 
-if count($images) > 30 {
+/*if count($images) > 30 {
 	$data[total] = count($images);
 	//$length = $_POST['start_val'] * 30; 
 	$images = array_slice($images, 0, $length);
 	$data[first_30] = json_encode($images);
-	/*if($length < count($images)){
+	if($length < count($images)){
 		$data[more] = true;
 	}
 	else {
 		$data[more] = false;
-	}*/
+	}
 } 
 else {
 	$data[total] = count($images);
 	$data[first_30] = $image_json;
 	$data[more] = false;
-}
+}*/
 
 $data = json_encode($data);
 echo $data;
