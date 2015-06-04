@@ -12,7 +12,7 @@ try {
 } catch(Exception $e){
 	}
 
-$data[first_30] = $image_json; //works! 
+//$data[first_30] = $image_json; //works! 
 
 
 $image_json = stripslashes($image_json);
@@ -26,6 +26,7 @@ $counter = 0;
 foreach($images as $value){
 	$counter++; 
 }
+$data[first_30] = json_encode($images);
 //$data[error] = "error: ".$images;
 $data[total] = $counter; 
 
