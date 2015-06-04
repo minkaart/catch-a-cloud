@@ -22,8 +22,12 @@ $images = array();
 $images = json_decode($image_json);
 //$data[error] = 'error: '.$image_json.json_last_error();
 $data[error] = 'var dump: '.print_r($images, true);
+$counter = 0; 
+foreach($images as $value){
+	$counter++; 
+}
 //$data[error] = "error: ".$images;
-$data[total] = count($images); 
+$data[total] = $counter; 
 
 
 
