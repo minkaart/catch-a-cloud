@@ -12,7 +12,6 @@ TO DO:
 		var win_width = $(window).width(); //holds the width of the browser window
 		var img_width = win_width/4;
 		var img_height = img_width*0.75;
-		var img_margin = 0; 
 		var rows = 0; //number of rows to display images
 		var div1_width = 0; //holds width of first animated series (gap fill)
 		var div2_width = 0; //holds width of second animated series - remaining images
@@ -140,10 +139,6 @@ load_route(false);
 					longwidth = checkwidth(longs[longs.length-1]);
 				}while(longwidth)
 			};
-
-			//$(".images figure").css("margin-right", image_margin);
-
-			//add check for longs at least winwidth here
 		}
 
 		function popimageArray(pageloadCallback){
@@ -200,9 +195,10 @@ load_route(false);
 
 			$.get("check.php", function(data){
 					images_in_file = data; 
-					console.log("image number: "+images_in_file);
+					//console.log("image number: "+images_in_file);
 					if(images_in_file > on_server){
 						update_needed = true; 
+						on_server = images_in_file;
 					};
 			});
 		}
@@ -225,11 +221,14 @@ load_route(false);
 
 		//appends an image to any given target div
 		function imagedisplay(targetdiv, image, text) {
-			if(image.naturalHeight>image.naturalWidth){
-				$(targetdiv).append('<figure><img height="'+img_width+'" src="'+image+'"><figcaption>'+text+'</figcaption></figure>');
-			}
-			else{
-				$(targetdiv).append('<figure><img width="'+img_width+'" src="'+image+'"><figcaption>'+text+'</figcaption></figure>');
+
+			var imagedisplay = function(function(){
+				if(image.natualHeight>image.naturalWidth){
+					$(targetdiv).append('<figure><img height="'+img_width+'" src="'+image+'"><figcaption>'+text+'</figcaption></figure>');
+
+				}
+			}){
+				$(targetdiv).append('<figure><img width="'+img_width+'" src="'+image+'"><figcaption>'+text+'</figcaption></figure>');	
 			}
 		}
 
@@ -252,8 +251,6 @@ load_route(false);
 				return true;
 			}
 			else {
-				var diff = win_width - (imgcount*img_width);
-				image_margin = diff/imgcount; 
 				return false;
 			}
 		}
