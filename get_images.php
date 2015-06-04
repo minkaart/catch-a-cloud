@@ -19,7 +19,7 @@ $images = json_decode($image_json, true);
 $data[total] = count($images); 
 
 
-if count($images) > 30 {
+if ($data[total] > 30) {
 	$length = $_POST['start_val'] * 30; 
 	$images = array_slice($images, 0, $length);
 	$data[first_30] = json_encode($images);
