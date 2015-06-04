@@ -12,18 +12,16 @@ try {
 } catch(Exception $e){
 	}
 
-$data[first_30] = $image_json;
+/*$data[first_30] = $image_json;
 $data = json_encode($data);
 
-echo $data; 
+echo $data; */
 
 
-/*$images = json_decode($image_json);
+$images = json_decode($image_json);
 if count($images) > 30 {
 	$data['total'] = count($images);
-	print "data total: "+$data['total'];
 	$length = $_POST['start_val'] * 30; 
-	print "length: ".$length;
 	$images = array_slice($images, 0, $length);
 	$data['first_30'] = json_encode($images);
 	if($start+30<=count($images)){
@@ -39,7 +37,6 @@ else {
 	$data['more'] = false;
 }
 
-print "echoing $data as: ".$data;
-echo json_encode($data);*/
+echo json_encode($data);
 
 ?>
