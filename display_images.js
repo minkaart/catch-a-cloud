@@ -56,7 +56,7 @@ load_route(false);
 					for (var i = 0; i < containerArray.length; i+=2) {
 						update_vars(containerArray[i], containerArray[i+1]);
 						$(containerArray[i]).css("left", "0");
-						//console.log("animating 1");
+						console.log("animating 1: "+containerArray[i]);
 						$(containerArray[i]).animate({left : ["-="+win_width, "linear"]},
 							{
 							queue: true,
@@ -146,9 +146,10 @@ load_route(false);
 
 		function checkheight(){
 			$(".images figure").each(function(){
-				console.log($(this).height()); 
+				console.log("height: "+$(this).height());
+				console.log("width: "+$(this).width()); 
 				if ($(this).height() > $(this).width){
-					$(this).css("height", img_width+"px");
+					$(this).('img').css("height", img_width+"px");
 				}
 			});
 		}
