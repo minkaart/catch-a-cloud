@@ -160,13 +160,15 @@ load_route(false);
 				if (more_images){
 					$("#load_more").show();
 				}
-				$.each(data.first_30, function(key, val){
+				var image_json = $.parseJSON(data.first_30);
+				$.each(image_json, function(key, val){
+					console.log("key: "+key);
+					console.log("val: "+val);
 					var imageObject = {
 						"image_ref" : "https://euroclouds.s3.amazonaws.com/"+key,
 						"obj_text" : val
 					};
-					console.log("key: "+key);
-					console.log("val: "+val);
+
 					imageObjects.push(imageObject);
 					imageArray.push(key);	
 				});		
