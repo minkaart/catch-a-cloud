@@ -26,6 +26,7 @@ $counter = 0;
 foreach($images as $value){
 	$counter++; 
 }
+$images = array_slice($images, 0, 5);
 $data[first_30] = json_encode($images);
 //$data[error] = "error: ".$images;
 $data[total] = $counter; 
