@@ -149,7 +149,11 @@ load_route(false);
 				console.log("height: "+$(this).height());
 				console.log("width: "+$(this).width()); 
 				if ($(this).height() > $(this).width){
-					$(this).children().css("height", img_width+"px");
+					console.log("changing css");
+					$(this).children('img').css({
+						"height" : img_width+"px", 
+						"overflow" : "hidden"
+					});
 				}
 			});
 		}
