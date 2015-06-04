@@ -92,7 +92,7 @@ load_route(false);
 		}	
 
 		//splits content divs into short(fill divs) and long and then populates them with imagecontent from imageObjects 
-		function populatedivs(containerlist, imagelist, callback){
+		function populatedivs(containerlist, imagelist, divpopCallback){
 			var shorts = [];
 			var longs = []; 
 
@@ -136,7 +136,7 @@ load_route(false);
 				}while(longwidth)
 			};
 
-			callback();
+			divpopCallback();
 		}
 
 
