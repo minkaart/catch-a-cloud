@@ -87,7 +87,7 @@ load_route(false);
 		}
 
 		function initiatepage(containerlist, imagelist) {
-			$(".images figure").css("max-height", img_width);
+		
 			populatedivs(containerlist, imagelist);
 
 			for (var i = 0; i < containerlist.length; i+=2) {
@@ -222,11 +222,13 @@ load_route(false);
 
 		//appends an image to any given target div
 		function imagedisplay(targetdiv, image, text) {
-
-			$(targetdiv).append('<figure><img width="'+img_width+'" src="'+image+'"><figcaption>'+text+'</figcaption></figure>');	
-//			if(image.natualHeight>image.naturalWidth){
-//					$(targetdiv).append('<figure><img height="'+img_width+'" src="'+image+'"><figcaption>'+text+'</figcaption></figure>');
-//				}
+			console.log("height: "+image.height);
+			console.log("width: "+image.width);
+			$(targetdiv).append('<figure><img width="'+img_width+'" src="'+image+'"><figcaption>'+text+'</figcaption></figure>');				
+			if (image.height > image.width){
+				$(targetdiv).html('<figure><img width="'+img_width+'" src="'+image+'"><figcaption>'+text+'</figcaption></figure>');
+			}
+			
 		}
 
 		//loops through imageArray and appends each image to a given target div - maintains first un-used image at position [0] in the array
