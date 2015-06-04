@@ -22,7 +22,7 @@ if count($images) > 30 {
 	$length = $_POST['start_val'] * 30; 
 	$images = array_slice($images, 0, $length);
 	$data[first_30] = json_encode($images);
-	if($start+30<=count($images)){
+	if($length+30<=count($images)){
 		$data[more] = true;
 	}
 	else {
