@@ -83,7 +83,7 @@ load_route(false);
 
 		function initiatepage(containerlist, imagelist) {
 		
-			populatedivs(containerlist, imagelist);
+			populatedivs(containerlist, imagelist, function(){});
 
 			for (var i = 0; i < containerlist.length; i+=2) {
 				apply_animations(containerlist[i], containerlist[i+1]);
