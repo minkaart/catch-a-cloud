@@ -222,14 +222,13 @@ load_route(false);
 		//appends an image to any given target div
 		function imagedisplay(targetdiv, image, text) {
 
-			var imagedisplay = function(function(){
-				if(image.natualHeight>image.naturalWidth){
-					$(targetdiv).append('<figure><img height="'+img_width+'" src="'+image+'"><figcaption>'+text+'</figcaption></figure>');
+			$(targetdiv).append('<figure><img width="'+img_width+'" src="'+image+'"><figcaption>'+text+'</figcaption></figure>');	
 
+			console.log("Nheight: "+image.naturalHeight);
+			console.log("Nwidth: "+image.naturalWidth);
+			if(image.natualHeight>image.naturalWidth){
+					$(targetdiv).append('<figure><img height="'+img_width+'" src="'+image+'"><figcaption>'+text+'</figcaption></figure>');
 				}
-			}){
-				$(targetdiv).append('<figure><img width="'+img_width+'" src="'+image+'"><figcaption>'+text+'</figcaption></figure>');	
-			}
 		}
 
 		//loops through imageArray and appends each image to a given target div - maintains first un-used image at position [0] in the array
