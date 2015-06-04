@@ -149,7 +149,7 @@ load_route(false);
 				console.log("height: "+$(this).height());
 				console.log("width: "+$(this).width()); 
 				if ($(this).height() > $(this).width){
-					$(this).('img').css("height", img_width+"px");
+					$(this).children().css("height", img_width+"px");
 				}
 			});
 		}
