@@ -153,6 +153,7 @@ load_route(false);
 			$.getJSON("get_images.php", {"req_type": "full", "start_val": start_val}, function(data){
 				console.log("data: "+data[0]);
 				console.log("data: "+data[1]);
+				console.log("data 1-30: "+data.first_30);
 				console.log(data.error);
 				on_server = data.total;
 				more_images = data.more;
