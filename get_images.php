@@ -10,7 +10,7 @@ $data = array('total' => 0, 'first_30' => "", 'more' => false, 'error' => "error
 try {
 	$image_json = file_get_contents('s3://'.$bucket.'/image_JSON.json');
 } catch(Exception $e){
-	//$data[error] = $data[error].$e;
+	$data[error] = $data[error].$e;
 	}
 
 
@@ -19,11 +19,11 @@ $images = json_decode($image_json, true);
 $data[total] = count($images); 
 
 
-if $data[total] > 30 {
+if count($images) > 30 {
 	$length = $_POST['start_val'] * 30; 
 	$images = array_slice($images, 0, $length);
 	$data[first_30] = json_encode($images);
-	if($length < $data[total]){
+	if($length < count($images)){
 		$data[more] = true;
 	}
 	else {
