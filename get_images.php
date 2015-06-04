@@ -18,6 +18,7 @@ $data[first_30] = $image_json; //works!
 $image_json = stripslashes($image_json);
 $image_json = str_replace('#', "", $image_json);
 
+$images = array();
 $images = json_decode($image_json);
 //$data[error] = 'error: '.$image_json.json_last_error();
 $data[error] = 'var dump: '.print_r($images, true);
