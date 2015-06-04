@@ -13,11 +13,14 @@ try {
 	}
 
 $data[first_30] = $image_json; //works! 
-$data[error] = 'error: '.$image_json;
+
 
 $image_json = stripslashes($image_json);
 $image_json = str_replace('#', "", $image_json);
+
 $images = json_decode($image_json);
+//$data[error] = 'error: '.$image_json.json_last_error();
+$data[error] = 'var dump: '.var_dump($images);
 //$data[error] = "error: ".$images;
 $data[total] = count($images); 
 
