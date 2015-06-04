@@ -11,7 +11,7 @@ TO DO:
 	//note: change these globals to objects.
 		var win_width = $(window).width(); //holds the width of the browser window
 		var img_width = win_width/4;
-		var img_height = img_width*0.75;
+		var img_height = img_width*1.5;
 		var rows = 0; //number of rows to display images
 		var div1_width = 0; //holds width of first animated series (gap fill)
 		var div2_width = 0; //holds width of second animated series - remaining images
@@ -148,14 +148,14 @@ load_route(false);
 			$(".images figure").each(function(){
 				console.log("height: "+$(this).height());
 				console.log("width: "+$(this).width()); 
-				if ($(this).height() > $(this).width){
+/**				if ($(this).height() > $(this).width){
 					console.log("changing css");
 					$(this).children('img').css({
 						"height" : img_width+"px", 
 						"overflow" : "hidden"
 					});
 				}
-			});
+**/			});
 		}
 
 		function popimageArray(pageloadCallback){
@@ -367,9 +367,9 @@ load_route(false);
 				stopanimation(containerArray);
 				ani_running = false; 
 			};
-			reset_div("#div1");
-			$("#div2").css("left", 0);
-			$("#div2").css("overflow", "auto");
+			reset_div("#images1");
+			$("#images2").css("left", 0);
+			$("#images2").css("overflow", "auto");
 		});
 
 		$("#load_more").click(function(){
@@ -378,16 +378,18 @@ load_route(false);
 		})
 
 		$("#start_button").click(function(){
-			reset_div("#div2");
+			reset_div("#images2");
 			load_route(true);
 
 		});
 
 		$("window").resize(function(){
 			win_width = $(window).width();
+			load_route(true);
 			if($(window).width() < 500){
 				$(".start_stop span").hide();
 			};
+
 		});
 	});
 }(jQuery));				
