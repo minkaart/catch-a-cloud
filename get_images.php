@@ -12,7 +12,7 @@ try {
 } catch(Exception $e){
 	}
 
-$data[first_30] = json_encode($image_json);
+$data[first_30] = $image_json;
 
 $images = json_decode($image_json);
 $data[total] = count($images); 
