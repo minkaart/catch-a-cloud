@@ -225,7 +225,7 @@ load_route(false);
 
 		//appends an image to any given target div
 		function imagedisplay(targetdiv, image, text) {
-			if(image.height()>image.width){
+			if(image.naturalHeight>image.naturalWidth){
 				$(targetdiv).append('<figure><img height="'+img_width+'" src="'+image+'"><figcaption>'+text+'</figcaption></figure>');
 			}
 			else{
