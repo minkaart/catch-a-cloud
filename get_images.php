@@ -21,11 +21,8 @@ $image_json = str_replace('#', "", $image_json);
 $images = array();
 $images = json_decode($image_json, true);
 //$data[error] = 'error: '.$image_json.json_last_error();
-$data[error] = 'var dump: '.print_r($images, true);
-$counter = 0; 
-foreach($images as $value){
-	$counter++; 
-}
+//$data[error] = 'var dump: '.print_r($images, true);
+$images = array_slice($images, 0, 4);
 
 $data[first_30] = json_encode($images);
 //$data[error] = "error: ".$images;
