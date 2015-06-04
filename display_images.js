@@ -87,6 +87,9 @@ load_route(false);
 		}
 
 		function initiatepage(containerlist, imagelist) {
+			$.each(containerlist, function(i, val){
+				$(val).css('max-height', img_width);
+			});
 			populatedivs(containerlist, imagelist);
 
 			for (var i = 0; i < containerlist.length; i+=2) {
@@ -222,8 +225,7 @@ load_route(false);
 		//appends an image to any given target div
 		function imagedisplay(targetdiv, image, text) {
 
-			$(targetdiv).append('<figure><img width="'+img_width+'" height="'+img_width+'" src="'+image+'"><figcaption>'+text+'</figcaption></figure>');	
-
+			$(targetdiv).append('<figure><img width="'+img_width+'" src="'+image+'"><figcaption>'+text+'</figcaption></figure>');	
 //			if(image.natualHeight>image.naturalWidth){
 //					$(targetdiv).append('<figure><img height="'+img_width+'" src="'+image+'"><figcaption>'+text+'</figcaption></figure>');
 //				}
