@@ -19,17 +19,17 @@ $image_json = stripslashes($image_json);
 $image_json = str_replace('#', "", $image_json);
 
 $images = array();
-$images = json_decode($image_json);
+$images = json_decode($image_json, true);
 //$data[error] = 'error: '.$image_json.json_last_error();
 $data[error] = 'var dump: '.print_r($images, true);
 $counter = 0; 
 foreach($images as $value){
 	$counter++; 
 }
-$images = array_slice($images, 0, 5);
+
 $data[first_30] = json_encode($images);
 //$data[error] = "error: ".$images;
-$data[total] = $counter; 
+$data[total] = count($images); 
 
 
 
