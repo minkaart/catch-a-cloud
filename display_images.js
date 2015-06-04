@@ -50,7 +50,7 @@ load_route(false);
 
 				popimageArray(function(){
 					calculaterows(img_height);
-					populatedivs(containerArray, imageObjects, checkheight);
+					populatedivs(containerArray, imageObjects);
 					in_page = imageArray.length;
 
 					for (var i = 0; i < containerArray.length; i+=2) {
@@ -87,7 +87,7 @@ load_route(false);
 
 		function initiatepage(containerlist, imagelist) {
 		
-			populatedivs(containerlist, imagelist, checkheight);
+			populatedivs(containerlist, imagelist);
 
 			for (var i = 0; i < containerlist.length; i+=2) {
 				apply_animations(containerlist[i], containerlist[i+1]);
@@ -96,7 +96,7 @@ load_route(false);
 		}	
 
 		//splits content divs into short(fill divs) and long and then populates them with imagecontent from imageObjects 
-		function populatedivs(containerlist, imagelist, callback){
+		function populatedivs(containerlist, imagelist){
 			var shorts = [];
 			var longs = []; 
 
@@ -139,24 +139,8 @@ load_route(false);
 					longwidth = checkwidth(longs[longs.length-1]);
 				}while(longwidth)
 			};
-
-			callback();
-
 		}
 
-		function checkheight(){
-			$(".images figure").each(function(){
-				console.log("height: "+$(this).height());
-				console.log("width: "+$(this).width()); 
-/**				if ($(this).height() > $(this).width){
-					console.log("changing css");
-					$(this).children('img').css({
-						"height" : img_width+"px", 
-						"overflow" : "hidden"
-					});
-				}
-**/			});
-		}
 
 		function popimageArray(pageloadCallback){
 			//console.log("calling get_images...");
@@ -368,8 +352,7 @@ load_route(false);
 				ani_running = false; 
 			};
 			reset_div("#images1");
-			$("#images2").css("left", 0);
-			$("#images2").css("overflow", "auto");
+			$("#images1").css("left", 0);
 		});
 
 		$("#load_more").click(function(){
