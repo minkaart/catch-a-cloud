@@ -200,7 +200,8 @@ load_route(false);
 
 			$.get("check.php", function(data){
 					images_in_file = data; 
-					if(images_in_file > in_page){
+					cnsole.log("image number: "+images_in_file);
+					if(images_in_file > on_server){
 						update_needed = true; 
 					};
 			});

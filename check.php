@@ -7,15 +7,8 @@ $s3->registerStreamWrapper();
 $dir = $bucket."/images/";
 
 $image_list = scandir($dir);
-//$filtered_image_list = array_filter($image_list, "validfile");
 $img_number = count($image_list);
 
 echo $img_number;
-
-function validfile($var) {
-	if ($var[0] != '.') {
-		return true;
-	}
-}
 
 ?>
