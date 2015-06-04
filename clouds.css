@@ -22,7 +22,7 @@ body, html {
 
 /* buttons containing only text*/
 .button_text {
-	width: 60px;
+	width: 90px;
 	height: 35px;
 	display: table;
 	position: absolute;
@@ -48,6 +48,14 @@ body, html {
 
 #add {
 	left: 204px;
+}
+
+#reset_button {
+	left: 306px;
+}
+
+#load_more {
+	left: 408px;
 }
 
 #header .button_text {
