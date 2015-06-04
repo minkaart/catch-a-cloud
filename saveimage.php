@@ -8,7 +8,7 @@ $s3->registerStreamWrapper();
 //define('UPLOAD_DIR', $bucket+'/images/'); //sets UPLOAD_DIR to images/ folder
 	
 	
-	$my_var = print_r($_POST); //creates readable version of html POST
+	//$my_var = print_r($_POST); //creates readable version of html POST
 	//$my_JSON = 'image_JSON.json';
 
 	$img = $_POST['img']; //holds image data from POST variable

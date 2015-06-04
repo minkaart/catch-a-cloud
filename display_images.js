@@ -23,6 +23,9 @@ TO DO:
 		var ani2_width = 0;
 		var px_rate = 120; //# pixels the animation should travel per second
 
+		var start_val = 0; //holds the number of php requests sent to server for loading more images
+		var more_images = false; //true/false for whether more (historic) images still exist on the server
+		var on_server = 0; //remembers number of images on server in last server call
 
 		//holds the images to be displayed	
 		var imageArray = [];
@@ -30,7 +33,6 @@ TO DO:
 		var holdingContainer = "#images";
 		var imageArray_ready = false;
 		var imageObjects = [];
-		var in_page = 0; 
 		var update_needed = false; 
 		var ani_running = false;	
 
@@ -147,8 +149,14 @@ load_route(false);
 		}
 
 		function popimageArray(pageloadCallback){
-			$.getJSON("get_images.php", function(data){
-				$.each(data, function(key, val){
+			$.getJSON("get_images.php", {"req_type": "full", "start_val": start_val}, function(data){
+				console.log(data.error);
+				on_server = data.total;
+				more_images = data.more;
+				if (more_images){
+					$("#load_more").show();
+				}
+				$.each(data.first_30, function(key, val){
 					var imageObject = {
 						"image_ref" : "https://euroclouds.s3.amazonaws.com/"+key,
 						"obj_text" : val
@@ -188,9 +196,7 @@ load_route(false);
 			var images_in_file = 0;
 
 			$.get("check.php", function(data){
-					//note -3 for Mac OS file system.... change to two for linux or do other checking method
 					images_in_file = data; 
-					images_ready = true; 
 					if(images_in_file > in_page){
 						update_needed = true; 
 					};
@@ -346,6 +352,11 @@ load_route(false);
 				stopanimation(containerArray);
 			};
 		});
+
+		$("#load_more").click(function(){
+			start_val++;
+			load_route(true);
+		})
 
 		$("#start_button").click(function(){
 			if (!ani_running) {

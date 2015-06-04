@@ -19,6 +19,7 @@
 		$("#text_form").hide();
 		$("#home_menu").hide();
 		$("#start_button").hide();
+		$("#load_more").hide();
 	
 		$("#add").click( function(){
 			$("#draw").toggle();
@@ -42,6 +43,10 @@
 			$("figcaption").toggle();
 		});
 
+		$("#reset_button").click(function(){
+			$(document).reload();
+		});
+
 		console.log($(window).width());
 
 		if($(window).width() < 500){
@@ -59,7 +64,9 @@
 		<div id="menu_button" class="button"><img src="icons/menu.svg" /></div>
 		<div id="about" class="button_text button"><span>ABOUT</span></div>
 		<div id="add" class="button_text button"><span>ADD CLOUD</span></div>
-		<div id="text_button" class="button_text button"><span>TOGGLE TEXT</span></div>		
+		<div id="text_button" class="button_text button"><span>TOGGLE TEXT</span></div>	
+		<div id="load_more" class="button_text button"><span>LOAD MORE</span></div>	
+		<div id="reset_button" class="button_text button"><span>RESET</span></div>
 		<div id="stop_button" class="start_stop button"><span>STOP ANIMATION</span><img src="icons/stop.svg" /></div>
 		<div id="start_button" class="start_stop button"><span>START ANIMATION</span><img src="icons/start.svg" /></div>
 	</div>

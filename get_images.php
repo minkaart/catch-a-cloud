@@ -1,29 +1,37 @@
 <?php 
 require('vendor/autoload.php');
-$s3 = Aws\S3\S3Client::factory(
-	//'aws_access_key_id' = ANOTHER_AWS_ACCESS_KEY_ID
-	//'aws_secret_access_key' = ANOTHER_AWS_SECRET_ACCESS_KEY
-	);
+$s3 = Aws\S3\S3Client::factory();
 $bucket = getenv('S3_BUCKET')?: die('No "S3 Bucket" config var found in env!');
 $s3->registerStreamWrapper();
 
-
-/**$s3Client = S3Client::factory(array(
-    'credentials' => array(
-        'key'    => 'YOUR_AWS_ACCESS_KEY_ID',
-        'secret' => 'YOUR_AWS_SECRET_ACCESS_KEY',
-    )
-));
-**/
+$data = array('total' => 0, 'first_30' => "", 'more' => false, 'error' => "error: ");
 
 try {
-	$json_str = file_get_contents('s3://'.$bucket.'/image_JSON.json');
+	$image_json = file_get_contents('s3://'.$bucket.'/image_JSON.json');
 } catch(Exception $e){
-	
+	$data['error'] = $data['error']."S3 get content error"; 
+}
+
+$images = json_decode($image_json);
+if count($images) > 30 {
+	$data['total'] = count($images);
+	$length = $_POST['start_val'] * 30; 
+	$images = array_slice($images, 0, $length);
+	$data['first_30'] = json_encode($images);
+	if($start+30<=count($images)){
+		$data['more'] = true;
+	}
+	else {
+		$data['more'] = false;
+	}
+} 
+else {
+	$data['total'] = count($images);
+	$data['first_30'] = $image_json;
+	$data['more'] = false;
 }
 
 
-echo $json_str;
-//print $json_str; 
+echo json_encode($data);
 
 ?>
