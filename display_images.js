@@ -87,9 +87,7 @@ load_route(false);
 		}
 
 		function initiatepage(containerlist, imagelist) {
-			$.each(containerlist, function(i, val){
-				$(val).css('max-height', img_width);
-			});
+			$(".images figure").css("max-height", img_width);
 			populatedivs(containerlist, imagelist);
 
 			for (var i = 0; i < containerlist.length; i+=2) {

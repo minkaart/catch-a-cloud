@@ -151,7 +151,6 @@ body, html {
 	vertical-align: top;
 	white-space: nowrap;
 	position: absolute;
-	overflow: hidden;
 }
 
 .images figure {
@@ -160,6 +159,7 @@ body, html {
 	position: relative;
 	top: 0px;	
 	margin: 5px;
+	overflow: hidden;
 }
 
 /*TOOL MENU*/
