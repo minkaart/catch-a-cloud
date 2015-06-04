@@ -14,7 +14,7 @@ try {
 
 $data[first_30] = $image_json; //works! 
 
-$image_json = utf8_encode($image_json);
+$image_json = stripslashes($image_json);
 $images = json_decode($image_json);
 //$data[error] = "error: ".$images;
 $data[total] = count($images); 
