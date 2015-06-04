@@ -10,7 +10,7 @@ $data = array('total' => 0, 'first_30' => "", 'more' => false, 'error' => "error
 try {
 	$image_json = file_get_contents('s3://'.$bucket.'/image_JSON.json');
 } catch(Exception $e){
-	$data[error] = $data[error].$e;
+	//$data[error] = $data[error].$e;
 	}
 
 
