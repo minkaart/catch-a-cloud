@@ -44,37 +44,33 @@ load_route(false);
 				imageArray = [];
 				imageObjects = [];
 				containerArray = [];
-				in_page = 0; 
 				$(".images").empty();
 				$("#images").empty();
 
 				popimageArray(function(){
 					calculaterows(img_height);
-					populatedivs(containerArray, imageObjects);
-					in_page = imageArray.length;
-
-					for (var i = 0; i < containerArray.length; i+=2) {
-						update_vars(containerArray[i], containerArray[i+1]);
-						$(containerArray[i]).css("left", "0");
-						console.log("animating 1: "+containerArray[i]);
-						$(containerArray[i]).animate({left : ["-="+win_width, "linear"]},
-							{
-							queue: true,
-							duration: ani1_duration/2,
-							complete: function(){
-								reset_div(containerArray[i]);
-								console.log("reset div "+containerArray[i]+" to "+win_width);
-							}
-						});
-						//console.log("animating 2");
-						ani_running = true;
-						animatediv2(containerArray[i], containerArray[i+1]);
-						$("#start_button").hide();
-						$("#stop_button").show();
-					};	
-				});
-
-				
+					populatedivs(containerArray, imageObjects, function (){
+						for (var i = 0; i < containerArray.length; i+=2) {
+							update_vars(containerArray[i], containerArray[i+1]);
+							$(containerArray[i]).css("left", "0");
+							console.log("animating 1: "+containerArray[i]);
+							$(containerArray[i]).animate({left : ["-="+win_width, "linear"]},
+								{
+								queue: true,
+								duration: ani1_duration/2,
+								complete: function(){
+									reset_div(containerArray[i]);
+									//console.log("reset div "+containerArray[i]+" to "+win_width);
+								}
+							});
+							//console.log("animating 2");
+							ani_running = true;
+							animatediv2(containerArray[i], containerArray[i+1]);
+							$("#start_button").hide();
+							$("#stop_button").show();
+						};	
+					});
+				});	
 			}
 			else
 			{
@@ -96,7 +92,7 @@ load_route(false);
 		}	
 
 		//splits content divs into short(fill divs) and long and then populates them with imagecontent from imageObjects 
-		function populatedivs(containerlist, imagelist){
+		function populatedivs(containerlist, imagelist, callback){
 			var shorts = [];
 			var longs = []; 
 
@@ -139,6 +135,8 @@ load_route(false);
 					longwidth = checkwidth(longs[longs.length-1]);
 				}while(longwidth)
 			};
+
+			callback();
 		}
 
 
