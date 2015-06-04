@@ -22,7 +22,7 @@ body, html {
 
 /* buttons containing only text*/
 .button_text {
-	width: 90px;
+	width: 60px;
 	height: 35px;
 	display: table;
 	position: absolute;
