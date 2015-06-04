@@ -50,7 +50,7 @@ load_route(false);
 
 				popimageArray(function(){
 					calculaterows(img_height);
-					populatedivs(containerArray, imageObjects);
+					populatedivs(containerArray, imageObjects, checkheight);
 					in_page = imageArray.length;
 
 					for (var i = 0; i < containerArray.length; i+=2) {
@@ -81,14 +81,13 @@ load_route(false);
 				popimageArray(function(){
 					calculaterows(img_height);
 					initiatepage(containerArray, imageObjects);
-					in_page = imageArray.length;
 				});	
 			}
 		}
 
 		function initiatepage(containerlist, imagelist) {
 		
-			populatedivs(containerlist, imagelist);
+			populatedivs(containerlist, imagelist, checkheight);
 
 			for (var i = 0; i < containerlist.length; i+=2) {
 				apply_animations(containerlist[i], containerlist[i+1]);
@@ -97,7 +96,7 @@ load_route(false);
 		}	
 
 		//splits content divs into short(fill divs) and long and then populates them with imagecontent from imageObjects 
-		function populatedivs(containerlist, imagelist){
+		function populatedivs(containerlist, imagelist, callback){
 			var shorts = [];
 			var longs = []; 
 
@@ -140,6 +139,18 @@ load_route(false);
 					longwidth = checkwidth(longs[longs.length-1]);
 				}while(longwidth)
 			};
+
+			callback();
+
+		}
+
+		function checkheight(){
+			$(".images figure").each(function(){
+				console.log($(this).height()); 
+				if ($(this).height() > $(this).width){
+					$(this).css("height", img_width+"px");
+				}
+			});
 		}
 
 		function popimageArray(pageloadCallback){
@@ -222,13 +233,7 @@ load_route(false);
 
 		//appends an image to any given target div
 		function imagedisplay(targetdiv, image, text) {
-			console.log("height: "+image.height);
-			console.log("width: "+image.width);
 			$(targetdiv).append('<figure><img width="'+img_width+'" src="'+image+'"><figcaption>'+text+'</figcaption></figure>');				
-			if (image.height > image.width){
-				$(targetdiv).html('<figure><img width="'+img_width+'" src="'+image+'"><figcaption>'+text+'</figcaption></figure>');
-			}
-			
 		}
 
 		//loops through imageArray and appends each image to a given target div - maintains first un-used image at position [0] in the array
