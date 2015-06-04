@@ -1,6 +1,6 @@
 <?php 
 require('vendor/autoload.php');
-$connector = PhpConsole\Connector::getInstance();
+//$connector = PhpConsole\Connector::getInstance();
 $s3 = Aws\S3\S3Client::factory();
 $bucket = getenv('S3_BUCKET')?: die('No "S3 Bucket" config var found in env!');
 $s3->registerStreamWrapper();
@@ -13,8 +13,9 @@ try {
 	}
 
 $data[first_30] = $image_json;
+$data = json_encode($data);
 
-echo $data;
+echo $data; 
 
 
 /*$images = json_decode($image_json);

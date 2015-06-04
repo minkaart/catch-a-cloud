@@ -149,7 +149,9 @@ load_route(false);
 		}
 
 		function popimageArray(pageloadCallback){
+			console.log("calling get_images...");
 			$.getJSON("get_images.php", {"req_type": "full", "start_val": start_val}, function(data){
+				console.log("data: "+data);
 				console.log(data.error);
 				on_server = data.total;
 				more_images = data.more;
