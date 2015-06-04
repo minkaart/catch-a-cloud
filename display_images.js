@@ -225,7 +225,12 @@ load_route(false);
 
 		//appends an image to any given target div
 		function imagedisplay(targetdiv, image, text) {
-			$(targetdiv).append('<figure><img width="'+img_width+'" src="'+image+'"><figcaption>'+text+'</figcaption></figure>');
+			if(image.height()>image.width){
+				$(targetdiv).append('<figure><img height="'+img_width+'" src="'+image+'"><figcaption>'+text+'</figcaption></figure>');
+			}
+			else{
+				$(targetdiv).append('<figure><img width="'+img_width+'" src="'+image+'"><figcaption>'+text+'</figcaption></figure>');
+			}
 		}
 
 		//loops through imageArray and appends each image to a given target div - maintains first un-used image at position [0] in the array

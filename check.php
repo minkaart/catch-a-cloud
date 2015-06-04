@@ -6,8 +6,18 @@ $s3->registerStreamWrapper();
 
 $dir = $bucket."/images/";
 
-$image_list = scandir($dir);
-$img_number = count($image_list);
+try {
+	$image_list = scandir($dir);	
+} catch (Exception $e) {
+	echo "not a directory".$e;
+}
+
+if($image_list){
+	$img_number = count($image_list);
+}
+else {
+	$img_number = -1; 
+}
 
 echo $img_number;
 
