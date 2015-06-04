@@ -20,7 +20,7 @@ TO DO:
 		var ani_interval = 0; //holds the animation duration for looping (Timeout)
 		var ani1_width = 0; // twice window width (first animation travel distance)
 		var ani2_width = 0;
-		var px_rate = 120; //# pixels the animation should travel per second
+		var px_rate = 100; //# pixels the animation should travel per second
 
 		var start_val = 1; //holds the number of php requests sent to server for loading more images
 		var more_images = false; //true/false for whether more (historic) images still exist on the server
