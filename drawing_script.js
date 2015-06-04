@@ -1,6 +1,31 @@
 (function($){
 	$(document).ready(function(){
 
+	//canvas variables
+	var canvas = $("#my_canvas").get(0);
+	var j_canvas = $("#my_canvas");
+	var ctx = canvas.getContext('2d');
+
+	//AJAX variables
+	var imageData; 
+	var imageText; 
+
+	//position variables
+	var off = j_canvas.offset();
+	//vars hold current and previous mouse positions
+	var mouse = {"x":0, "y":0};
+	var last_mouse = {"x":0, "y":0};
+
+	//drawing parameter variable/object
+	var drawing_params = {
+		'lineWidth': "5",
+		'lineJoin': 'round',
+		'lineCap': 'round',
+		'strokeStyle': 'blue', 
+		'globalCompositeOperation': 'source-over'
+	};
+	
+
 		//GIT HUB GIST TO NORMALIZE TOUCH/MOUSE ACTIONS//
 
 	/* == GLOBAL DECLERATIONS == */
@@ -86,29 +111,6 @@
 		});
 	});
 
-	//canvas variables
-	var canvas = $("#my_canvas").get(0);
-	var j_canvas = $("#my_canvas");
-	var ctx = canvas.getContext('2d');
-
-	//AJAX variables
-	var imageData; 
-	var imageText; 
-
-	//position variables
-	var off = j_canvas.offset();
-	//vars hold current and previous mouse positions
-	var mouse = {"x":0, "y":0};
-	var last_mouse = {"x":0, "y":0};
-
-	//drawing parameter variable/object
-	var drawing_params = {
-		'lineWidth': "5",
-		'lineJoin': 'round',
-		'lineCap': 'round',
-		'strokeStyle': 'blue', 
-		'globalCompositeOperation': 'source-over'
-	};
 	
 	//dynamically sets the height and width of canvas based on window size
 	function set_width(){
