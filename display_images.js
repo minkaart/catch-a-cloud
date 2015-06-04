@@ -200,7 +200,7 @@ load_route(false);
 
 			$.get("check.php", function(data){
 					images_in_file = data; 
-					cnsole.log("image number: "+images_in_file);
+					console.log("image number: "+images_in_file);
 					if(images_in_file > on_server){
 						update_needed = true; 
 					};
