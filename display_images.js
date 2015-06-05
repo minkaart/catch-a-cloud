@@ -229,7 +229,7 @@ load_route(false);
 			console.log("stopped");
 			ani_running = 0; 
 			$(".images").empty();
-			$("#images").empty();
+			//$("#images").empty();
 			console.log("emptied");
 			$("#stop_button").hide();
 			$("#start_button").show();
