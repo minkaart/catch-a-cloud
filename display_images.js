@@ -209,7 +209,7 @@ load_route(false);
 		//stops animations 
 		function stopanimation(containerlist){
 			$(".images").stop();
-			ani_running = false;
+			ani_running = 0;
 			for (var i = 0; i < containerlist.length; i++) {
 				if(i%2 == 0){
 					$(containerlist[i]).css("left", win_width);
@@ -349,7 +349,7 @@ load_route(false);
 		$("#stop_button").click(function(){
 			if () { //check for an anirunning value
 				stopanimation(containerArray);
-				//add ani_running value
+				//add ani_running value?? in stopanimation()
 			};
 		});
 
