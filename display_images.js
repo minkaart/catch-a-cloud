@@ -32,7 +32,7 @@ TO DO:
 		var holdingContainer = "#images";
 		var imageObjects = [];
 		var update_needed = false; 
-		var ani_running = false;	
+		var ani_running = 0;	
 
 load_route(false);
 
@@ -279,7 +279,7 @@ load_route(false);
 		}
 
 		function animatediv1(target1, target2, ani_width){
-			ani_running = true;
+			ani_running = 1;
 			update_vars(target1, target2);
 			var div1_first_run = true; 
 			$(target1).animate({left : ["-="+ani_width, "linear"]},
@@ -291,11 +291,13 @@ load_route(false);
 							if(div1_first_run){
 								div1_first_run = false;
 								animatediv2(target1, target2, $(target2).width()+$(window).width());	
+								ani_running = 3; 
 								console.log("animating target 2");
 							};
 						};
 					},
 					complete: function(){
+						ani_running = 2;
 						reset_div(target1);
 						checkforupdate();
 						div1_first_run = true; 
@@ -305,7 +307,7 @@ load_route(false);
 
 		function animatediv2(target1, target2, ani_width){
 			var div2_first_run = true; 
-			var goal_left = win_width - div2_width;
+			var goal_left = $(window).width() - $(target2).width();
 			console.log("div 2: "+div2_width);
 			$(target2).animate({left : ["-="+ani_width, "linear"]},
 				{
@@ -337,21 +339,17 @@ load_route(false);
 		}
 
 		$(window).focusout(function(){
-			if (ani_running) {
 				stopanimation(containerArray);
-			};
 		});
 
 		$(window).focusin(function(){
-			if (!ani_running) {
 				load_route(true);
-			};	
 		});
 
 		$("#stop_button").click(function(){
-			if (ani_running) {
+			if () { //check for an anirunning value
 				stopanimation(containerArray);
-				ani_running = false; 
+				//add ani_running value
 			};
 		});
 
@@ -365,12 +363,18 @@ load_route(false);
 		});
 
 		$("window").resize(function(){
-			win_width = $(window).width();
-			load_route(true);
-			if($(window).width() < 500){
-				$(".start_stop span").hide();
-			};
-
+		if(ani_running !== 0){
+			if(ani_running === 1){
+				for (i=1, i<containerArray.length(), i+=2){
+					containerArray[i].css("left", $(window).width());
+				}
+			} else if(ani_running === 2){
+				for (i=0, i<containerArray.length(), i+=2){
+					containerArray[i].css("left", $(window).width());
+				}
+			}
+		}
+		update_needed = true;
 		});
 	});
 }(jQuery));				
