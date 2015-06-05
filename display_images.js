@@ -174,6 +174,7 @@ load_route(false);
 			var win_height = $(window).height(); 
 			var rows = win_height/imageheight>>0;
 			var divs = rows*2;
+			console.log("rows: "+rows);
 			for (var i = 0; i < divs; i+=2) {
 					containerArray.push("#images"+i);
 					$(holdingContainer).append('<div id="images'+i+'" class="images"></div>');
