@@ -83,7 +83,7 @@ load_route(false);
 
 		function initiatepage(containerlist, imagelist) {
 		
-			populatedivs(containerlist, imagelist, function(){});
+			populatedivs(containerlist, imagelist);
 
 			for (var i = 0; i < containerlist.length; i+=2) {
 				apply_animations(containerlist[i], containerlist[i+1]);
@@ -92,7 +92,7 @@ load_route(false);
 		}	
 
 		//splits content divs into short(fill divs) and long and then populates them with imagecontent from imageObjects 
-		function populatedivs(containerlist, imagelist, divpopCallback){
+		function populatedivs(containerlist, imagelist, callback){
 			var shorts = [];
 			var longs = []; 
 
@@ -136,11 +136,18 @@ load_route(false);
 				}while(longwidth)
 			};
 
-			divpopCallback();
+			if(callback){
+				if (typeof callback === "function"){
+					callback();
+				}
+				else {
+					console.log("type error"+callback+"is not a function");
+				}
+			}
 		}
 
 
-		function popimageArray(pageloadCallback){
+		function popimageArray(callback){
 			//console.log("calling get_images...");
 			$.getJSON("get_images.php", {"start_val": start_val}, function(data){
 				//console.log("data 1-30: "+data.first_30);
@@ -162,7 +169,14 @@ load_route(false);
 					imageObjects.push(imageObject);
 					imageArray.push(key);	
 				});		
-				pageloadCallback();		
+				if(callback){
+					if (typeof callback === "function"){
+						callback();
+					}
+					else {
+						console.log("type error"+callback+"is not a function");
+					}
+				}		
 			});
 		}
 
@@ -208,10 +222,10 @@ load_route(false);
 			ani_running = false;
 			for (var i = 0; i < containerlist.length; i++) {
 				if(i%2 == 0){
-					$(containerlist[i]).css("left", "0");
+					$(containerlist[i]).css("left", win_width);
 				}
 				else{
-					$(containerlist[i]).css("left", win_width);
+					$(containerlist[i]).css("left", "0px");
 				};
 			};
 			$("#stop_button").hide();
@@ -349,8 +363,6 @@ load_route(false);
 				stopanimation(containerArray);
 				ani_running = false; 
 			};
-			reset_div("#images1");
-			$("#images1").css("left", "0px");
 		});
 
 		$("#load_more").click(function(){
@@ -359,9 +371,7 @@ load_route(false);
 		})
 
 		$("#start_button").click(function(){
-			reset_div("#images2");
 			load_route(true);
-
 		});
 
 		$("window").resize(function(){
