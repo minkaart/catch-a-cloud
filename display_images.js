@@ -172,7 +172,7 @@ load_route(false);
 		//calculates the #of rows needed based on window height and creates a list (array) of divs required to fill given height
 		function calculaterows (imageheight){
 			var win_height = $(window).height(); 
-			var rows = win_height/imageheight>>0;
+			var rows = 1+win_height/imageheight>>0;
 			var divs = rows*2;
 			console.log("rows: "+rows);
 			for (var i = 0; i < divs; i+=2) {
@@ -362,7 +362,7 @@ load_route(false);
 			load_route(true);
 		});
 
-		$("window").resize(function(){
+		$(window).resize(function(){
 		if(ani_running !== 0){
 			if(ani_running === 1){
 				for (i=1; i<containerArray.length; i+=2){
