@@ -347,10 +347,10 @@ load_route(false);
 		});
 
 		$("#stop_button").click(function(){
-			if () { //check for an anirunning value
+//			if () { //check for an anirunning value
 				stopanimation(containerArray);
 				//add ani_running value?? in stopanimation()
-			};
+//			};
 		});
 
 		$("#load_more").click(function(){
