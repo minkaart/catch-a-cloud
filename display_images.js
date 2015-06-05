@@ -46,7 +46,7 @@ load_route(false);
 						for (var i =0; i< containerArray.length; i+=2){
 							update_vars(containerArray[i], containerArray[i+1]);
 							$(containerArray[i]).css("left", "0");
-							animatediv1(containerArray[i], containerArray[i+1], win_width);
+							animatediv1(containerArray[i], containerArray[i+1], $(window).width());
 						}
 						$("#start_button").hide();
 						$("#stop_button").show();
@@ -170,7 +170,7 @@ load_route(false);
 		function calculaterows (){
 			var win_width = $(window).width(); //holds the width of the browser window
 			var img_width = win_width/4;
-			if $(window).height() > $(window).width(){
+			if ($(window).height() > $(window).width()){
 				var img_width = $(window).width();
 			}
 			var img_height = img_width*1.25;
@@ -228,7 +228,7 @@ load_route(false);
 			ani_running = 0;
 			for (var i = 0; i < containerlist.length; i++) {
 				if(i%2 == 0){
-					$(containerlist[i]).css("left", win_width);
+					$(containerlist[i]).css("left", $(window).width());
 				}
 				else{
 					$(containerlist[i]).css("left", "0px");
@@ -256,7 +256,7 @@ load_route(false);
 		function checkwidth(targetdiv, img_width){
 			console.log(targetdiv);
 			var imgcount = $(targetdiv + ' figure').length;
-			if ((imgcount * img_width) < (win_width-img_width)){
+			if ((imgcount * img_width) < ($(window).width()-img_width)){
 				return true;
 			}
 			else {
@@ -269,21 +269,21 @@ load_route(false);
 		function update_vars(div1, div2){
 			div1_width = $(div1).width(); //should be just < or = win_width -- verify possible removal
 			div2_width = $(div2).width();
-			win_width = $(window).width();
+			//win_width = $(window).width();
 					
 			//first animation calculations
-			ani1_width = win_width*2; //first animation travel distance
+			ani1_width = $(window).width()*2; //first animation travel distance
 			//ani1_duration = (ani1_width/px_rate)*2000; 
 
 			//second animation calculations
-			ani2_width = div2_width+win_width;
+			ani2_width = div2_width+$(window).width();
 			//ani2_duration = (ani2_width/px_rate)*2000; 
 		}
 
 		//sets the "left" property of the target div to reset location 
 		function reset_div (targetdiv){
 			targetdiv = $(targetdiv);
-			targetdiv.css("left", win_width);
+			targetdiv.css("left", $(window).width());
 		}
 
 		function apply_animations(div1, div2){
