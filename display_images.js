@@ -247,7 +247,6 @@ load_route(false);
 			var newtext = newobject.obj_text; 
 			imagelist.shift();
 			imagelist.push(newobject);
-			imagedisplay(targetdiv, newimage, newtext, img_width);
 			$(targetdiv).append('<figure><img width="'+img_width+'" src="'+newimage+'"><figcaption>'+newtext+'</figcaption></figure>');				
 
 		}
