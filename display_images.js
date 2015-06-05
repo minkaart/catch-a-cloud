@@ -378,7 +378,7 @@ load_route(false);
 		}
 
 		$(window).focusout(function(){
-				stopanimation(containerArray);
+				stopanimation(containerArray, imageArray);
 		});
 
 		$(window).focusin(function(){
@@ -387,7 +387,7 @@ load_route(false);
 
 		$("#stop_button").click(function(){
 //			if () { //check for an anirunning value
-				stopanimation(containerArray);
+				stopanimation(containerArray, imageArray);
 				//add ani_running value?? in stopanimation()
 //			};
 		});
@@ -397,9 +397,9 @@ load_route(false);
 			load_route(true);
 		})
 
-		$("#start_button").click(function(){
+		/**$("#start_button").click(function(){
 			load_route(true);
-		});
+		});**/
 
 		$(window).resize(function(){
 		console.log(ani_running);
