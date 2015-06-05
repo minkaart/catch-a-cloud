@@ -179,10 +179,10 @@ load_route(false);
 			if (win_height > $(window).width()){
 				rows = 1; 
 			} else {
-				rows = win_height/imageheight>>0;
+				rows = win_height/img_height>>0;
 			}
 			var divs = rows*2;
-			var diff = $(window).height() - imageheight*rows;
+			var diff = $(window).height() - img_height*rows;
 			console.log("rows: "+rows);
 			for (var i = 0; i < divs; i+=2) {
 					containerArray.push("#images"+i);
@@ -193,9 +193,9 @@ load_route(false);
 					
 					//update CSS for divs
 					if (i > 1){
-						var top = imageheight * (i/2)+(diff/rows);	
+						var top = img_height * (i/2)+(diff/rows);	
 					} else {
-						var top = imageheight * (i/2);
+						var top = img_height * (i/2);
 					}
 					
 					var target1 = "#images"+i; 
