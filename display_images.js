@@ -254,7 +254,7 @@ load_route(false);
 			//add listener for start button? 
 			$("#start_button").click(function(){
 				for(var i =0; i < containerlist.length; i+=2){
-					$("#images").css("overflow-y", "hidden");
+					$("#images").css("overflow-x", "hidden");
 				}
 				load_route(true);
 				$("#start_button").hide();
