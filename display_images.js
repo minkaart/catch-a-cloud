@@ -11,7 +11,7 @@ TO DO:
 	//note: change these globals to objects.
 		var win_width = $(window).width(); //holds the width of the browser window
 		var img_width = win_width/4;
-		var img_height = img_width*1.5;
+		var img_height = img_width*1.25;
 		var rows = 0; //number of rows to display images
 		var div1_width = 0; //holds width of first animated series (gap fill)
 		var div2_width = 0; //holds width of second animated series - remaining images
