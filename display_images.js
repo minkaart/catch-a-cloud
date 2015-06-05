@@ -261,7 +261,7 @@ load_route(false);
 				for(var i =0; i < containerlist.length; i+=2){
 					$("#images").css({
 						/**"overflow-x" : "hidden",
-						"overflow-y" : "visible"}**/);
+						"overflow-y" : "visible"**/});
 				}
 				load_route(true);
 				$("#start_button").hide();
