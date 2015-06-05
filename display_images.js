@@ -244,7 +244,7 @@ load_route(false);
 			}
 
 			//populate shorts with contents of longs? (or populate shorts with all content?)
-			for (var i=0; i < imagelist.length; i++){
+			for (var i=1; i < imagelist.length; i++){
 				console.log("image list length: "+imagelist.length);
 				for (var i=0; i<containerlist.length; i+=2){
 					console.log("containerlist[i]: "+containerlist[i]);
