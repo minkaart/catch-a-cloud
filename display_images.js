@@ -233,17 +233,14 @@ load_route(false);
 			console.log("emptied");
 			$("#stop_button").hide();
 			$("#start_button").show();
-			
+			$("#images").css("overflow-x" : "scroll");
 
 			//move shorts to left : 0 , set overflow property of divs
 			for(var i=0; i < containerlist.length; i+=2){
-				$(containerlist[i]).css(
-					{"left":"0px",
-					"overflow-x" : "scroll" }
-					);
+				$(containerlist[i]).css("left","0px");
 			}
 			console.log("imagelist: "+imagelist[0]);
-			//populate shorts with contents of longs? (or populate shorts with all content?)
+			//populate populate shorts with all content?
 			for (var j=0; j< imagelist.length; j++){
 				console.log("image list length: ");
 				for (var i=0; i<containerlist.length; i+=2){
@@ -257,7 +254,7 @@ load_route(false);
 			//add listener for start button? 
 			$("#start_button").click(function(){
 				for(var i =0; i < containerlist.length; i+=2){
-					$(containerlist[i]).css("overflow-y", "hidden");
+					$("#images").css("overflow-y", "hidden");
 				}
 				load_route(true);
 				$("#start_button").hide();
