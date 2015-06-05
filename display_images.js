@@ -233,7 +233,7 @@ load_route(false);
 			console.log("emptied");
 			$("#stop_button").hide();
 			$("#start_button").show();
-			$("#images").css("overflow-x" : "scroll");
+			$("#images").css("overflow-x", "scroll");
 
 			//move shorts to left : 0 , set overflow property of divs
 			for(var i=0; i < containerlist.length; i+=2){
