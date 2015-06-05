@@ -236,7 +236,7 @@ load_route(false);
 			
 
 			//move shorts to left : 0 , set overflow property of divs
-			for(var i =0; i < containerlist.length; i+=2){
+			for(var i=0; i < containerlist.length; i+=2){
 				$(containerlist[i]).css(
 					{"left":"0px",
 					"overflow-y" : "auto" }
@@ -384,7 +384,7 @@ load_route(false);
 		}
 
 		$(window).focusout(function(){
-				stopanimation(containerArray, imageArray);
+				stopanimation(containerArray, imageObjects);
 		});
 
 		$(window).focusin(function(){
@@ -393,7 +393,7 @@ load_route(false);
 
 		$("#stop_button").click(function(){
 //			if () { //check for an anirunning value
-				stopanimation(containerArray, imageArray);
+				stopanimation(containerArray, imageObjects);
 				//add ani_running value?? in stopanimation()
 //			};
 		});
