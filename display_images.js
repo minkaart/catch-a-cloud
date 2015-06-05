@@ -365,11 +365,11 @@ load_route(false);
 		$("window").resize(function(){
 		if(ani_running !== 0){
 			if(ani_running === 1){
-				for (i=1, i<containerArray.length(), i+=2){
+				for (i=1, i<containerArray.length, i+=2){
 					containerArray[i].css("left", $(window).width());
 				}
 			} else if(ani_running === 2){
-				for (i=0, i<containerArray.length(), i+=2){
+				for (i=0, i<containerArray.length, i+=2){
 					containerArray[i].css("left", $(window).width());
 				}
 			}
