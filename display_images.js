@@ -304,7 +304,7 @@ load_route(false);
 			$(target1).animate({left : ["-="+ani_width, "linear"]},
 				{
 				queue: true,
-				duration: ani1_duration,
+				duration: (ani_width/px_rate)*2000,
 					step: function(value_left){
 						if(value_left < 1){
 							if(div1_first_run){
@@ -329,7 +329,7 @@ load_route(false);
 			$(target2).animate({left : ["-="+ani_width, "linear"]},
 				{
 				queue: true,
-				duration: ani2_duration, 
+				duration: (ani_width/px_rate)*2000, 
 					step: function(target_left){
 						if(target_left < goal_left){
 							if(div2_first_run){
