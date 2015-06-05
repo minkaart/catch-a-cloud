@@ -4,7 +4,7 @@
 
 (function($){
 	$(document).ready(function(){
-				
+		var img_width = 0; //holds the width of the image (initiated in calculaterows())		
 		var rows = 0; //number of rows to display images
 		var div1_width = 0; //holds width of first animated series (gap fill)
 		var div2_width = 0; //holds width of second animated series - remaining images
@@ -41,8 +41,8 @@ load_route(false);
 				$("#images").empty();
 
 				popimageArray(function(){
-					var img_width = calculaterows();
-					populatedivs(containerArray, imageObjects, img_width, function (){
+					calculaterows();
+					populatedivs(containerArray, imageObjects, function (){
 						for (var i =0; i< containerArray.length; i+=2){
 							update_vars(containerArray[i], containerArray[i+1]);
 							$(containerArray[i]).css("left", "0");
@@ -57,15 +57,15 @@ load_route(false);
 			else
 			{
 				popimageArray(function(){
-					var img_width = calculaterows();
-					initiatepage(containerArray, imageObjects, img_width);
+					calculaterows();
+					initiatepage(containerArray, imageObjects);
 				});	
 			}
 		}
 
-		function initiatepage(containerlist, imagelist, img_width) {
+		function initiatepage(containerlist, imagelist) {
 		
-			populatedivs(containerlist, imagelist, img_width);
+			populatedivs(containerlist, imagelist);
 
 			for (var i = 0; i < containerlist.length; i+=2) {
 				apply_animations(containerlist[i], containerlist[i+1]);
@@ -74,8 +74,8 @@ load_route(false);
 		}	
 
 		/**splits content divs into short(fill divs)
-		 and long and then populates them with imagecontent from imageObjects **/
-		function populatedivs(containerlist, imagelist, img_width, callback){
+		 and long and then populates them with imagecontent from imagelist **/
+		function populatedivs(containerlist, imagelist, callback){
 			var shorts = [];
 			var longs = []; 
 
@@ -91,31 +91,31 @@ load_route(false);
 			});
 			
 			var end = shorts.length - 1;
-			var widthcheck = checkwidth(shorts[end], img_width);
+			var widthcheck = checkwidth(shorts[end]);
 
 			var shortcontent = 0;
 			do{
 				for (var i = 0; i < shorts.length; i++) {
-					looping_image_display(shorts[i], imagelist, img_width);
+					looping_image_display(shorts[i], imagelist);
 					shortcontent++;
 				};
-				widthcheck = checkwidth(shorts[end], img_width);
+				widthcheck = checkwidth(shorts[end]);
 			} while (widthcheck)		
 			
 			var lengthdiff = imagelist.length - shortcontent;
 
 			for (var i = 0; i < lengthdiff; i++) {
 				$.each(longs, function(index, val){
-					looping_image_display(longs[index], imagelist, img_width);
+					looping_image_display(longs[index], imagelist);
 				});
 			};
-			var longwidth = checkwidth(longs[longs.length-1], img_width);
+			var longwidth = checkwidth(longs[longs.length-1]);
 			if(longwidth){
 				do{
 					for (var i = 0; i < longs.length; i++) {
-						looping_image_display(longs[i], imagelist, img_width);
+						looping_image_display(longs[i], imagelist);
 					};
-					longwidth = checkwidth(longs[longs.length-1], img_width);
+					longwidth = checkwidth(longs[longs.length-1]);
 				}while(longwidth)
 			};
 
@@ -164,14 +164,15 @@ load_route(false);
 		}
 
 		/**calculates the #of rows needed based on window height and creates a 
-		list (array) of divs required to fill given height.
+		list (array) of divs required to fill given height. 
+		(note: the total divs are *2 for short (ani-fill) and long divs). 
 		Change variables for image size (height and width) here.
-		RETURNS image width as calculated based on height variables**/ 
+		RETURNS IMAGE WIDTH as calculated based on height variables**/ 
 		function calculaterows (){
 			var win_width = $(window).width(); //holds the width of the browser window
-			var img_width = win_width/4;
+			img_width = win_width/4;
 			if ($(window).height() > $(window).width()){
-				var img_width = $(window).width();
+				img_width = $(window).width();
 			}
 			var img_height = img_width*1.25;
 			var win_height = $(window).height(); 
@@ -204,7 +205,6 @@ load_route(false);
 					$(target2).css("top", top);
 			};
 
-			return img_width; 
 		}
 
 		//checks if new images have appeared on server, creates new imageArray of new images
@@ -223,25 +223,51 @@ load_route(false);
 		}
 
 		//stops animations 
-		function stopanimation(containerlist){
+		function stopanimation(containerlist, imagelist){
+			//stop animation, clear current images, 
 			$(".images").stop();
-			ani_running = 0;
-			for (var i = 0; i < containerlist.length; i++) {
-				if(i%2 == 0){
-					$(containerlist[i]).css("left", $(window).width());
+			ani_running = 0; 
+			$(".images").empty();
+			$("#images").empty();
+
+			//populate shorts with contents of longs? (or populate shorts with all content?)
+			for (var i=0; i < imagelist.length; i++){
+				for (var i=0; i<containerlist.length; i+=2){
+					looping_image_display(containerlist[i], imagelist);
 				}
-				else{
-					$(containerlist[i]).css("left", "0px");
-				};
-			};
+			}
+
+			//move shorts to left : 0 , set overflow property of divs
+			for(var i =0; i < containerlist.length; i+=2){
+				containerlist[i].css(
+					"left":"0px",
+					"overflow-y" : "auto" 
+					);
+			}
+			
 			$("#stop_button").hide();
 			$("#start_button").show();
+			
+			//add listener for start button? 
+			$("#start_button").click(function(){
+				for(var i =0; i < containerlist.length; i+=2){
+					containerlist[i].css("overflow-y" : "hidden");
+				}
+				load_route(true);
+				$("#start_button").hide();
+				$("#stop_button").show();
+			});
+			
+		}
+
+		function pauseanimation(containerlist){
+
 		}
 
 
 		/** adjusts given array to maintain target image in position [0]
 			appends target image to target div **/
-		function looping_image_display(targetdiv, imagelist, img_width){
+		function looping_image_display(targetdiv, imagelist){
 			var newobject = imagelist[0];
 			var newimage = newobject.image_ref;
 			var newtext = newobject.obj_text; 
@@ -252,7 +278,7 @@ load_route(false);
 		}
 
 		//checks if the width of an image-populated div is greater than the width of the window 
-		function checkwidth(targetdiv, img_width){
+		function checkwidth(targetdiv){
 			console.log(targetdiv);
 			var imgcount = $(targetdiv + ' figure').length;
 			if ((imgcount * img_width) < ($(window).width()-img_width)){
