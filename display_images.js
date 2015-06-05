@@ -50,11 +50,11 @@ load_route(false);
 				popimageArray(function(){
 					calculaterows(img_height);
 					populatedivs(containerArray, imageObjects, function (){
-						for (var i = 0; i < containerArray.length; i+=2) {
+						/**for (var i = 0; i < containerArray.length; i+=2) {
 							update_vars(containerArray[i], containerArray[i+1]);
 							$(containerArray[i]).css("left", "0");
 							console.log("animating 1: "+containerArray[i]);
-							$(containerArray[i]).animate({left : ["-="+win_width, "linear"]},
+							$(containerArray[i+1]).animate({left : ["-="+ani2_width - win_width, "linear"]},
 								{
 								queue: true,
 								duration: ani1_duration/2,
@@ -68,7 +68,16 @@ load_route(false);
 							animatediv2(containerArray[i], containerArray[i+1]);
 							$("#start_button").hide();
 							$("#stop_button").show();
-						};	
+						};**/
+
+						for (var i =0; i< containerArray.length; i+=2){
+							update_vars(containerArray[i], containerArray[i+1]);
+							$(containerArray[i]).css("left", "0");
+							animatediv1(containerArray[i], containerArray[i+1], win_width);
+						}
+						$("#start_button").hide();
+						$("#stop_button").show();
+
 					});
 				});	
 			}
@@ -288,11 +297,11 @@ load_route(false);
 			animatediv1(div1, div2);
 		}
 
-		function animatediv1(target1, target2){
+		function animatediv1(target1, target2, ani_width){
 			ani_running = true;
 			update_vars(target1, target2);
 			var div1_first_run = true; 
-			$(target1).animate({left : ["-="+ani1_width, "linear"]},
+			$(target1).animate({left : ["-="+ani_width, "linear"]},
 				{
 				queue: true,
 				duration: ani1_duration,
@@ -300,7 +309,7 @@ load_route(false);
 						if(value_left < 1){
 							if(div1_first_run){
 								div1_first_run = false;
-								animatediv2(target1, target2);	
+								animatediv2(target1, target2, ani2_width);	
 								console.log("animating target 2");
 							};
 						};
@@ -313,11 +322,11 @@ load_route(false);
 				});
 		}
 
-		function animatediv2(target1, target2){
+		function animatediv2(target1, target2, ani_width){
 			var div2_first_run = true; 
 			var goal_left = win_width - div2_width;
 			console.log("div 2: "+div2_width);
-			$(target2).animate({left : ["-="+ani2_width, "linear"]},
+			$(target2).animate({left : ["-="+ani_width, "linear"]},
 				{
 				queue: true,
 				duration: ani2_duration, 
@@ -325,7 +334,7 @@ load_route(false);
 						if(target_left < goal_left){
 							if(div2_first_run){
 								div2_first_run = false;
-								animatediv1(target1, target2);
+								animatediv1(target1, target2, ani1_width);
 								console.log("animating target 1");
 							};
 						};
