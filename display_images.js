@@ -244,8 +244,8 @@ load_route(false);
 			}
 
 			//populate shorts with contents of longs? (or populate shorts with all content?)
-			for (var i=1; i < imagelist.length; i++){
-				console.log("image list length: "+imagelist.length);
+			for (var i=0; i < on_server; i++){
+				console.log("image list length: "+on_server);
 				for (var i=0; i<containerlist.length; i+=2){
 					console.log("containerlist[i]: "+containerlist[i]);
 					looping_image_display(containerlist[i], imagelist);
@@ -384,7 +384,7 @@ load_route(false);
 		}
 
 		$(window).focusout(function(){
-				stopanimation(containerArray, imageObjects);
+				//stopanimation(containerArray, imageObjects);
 		});
 
 		$(window).focusin(function(){
