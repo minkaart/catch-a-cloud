@@ -50,26 +50,6 @@ load_route(false);
 				popimageArray(function(){
 					calculaterows(img_height);
 					populatedivs(containerArray, imageObjects, function (){
-						/**for (var i = 0; i < containerArray.length; i+=2) {
-							update_vars(containerArray[i], containerArray[i+1]);
-							$(containerArray[i]).css("left", "0");
-							console.log("animating 1: "+containerArray[i]);
-							$(containerArray[i+1]).animate({left : ["-="+ani2_width - win_width, "linear"]},
-								{
-								queue: true,
-								duration: ani1_duration/2,
-								complete: function(){
-									reset_div(containerArray[i]);
-									//console.log("reset div "+containerArray[i]+" to "+win_width);
-								}
-							});
-							//console.log("animating 2");
-							ani_running = true;
-							animatediv2(containerArray[i], containerArray[i+1]);
-							$("#start_button").hide();
-							$("#stop_button").show();
-						};**/
-
 						for (var i =0; i< containerArray.length; i+=2){
 							update_vars(containerArray[i], containerArray[i+1]);
 							$(containerArray[i]).css("left", "0");
@@ -278,11 +258,11 @@ load_route(false);
 					
 			//first animation calculations
 			ani1_width = win_width*2; //first animation travel distance
-			ani1_duration = (ani1_width/px_rate)*2000; 
+			//ani1_duration = (ani1_width/px_rate)*2000; 
 
 			//second animation calculations
 			ani2_width = div2_width+win_width;
-			ani2_duration = (ani2_width/px_rate)*2000; 
+			//ani2_duration = (ani2_width/px_rate)*2000; 
 		}
 
 		//sets the "left" property of the target div to reset location 
@@ -294,7 +274,7 @@ load_route(false);
 		function apply_animations(div1, div2){
 			console.log("applying animations to: "+div1+" & "+div2);
 			update_vars(div1, div2);
-			animatediv1(div1, div2);
+			animatediv1(div1, div2, $(window).width()*2);
 		}
 
 		function animatediv1(target1, target2, ani_width){
@@ -309,7 +289,7 @@ load_route(false);
 						if(value_left < 1){
 							if(div1_first_run){
 								div1_first_run = false;
-								animatediv2(target1, target2, ani2_width);	
+								animatediv2(target1, target2, target2.width()+$(window).width());	
 								console.log("animating target 2");
 							};
 						};
@@ -334,7 +314,7 @@ load_route(false);
 						if(target_left < goal_left){
 							if(div2_first_run){
 								div2_first_run = false;
-								animatediv1(target1, target2, ani1_width);
+								animatediv1(target1, target2, $(window).width()*2);
 								console.log("animating target 1");
 							};
 						};
