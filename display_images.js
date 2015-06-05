@@ -1,17 +1,10 @@
 /**jQuery library? to animate images in a continuous (infinite) loop - scrolling left across a page
 
-TO DO: 
-- write function to set divs to appropriate css (see clouds.css) checkcss(){}
-- allows you to reuse looping() when updating divs after a cloud has been drawn
 **/
 
 (function($){
 	$(document).ready(function(){
 				
-	//note: change these globals to objects.
-		var win_width = $(window).width(); //holds the width of the browser window
-		var img_width = win_width/4;
-		var img_height = img_width*1.25;
 		var rows = 0; //number of rows to display images
 		var div1_width = 0; //holds width of first animated series (gap fill)
 		var div2_width = 0; //holds width of second animated series - remaining images
@@ -48,8 +41,8 @@ load_route(false);
 				$("#images").empty();
 
 				popimageArray(function(){
-					calculaterows(img_height);
-					populatedivs(containerArray, imageObjects, function (){
+					var img_width = calculaterows();
+					populatedivs(containerArray, imageObjects, img_width, function (){
 						for (var i =0; i< containerArray.length; i+=2){
 							update_vars(containerArray[i], containerArray[i+1]);
 							$(containerArray[i]).css("left", "0");
@@ -64,15 +57,15 @@ load_route(false);
 			else
 			{
 				popimageArray(function(){
-					calculaterows(img_height);
-					initiatepage(containerArray, imageObjects);
+					var img_width = calculaterows();
+					initiatepage(containerArray, imageObjects, img_width);
 				});	
 			}
 		}
 
-		function initiatepage(containerlist, imagelist) {
+		function initiatepage(containerlist, imagelist, img_width) {
 		
-			populatedivs(containerlist, imagelist);
+			populatedivs(containerlist, imagelist, img_width);
 
 			for (var i = 0; i < containerlist.length; i+=2) {
 				apply_animations(containerlist[i], containerlist[i+1]);
@@ -80,8 +73,9 @@ load_route(false);
 			
 		}	
 
-		//splits content divs into short(fill divs) and long and then populates them with imagecontent from imageObjects 
-		function populatedivs(containerlist, imagelist, callback){
+		/**splits content divs into short(fill divs)
+		 and long and then populates them with imagecontent from imageObjects **/
+		function populatedivs(containerlist, imagelist, img_width, callback){
 			var shorts = [];
 			var longs = []; 
 
@@ -97,31 +91,31 @@ load_route(false);
 			});
 			
 			var end = shorts.length - 1;
-			var widthcheck = checkwidth(shorts[end]);
+			var widthcheck = checkwidth(shorts[end], img_width);
 
 			var shortcontent = 0;
 			do{
 				for (var i = 0; i < shorts.length; i++) {
-					looping(shorts[i], imagelist);
+					looping_image_display(shorts[i], imagelist, img_width);
 					shortcontent++;
 				};
-				widthcheck = checkwidth(shorts[end]);
+				widthcheck = checkwidth(shorts[end], img_width);
 			} while (widthcheck)		
 			
 			var lengthdiff = imagelist.length - shortcontent;
 
 			for (var i = 0; i < lengthdiff; i++) {
 				$.each(longs, function(index, val){
-					looping(longs[index], imagelist);
+					looping_image_display(longs[index], imagelist, img_width);
 				});
 			};
-			var longwidth = checkwidth(longs[longs.length-1]);
+			var longwidth = checkwidth(longs[longs.length-1], img_width);
 			if(longwidth){
 				do{
 					for (var i = 0; i < longs.length; i++) {
-						looping(longs[i], imagelist);
+						looping_image_display(longs[i], imagelist, img_width);
 					};
-					longwidth = checkwidth(longs[longs.length-1]);
+					longwidth = checkwidth(longs[longs.length-1], img_width);
 				}while(longwidth)
 			};
 
@@ -169,10 +163,24 @@ load_route(false);
 			});
 		}
 
-		//calculates the #of rows needed based on window height and creates a list (array) of divs required to fill given height
-		function calculaterows (imageheight){
+		/**calculates the #of rows needed based on window height and creates a 
+		list (array) of divs required to fill given height.
+		Change variables for image size (height and width) here.
+		RETURNS image width as calculated based on height variables**/ 
+		function calculaterows (){
+			var win_width = $(window).width(); //holds the width of the browser window
+			var img_width = win_width/4;
+			if $(window).height() > $(window).width(){
+				var img_width = $(window).width();
+			}
+			var img_height = img_width*1.25;
 			var win_height = $(window).height(); 
-			var rows = win_height/imageheight>>0;
+			var rows = 0;
+			if (win_height > $(window).width()){
+				rows = 1; 
+			} else {
+				rows = win_height/imageheight>>0;
+			}
 			var divs = rows*2;
 			var diff = $(window).height() - imageheight*rows;
 			console.log("rows: "+rows);
@@ -184,12 +192,19 @@ load_route(false);
 					$(holdingContainer).append('<div id="images'+(i+1)+'" class="images"></div>');
 					
 					//update CSS for divs
-					var top = imageheight * (i/2)+(diff/rows);
+					if (i > 1){
+						var top = imageheight * (i/2)+(diff/rows);	
+					} else {
+						var top = imageheight * (i/2);
+					}
+					
 					var target1 = "#images"+i; 
 					var target2 = "#images"+(i+1);
 					$(target1).css("top", top);
 					$(target2).css("top", top);
 			};
+
+			return img_width; 
 		}
 
 		//checks if new images have appeared on server, creates new imageArray of new images
@@ -223,24 +238,22 @@ load_route(false);
 			$("#start_button").show();
 		}
 
-		//appends an image to any given target div
-		function imagedisplay(targetdiv, image, text) {
-			$(targetdiv).append('<figure><img width="'+img_width+'" src="'+image+'"><figcaption>'+text+'</figcaption></figure>');				
-		}
 
-		//loops through imageArray and appends each image to a given target div - maintains first un-used image at position [0] in the array
-		//to use: targetdiv is the id value "#somediv" && imagelist is an array of images to be appended to the div "imageArray" 
-		function looping(targetdiv, imagelist){
+		/** adjusts given array to maintain target image in position [0]
+			appends target image to target div **/
+		function looping_image_display(targetdiv, imagelist, img_width){
 			var newobject = imagelist[0];
 			var newimage = newobject.image_ref;
 			var newtext = newobject.obj_text; 
 			imagelist.shift();
 			imagelist.push(newobject);
-			imagedisplay(targetdiv, newimage, newtext);
+			imagedisplay(targetdiv, newimage, newtext, img_width);
+			$(targetdiv).append('<figure><img width="'+img_width+'" src="'+newimage+'"><figcaption>'+newtext+'</figcaption></figure>');				
+
 		}
 
 		//checks if the width of an image-populated div is greater than the width of the window 
-		function checkwidth(targetdiv){
+		function checkwidth(targetdiv, img_width){
 			console.log(targetdiv);
 			var imgcount = $(targetdiv + ' figure').length;
 			if ((imgcount * img_width) < (win_width-img_width)){
