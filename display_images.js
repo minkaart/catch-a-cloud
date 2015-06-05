@@ -289,7 +289,7 @@ load_route(false);
 						if(value_left < 1){
 							if(div1_first_run){
 								div1_first_run = false;
-								animatediv2(target1, target2, target2.width()+$(window).width());	
+								animatediv2(target1, target2, $(target2).width()+$(window).width());	
 								console.log("animating target 2");
 							};
 						};
