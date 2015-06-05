@@ -248,7 +248,7 @@ load_route(false);
 				console.log("image list length: "+imagelist.length);
 				for (var i=0; i<containerlist.length; i+=2){
 					console.log("containerlist[i]: "+containerlist[i]);
-					looping_image_display(containerlist[i], imagelist);
+					looping_image_display($(containerlist[i]), imagelist);
 				}
 			}
 
@@ -257,7 +257,7 @@ load_route(false);
 			//add listener for start button? 
 			$("#start_button").click(function(){
 				for(var i =0; i < containerlist.length; i+=2){
-					containerlist[i].css("overflow-y", "hidden");
+					$(containerlist[i]).css("overflow-y", "hidden");
 				}
 				load_route(true);
 				$("#start_button").hide();
