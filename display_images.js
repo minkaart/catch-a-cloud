@@ -242,9 +242,9 @@ load_route(false);
 					"overflow-y" : "auto" }
 					);
 			}
-
+			console.log("imagelist: "+imagelist);
 			//populate shorts with contents of longs? (or populate shorts with all content?)
-			for (var j=0; j< 26; j++){
+			for (var j=0; j< imagelist.length; j++){
 				console.log("image list length: ");
 				for (var i=0; i<containerlist.length; i+=2){
 					console.log("containerlist[i]: "+containerlist[i]);
@@ -275,6 +275,7 @@ load_route(false);
 			appends target image to target div **/
 		function looping_image_display(targetdiv, imagelist){
 			var newobject = imagelist[0];
+			console.log("newobject: "+newobject);
 			var newimage = newobject.image_ref;
 			var newtext = newobject.obj_text; 
 			imagelist.shift();
