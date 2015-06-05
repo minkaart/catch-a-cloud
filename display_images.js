@@ -226,16 +226,14 @@ load_route(false);
 		function stopanimation(containerlist, imagelist){
 			//stop animation, clear current images, 
 			$(".images").stop();
+			console.log("stopped");
 			ani_running = 0; 
 			$(".images").empty();
 			$("#images").empty();
-
-			//populate shorts with contents of longs? (or populate shorts with all content?)
-			for (var i=0; i < imagelist.length; i++){
-				for (var i=0; i<containerlist.length; i+=2){
-					looping_image_display(containerlist[i], imagelist);
-				}
-			}
+			console.log("emptied");
+			$("#stop_button").hide();
+			$("#start_button").show();
+			
 
 			//move shorts to left : 0 , set overflow property of divs
 			for(var i =0; i < containerlist.length; i+=2){
@@ -244,9 +242,17 @@ load_route(false);
 					"overflow-y" : "auto" }
 					);
 			}
+
+			//populate shorts with contents of longs? (or populate shorts with all content?)
+			for (var i=0; i < imagelist.length; i++){
+				console.log("image list length: "+imagelist.length);
+				for (var i=0; i<containerlist.length; i+=2){
+					console.log("containerlist[i]: "+containerlist[i]);
+					looping_image_display(containerlist[i], imagelist);
+				}
+			}
+
 			
-			$("#stop_button").hide();
-			$("#start_button").show();
 			
 			//add listener for start button? 
 			$("#start_button").click(function(){
