@@ -239,7 +239,7 @@ load_route(false);
 			for(var i=0; i < containerlist.length; i+=2){
 				$(containerlist[i]).css(
 					{"left":"0px",
-					"overflow-x" : "auto" }
+					"overflow-x" : "scroll" }
 					);
 			}
 			console.log("imagelist: "+imagelist[0]);
