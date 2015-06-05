@@ -376,6 +376,7 @@ load_route(false);
 		});
 
 		$(window).resize(function(){
+		console.log(ani_running);
 		if(ani_running !== 0){
 			if(ani_running === 1){
 				for (i=1; i<containerArray.length; i+=2){
