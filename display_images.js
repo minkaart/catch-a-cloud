@@ -240,8 +240,8 @@ load_route(false);
 			//move shorts to left : 0 , set overflow property of divs
 			for(var i =0; i < containerlist.length; i+=2){
 				containerlist[i].css(
-					"left":"0px",
-					"overflow-y" : "auto" 
+					{"left":"0px",
+					"overflow-y" : "auto" }
 					);
 			}
 			
@@ -251,7 +251,7 @@ load_route(false);
 			//add listener for start button? 
 			$("#start_button").click(function(){
 				for(var i =0; i < containerlist.length; i+=2){
-					containerlist[i].css("overflow-y" : "hidden");
+					containerlist[i].css("overflow-y", "hidden");
 				}
 				load_route(true);
 				$("#start_button").hide();
