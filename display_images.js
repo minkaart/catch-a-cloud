@@ -174,6 +174,7 @@ load_route(false);
 			var win_height = $(window).height(); 
 			var rows = win_height/imageheight>>0;
 			var divs = rows*2;
+			var diff = $(window).height() - imageheight*rows;
 			console.log("rows: "+rows);
 			for (var i = 0; i < divs; i+=2) {
 					containerArray.push("#images"+i);
@@ -183,7 +184,7 @@ load_route(false);
 					$(holdingContainer).append('<div id="images'+(i+1)+'" class="images"></div>');
 					
 					//update CSS for divs
-					var top = imageheight * (i/2);
+					var top = imageheight * (i/2)+(diff/rows);
 					var target1 = "#images"+i; 
 					var target2 = "#images"+(i+1);
 					$(target1).css("top", top);
