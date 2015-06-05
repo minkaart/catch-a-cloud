@@ -237,7 +237,7 @@ load_route(false);
 
 			//move shorts to left : 0 , set overflow property of divs
 			for(var i =0; i < containerlist.length; i+=2){
-				containerlist[i].css(
+				$(containerlist[i]).css(
 					{"left":"0px",
 					"overflow-y" : "auto" }
 					);
@@ -248,7 +248,7 @@ load_route(false);
 				console.log("image list length: "+imagelist.length);
 				for (var i=0; i<containerlist.length; i+=2){
 					console.log("containerlist[i]: "+containerlist[i]);
-					looping_image_display($(containerlist[i]), imagelist);
+					looping_image_display(containerlist[i], imagelist);
 				}
 			}
 
