@@ -237,7 +237,7 @@ load_route(false);
 
 			//move shorts to left : 0 , set overflow property of divs
 			for(var i=0; i < containerlist.length; i+=2){
-				$(containerlist[i])).css(
+				$(containerlist[i]).css(
 				"left","0px"
 				/**{	"left" : "0px",
 					"overflow-x" : "scroll",
