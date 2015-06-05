@@ -242,7 +242,7 @@ load_route(false);
 					"overflow-y" : "auto" }
 					);
 			}
-			console.log("imagelist: "+imagelist);
+			console.log("imagelist: "+imagelist[0]);
 			//populate shorts with contents of longs? (or populate shorts with all content?)
 			for (var j=0; j< imagelist.length; j++){
 				console.log("image list length: ");
@@ -277,6 +277,7 @@ load_route(false);
 			var newobject = imagelist[0];
 			console.log("newobject: "+newobject);
 			var newimage = newobject.image_ref;
+			console.log("newimage: "+newimage);
 			var newtext = newobject.obj_text; 
 			imagelist.shift();
 			imagelist.push(newobject);
