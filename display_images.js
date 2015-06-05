@@ -233,7 +233,9 @@ load_route(false);
 			console.log("emptied");
 			$("#stop_button").hide();
 			$("#start_button").show();
-			$("#images").css("overflow-x", "scroll");
+			$("#images").css({
+				"overflow-x" : "scroll",
+				"overflow-y" : "visible"});
 
 			//move shorts to left : 0 , set overflow property of divs
 			for(var i=0; i < containerlist.length; i+=2){
@@ -254,7 +256,9 @@ load_route(false);
 			//add listener for start button? 
 			$("#start_button").click(function(){
 				for(var i =0; i < containerlist.length; i+=2){
-					$("#images").css("overflow-x", "hidden");
+					$("#images").css({
+						"overflow-x" : "hidden",
+						"overflow-y" : "visible"})
 				}
 				load_route(true);
 				$("#start_button").hide();
