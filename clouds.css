@@ -146,11 +146,13 @@ body, html {
 	left : 15%;
 	height : 80%;
 	top : 10%;
+	margin : 8%;
+	overflow-y : auto;
 }
 
 #single_image {
 	overflow : auto;
-	padding : 10%;
+	padding : 2%;
 }
 
 #images {
