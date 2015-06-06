@@ -34,10 +34,10 @@ load_route(false);
 			if (update){
 
 				console.log("updating");
-				imageArray = [];
-				imageObjects = [];
+				imageArray.length = 0;
+				imageObjects.length = 0;
 				console.log("clear image objects: "+imageObjects);
-				containerArray = [];
+				containerArray.length = 0;
 				$(".images").empty();
 				$("#images").empty();
 
@@ -270,7 +270,7 @@ load_route(false);
 						"height" : "",
 						"overflow" : "visible"
 				});
-				load_route(false);
+				load_route(true);
 				$("#start_button").hide();
 				$("#stop_button").show();
 			});
