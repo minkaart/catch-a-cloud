@@ -504,7 +504,7 @@ load_route(false);
 		$(document).on("click", ".images figure img", function(){
 			console.log("click registered");
 			console.log($(this).attr('src'));
-			console.log($(this).parent().("figcaption"));
+			console.log($(this).parent().find("figcaption"));
 		});
 
 	});
