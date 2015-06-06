@@ -28,8 +28,8 @@ if($_GET['start']){
 
 
 if ($data[total] > 30) {
-	if($_GET['start_val']){
-		$length = $_GET['start_val'] * 30; 
+	if($_GET['start']){
+		$length = $_GET['start'] * 30; 
 		$data[error] = $data[error]."assessed length is ".$length;
 	} else {
 		$data[error] = $data[error]."error getting start val".$_POST('start_val');
