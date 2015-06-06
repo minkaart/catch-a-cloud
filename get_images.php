@@ -10,7 +10,7 @@ $data = array('total' => 0, 'first_30' => "", 'more' => false, 'error' => "error
 try {
 	$image_json = file_get_contents('s3://'.$bucket.'/image_JSON.json');
 } catch(Exception $e){
-	$data[error] = $data[error].$_POST['start_val'];
+	$data[error] = $data[error].$e;
 	}
 
 
@@ -20,7 +20,7 @@ $data[total] = count($images);
 
 $data[first_30] = $image_json;
 
-if($_POST['start_val']){
+if($_POST['start']){
 	$data[error] = $data[error]."post start val exists";	
 } else {
 	$data[error] = $data[error]."post start val does not exist";
