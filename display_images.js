@@ -215,7 +215,8 @@ load_route(false);
 
 			$.get("check.php", function(data){
 					images_in_file = data; 
-					//console.log("image number: "+images_in_file);
+					console.log("image number previous: "+on_server);
+					console.log("image number current: "+images_in_file);
 					if(images_in_file > on_server){
 						update_needed = true; 
 						on_server = images_in_file;
@@ -286,27 +287,28 @@ load_route(false);
 			$(".stop_pause").hide();
 			$("#start_button").show();
 
+			
+			//considering overflow on paused animation ... will require back-filling divs 
 			/**$("#images").css({
 				"height" : $(window).height()-50+"px",
 				"overflow" : "auto"
 			});**/
-			console.log("animation paused. ani_running: "+ani_running);
+
+
 			//check for ani_running at 1, 2, or 3
 			if(ani_running%2 !== 0 && ani_running !== 0){ //if ani_running is 1 or 3 and not 0
-				console.log("ani_running caught at 1 or 3");
 				// calculate new target/ani_distance for 1 based on left
 				var left = parseInt($(containerlist[0]).css("left"));
 				var travelled = $(window).width() - left; 
 				var remaining = $(window).width()*2 - travelled; 
-				console.log("travelled: "+travelled+
-					"remaining: "+remaining+"left: "+left);
+				/**console.log("travelled: "+travelled+
+					"remaining: "+remaining+"left: "+left);**/
 
 				//start handler
-				//if 1, call 1
-				//if 3, call 1
+				//if 1, call 1 || if 3, call 1
 				$("#start_button").click(function(){
 					for(i= 0; i < containerlist.length; i+=2){
-						console.log("calling animation 1 on "+containerlist[i]);
+						//console.log("calling animation 1 on "+containerlist[i]);
 						animatediv1(containerlist[i], containerlist[i+1], remaining);
 					}
 				});
@@ -315,17 +317,16 @@ load_route(false);
 				console.log("error: animation was not running");
 			} else if (ani_running === 2) {
 				// calculate new target/ani_distance for 2 based on left 
-				console.log("ani_running caught at 2");
 				var left = parseInt($(containerlist[1]).css("left"));
 				var travelled = $(window).width() - left; 
 				var remaining = ($(containerlist[1]).width()+$(window).width()) - travelled; 
-				console.log("travelled: "+travelled+
-					"remaining: "+remaining+"left: "+left);
+				/**console.log("travelled: "+travelled+
+					"remaining: "+remaining+"left: "+left);**/
 
 				//if 2, call 2
 				$("#start_button").click(function(){
 					for(i= 0; i < containerlist.length; i+=2){
-						console.log("calling animation 2 on "+containerlist[i]);
+						//console.log("calling animation 2 on "+containerlist[i]);
 						animatediv2(containerlist[i], containerlist[i+1], remaining);
 					}
 				});
@@ -336,19 +337,16 @@ load_route(false);
 
 
 			$("#start_button").click(function(){
-				console.log("calling reset start functions");
+				//console.log("calling reset start functions");
 				$(".stop_pause").show();
 				$("#start_button").hide();
 				$("#start_button").off("click");
+				//considering overflow on paused animation ... will require back-filling divs 
 				/**$("#images").css({
 				"height" : $(window).height()-50+"px",
 				"overflow" : "auto"
 				});**/
 			});
-			//start handler
-			//if 1, call 1
-			//if 2, call 2
-			//if 3, call 1
 		}
 
 
@@ -466,18 +464,11 @@ load_route(false);
 		}
 
 		$(window).focusout(function(){
-				//stopanimation(containerArray, imageObjects);
-		});
-
-		$(window).focusin(function(){
-				//load_route(true);
+				pauseanimation(containerArray);
 		});
 
 		$("#stop_button").click(function(){
-//			if () { //check for an anirunning value
-				stopanimation(containerArray, imageObjects);
-				//add ani_running value?? in stopanimation()
-//			};
+			stopanimation(containerArray, imageObjects);
 		});
 
 		$("#pause_button").click(function(){
@@ -488,10 +479,6 @@ load_route(false);
 			start_val++;
 			load_route(true);
 		})
-
-		/**$("#start_button").click(function(){
-			load_route(true);
-		});**/
 
 		$(window).resize(function(){
 		console.log(ani_running);
