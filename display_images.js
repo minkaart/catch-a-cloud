@@ -244,7 +244,7 @@ load_route(false);
 					"overflow-y" : "visible"}**/
 					);
 			}
-			console.log("imagelist: "+imagelist[0]);
+
 			//populate populate shorts with all content?
 			for (var j=0; j< imagelist.length; j++){
 				console.log("image list length: ");
@@ -394,7 +394,7 @@ load_route(false);
 		});
 
 		$(window).focusin(function(){
-				load_route(true);
+				//load_route(true);
 		});
 
 		$("#stop_button").click(function(){
