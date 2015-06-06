@@ -208,11 +208,9 @@
 		$("#draw").hide();
 		$("#text_form").show();
 		$("#tool_menu").hide();
-		$(window).off("focusout");
 	});
 
 	$("#text_input").submit(function(event){
-
 		var user_text = $('#user_text').val();
 		event.preventDefault();
 		$.ajax({
@@ -227,7 +225,6 @@
 			$("#user_text").val('');
 			$("#text_form").hide();
 		});
-		$(window).on("focusout", $(pause));
 	});
 
 	$("#canvas_close").click(function(){
