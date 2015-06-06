@@ -166,6 +166,10 @@ body, html {
 	margin: 5px;
 }
 
+.images figure img {
+	z-index: 9999;
+}
+
 /*TOOL MENU*/
 #tool_menu {
 	top: 50px;
