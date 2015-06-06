@@ -239,6 +239,7 @@ load_route(false);
 				"overflow" : "auto"
 			});
 			
+			console.log(imagelist);
 
 			//move shorts to left : 0 , set overflow property of divs
 			for(var i=0; i < containerlist.length; i+=2){
@@ -246,11 +247,11 @@ load_route(false);
 				"left","0px");
 			}
 
-			//populate populate shorts with all content?
+			//populate shorts with all content?
 			for (var j=0; j< imagelist.length; j++){
 				console.log("image list length: ");
 				for (var i=0; i<containerlist.length; i+=2){
-					console.log("containerlist[i]: "+containerlist[i]);
+					//console.log("containerlist[i]: "+containerlist[i]);
 					looping_image_display(containerlist[i], imagelist);
 				}
 			}
@@ -259,6 +260,7 @@ load_route(false);
 			
 			//add listener for start button? 
 			$("#start_button").click(function(){
+				console.log("running embedded start");
 				for(var i =0; i < containerlist.length; i+=2){
 					$("#images").css({
 						"height" : "",
