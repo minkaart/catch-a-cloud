@@ -34,6 +34,7 @@ load_route(false);
 			if (update){
 
 				console.log("updating");
+				update_needed = false; 
 				//imageArray.length = 0;
 				imageObjects.length = 0;
 				console.log("clear image objects: "+imageObjects);
@@ -219,7 +220,6 @@ load_route(false);
 					console.log("image number current: "+images_in_file);
 					if(images_in_file > on_server){
 						update_needed = true; 
-						on_server = images_in_file;
 					};
 			});
 		}
@@ -448,9 +448,10 @@ load_route(false);
 						};
 					},	
 					complete: function(){
+						console.log("detecting update?...");
 						if(update_needed){
 							console.log("update detected");
-							stopanimation(containerArray, imageObjects);
+							//stopanimation(containerArray, imageObjects);
 							load_route(true);
 						}
 						else {
