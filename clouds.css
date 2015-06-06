@@ -107,6 +107,15 @@ body, html {
 	background-color: white;
 }
 
+#footer {
+	width: 100%;
+	height: 10%;
+	position: fixed;
+	bottom: 0px;
+	left: 0px;
+	background-color: white;
+}
+
 .in {
 	display: block;
 	width: 80%;
