@@ -208,7 +208,7 @@
 		$("#draw").hide();
 		$("#text_form").show();
 		$("#tool_menu").hide();
-		$(window).off("focusout", pause);
+		$(window).off("focusout");
 	});
 
 	$("#text_input").submit(function(event){
@@ -227,7 +227,7 @@
 			$("#user_text").val('');
 			$("#text_form").hide();
 		});
-		$(window).on("focusout", pause);
+		//$(window).on("focusout", pause);
 	});
 
 	$("#canvas_close").click(function(){
