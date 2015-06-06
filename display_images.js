@@ -501,10 +501,10 @@ load_route(false);
 		update_needed = true;
 		});
 
-		$(".images figure img").click(function(){
+		$(document).on("click", ".images figure img" function(){
 			console.log("click registered");
 			console.log($(this));
-		})
+		});
 
 	});
 }(jQuery));				
