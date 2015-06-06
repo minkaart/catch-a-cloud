@@ -135,7 +135,7 @@ load_route(false);
 		function popimageArray(callback){
 			//console.log("calling get_images...");
 			console.log("start val is: "+start_val);
-			$.getJSON("get_images.php", {start : start_val}, function(data){
+			$.getJSON("get_images.php", 'start='+start_val, function(data){
 				console.log("data 1-30: "+data.first_30);
 				console.log(data.error);
 				on_server = data.total;
@@ -155,6 +155,7 @@ load_route(false);
 					imageObjects.push(imageObject);
 					//imageArray.push(key);	
 				});		
+
 				if(callback){
 					if (typeof callback === "function"){
 						callback();
