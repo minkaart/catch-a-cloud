@@ -29,10 +29,12 @@ if ($data[total] > 30) {
 	
 	$images = array_slice($images, 0, $length);
 	$data[first_30] = json_encode($images);
-	if($length < count($images)){
+	if($length < $data[total]){
+		$data[error] = $data[error]." | length less than total, setting more to true";
 		$data[more] = true;
 	}
 	else {
+		$data[error] = $data[error]." | length more than total, setting more to false";
 		$data[more] = false;
 	}
 } 
