@@ -227,7 +227,7 @@
 			$("#user_text").val('');
 			$("#text_form").hide();
 		});
-		//$(window).on("focusout", pause);
+		$(window).on("focusout", $(pause));
 	});
 
 	$("#canvas_close").click(function(){
