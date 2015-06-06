@@ -20,7 +20,7 @@ $data[total] = count($images);
 
 $data[first_30] = $image_json;
 
-if($_POST['start']){
+if($_POST[start]){
 	$data[error] = $data[error]."post start val exists";	
 } else {
 	$data[error] = $data[error]."post start val does not exist";
