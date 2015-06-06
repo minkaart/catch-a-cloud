@@ -17,7 +17,7 @@ try {
 
 $images = json_decode($image_json, true);
 $data[total] = count($images); 
-
+$data[error] = $data[error].$_POST['start_val'];
 $data[first_30] = $image_json;
 
 
