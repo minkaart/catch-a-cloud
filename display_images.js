@@ -469,16 +469,16 @@ load_route(false);
 		function pause(){
 			pauseanimation(containerArray);
 		}
-		
+
 		$(window).on("focusout", pause);
 
 		$("#save").click(function(){
 			$(window).off("focuseout", pause);
 		});
 
-		$("#text_input").submit(function(){
+		/**$("#text_input").submit(function(){
 			$(window).on("focusout", pause);
-		})
+		})**/
 
 		$("#stop_button").click(function(){
 			stopanimation(containerArray, imageObjects);
