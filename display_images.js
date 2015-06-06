@@ -229,7 +229,6 @@ load_route(false);
 			console.log("stopped");
 			ani_running = 0; 
 			$(".images").empty();
-			//$("#images").empty();
 			console.log("emptied");
 			$("#stop_button").hide();
 			$("#start_button").show();
@@ -241,7 +240,7 @@ load_route(false);
 			
 			console.log(imagelist);
 
-			//move shorts to left : 0 , set overflow property of divs
+			//move shorts to left : 0
 			for(var i=0; i < containerlist.length; i+=2){
 				$(containerlist[i]).css(
 				"left","0px");
@@ -261,6 +260,10 @@ load_route(false);
 			//add listener for start button? 
 			$("#start_button").click(function(){
 				console.log("running embedded start");
+				for(var i=0; i < containerlist.length; i+=2){
+				$(containerlist[i]).css(
+					"left","");
+				}
 				$("#images").scrollLeft(0);
 				$("#images").css({
 						"height" : "",
@@ -282,9 +285,8 @@ load_route(false);
 			appends target image to target div **/
 		function looping_image_display(targetdiv, imagelist){
 			var newobject = imagelist[0];
-			console.log("newobject: "+newobject);
 			var newimage = newobject.image_ref;
-			console.log("newimage: "+newimage);
+			//console.log("newimage: "+newimage);
 			var newtext = newobject.obj_text; 
 			imagelist.shift();
 			imagelist.push(newobject);
@@ -294,7 +296,6 @@ load_route(false);
 
 		//checks if the width of an image-populated div is greater than the width of the window 
 		function checkwidth(targetdiv){
-			console.log(targetdiv);
 			var imgcount = $(targetdiv + ' figure').length;
 			if ((imgcount * img_width) < ($(window).width()-img_width)){
 				return true;
