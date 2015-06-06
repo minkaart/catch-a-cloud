@@ -294,7 +294,7 @@ load_route(false);
 			//check for ani_running at 1, 2, or 3
 			if(ani_running%2 !== 0 && ani_running !== 0){ //if ani_running is 1 or 3 and not 0
 				// calculate new target/ani_distance for 1 based on left
-				var left = containerlist[0].css("left");
+				var left = $(containerlist[0]).css("left");
 				var travelled = $(window).width - left; 
 				var remaining = $(window).width*2 - travelled; 
 
@@ -311,7 +311,7 @@ load_route(false);
 				console.log("error: animation was not running");
 			} else if (ani_running === 2) {
 				// calculate new target/ani_distance for 2 based on left 
-				var left = containerlist[1].css("left");
+				var left = $(containerlist[1]).css("left");
 				var travelled = $(window).width() - left; 
 				var remaining = $(containerlist[i].width()+$(window).width()) - travelled; 
 
