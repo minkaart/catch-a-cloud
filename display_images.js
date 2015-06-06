@@ -295,8 +295,7 @@ load_route(false);
 			if(ani_running%2 !== 0 && ani_running !== 0){ //if ani_running is 1 or 3 and not 0
 				console.log("ani_running caught at 1 or 3");
 				// calculate new target/ani_distance for 1 based on left
-				var left = $(containerlist[0]).css("left");
-				console.log("window width: "+$(window).width());
+				var left = parseInt($(containerlist[0]).css("left"));
 				var travelled = $(window).width() - left; 
 				var remaining = $(window).width()*2 - travelled; 
 				console.log("travelled: "+travelled+
@@ -317,7 +316,7 @@ load_route(false);
 			} else if (ani_running === 2) {
 				// calculate new target/ani_distance for 2 based on left 
 				console.log("ani_running caught at 2");
-				var left = $(containerlist[1]).css("left");
+				var left = parseInt($(containerlist[1]).css("left"));
 				var travelled = $(window).width() - left; 
 				var remaining = $(containerlist[i].width()+$(window).width()) - travelled; 
 				console.log("travelled: "+travelled+
