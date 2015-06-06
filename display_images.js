@@ -262,14 +262,14 @@ load_route(false);
 			$("#start_button").click(function(){
 				console.log("running embedded start");
 				for(var i=0; i < containerlist.length; i+=2){
-				$(containerlist[i]).css(
-					"left","");
+					$(containerlist[i]).css(
+						"left","");
 				}
 				$("#images").scrollLeft(0);
 				$("#images").css({
 						"height" : "",
 						"overflow" : ""
-				});
+					});
 				load_route(true);
 				$("#start_button").hide();
 				$(".stop_pause").show();
@@ -279,7 +279,67 @@ load_route(false);
 		}
 
 		function pauseanimation(containerlist){
+			//stop animation 
+			$(".images").stop(true);
+			
+			//adjust display
+			$(".stop_pause").hide();
+			$("#start_button").show();
 
+			/**$("#images").css({
+				"height" : $(window).height()-50+"px",
+				"overflow" : "auto"
+			});**/
+
+			//check for ani_running at 1, 2, or 3
+			if(ani_running%2 !== 0 && ani_running !== 0){ //if ani_running is 1 or 3 and not 0
+				// calculate new target/ani_distance for 1 based on left
+				var left = containerlist[0].left();
+				var travelled = $(window).width - left; 
+				var remaining = $(window).width*2 - travelled; 
+
+				//start handler
+				//if 1, call 1
+				//if 3, call 1
+				$("#start_button").click(function(){
+					for(i= 0; i < containerlist.length; i+=2){
+						animatediv1(containerlist[i], containerlist[i+1], remaining);
+					}
+				});
+
+			} else if (ani_running === 0){
+				console.log("error: animation was not running");
+			} else if (ani_running === 2) {
+				// calculate new target/ani_distance for 2 based on left 
+				var left = containerlist[1].left();
+				var travelled = $(window).width() - left; 
+				var remaining = $(containerlist[i].width()+$(window).width()) - travelled; 
+
+				//if 2, call 2
+				$("#start_button").click(function(){
+					for(i= 0; i < containerlist.length; i+=2){
+						animatediv2(containerlist[i], containerlist[i+1], remaining);
+					}
+				});
+		
+			} else {
+				console.log("error: ani_running undefined or invalid: ani_running: "+ani_running);
+			}
+
+
+			$("#start_button").click(function(){
+				$(".stop_pause").show();
+				$("#start_button").hide();
+
+				/**$("#images").css({
+				"height" : $(window).height()-50+"px",
+				"overflow" : "auto"
+				});**/
+			});
+			//start handler
+			//if 1, call 1
+			//if 2, call 2
+			//if 3, call 1
 		}
 
 
@@ -409,6 +469,10 @@ load_route(false);
 				stopanimation(containerArray, imageObjects);
 				//add ani_running value?? in stopanimation()
 //			};
+		});
+
+		$("#pause_button").click(function(){
+			pauseanimation(containerArray);
 		});
 
 		$("#load_more").click(function(){
