@@ -508,7 +508,7 @@ load_route(false);
 			var img_src = $(this).attr('src');
 			var img_text = $(this).parent().children('figcaption').text();
 			$("#single_image").show();
-			$("#single_image_content").html('<figure><img width="90%" src="'+img_src+'"><figcaption>'+img_text+'</figcaption></figure>');
+			$("#single_image_content").html('<figure><img src="'+img_src+'"><figcaption>'+img_text+'</figcaption></figure>');
 		});
 
 	});

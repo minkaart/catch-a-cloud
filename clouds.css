@@ -142,6 +142,9 @@ body, html {
 
 #single_image_content {
 	background-color: #DEF7FF;
+	width : 70%;
+	height : 80%;
+	overflow: auto;
 }
 
 #images {
