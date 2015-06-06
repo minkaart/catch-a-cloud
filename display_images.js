@@ -225,7 +225,7 @@ load_route(false);
 		//stops animations 
 		function stopanimation(containerlist, imagelist){
 			//stop animation, clear current images, 
-			$(".images").stop(true, true);
+			$(".images").stop(true);
 			console.log("stopped");
 			ani_running = 0; 
 			$(".images").empty();
