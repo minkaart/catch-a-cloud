@@ -54,9 +54,15 @@ load_route(false);
 
 					});
 				});	
+				update_needed = false;
 			}
 			else
 			{
+				var imageArray = [];
+				var containerArray = [];
+				var imageObjects = [];
+				update_needed = false;
+			
 				popimageArray(function(){
 					calculaterows();
 					initiatepage(containerArray, imageObjects);
