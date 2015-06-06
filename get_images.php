@@ -27,9 +27,9 @@ if($_GET['start']){
 }
 
 
-/*if ($data[total] > 30) {
-	if($_POST['start_val']){
-		$length = $_POST['start_val'] * 30; 
+if ($data[total] > 30) {
+	if($_GET['start_val']){
+		$length = $_GET['start_val'] * 30; 
 		$data[error] = $data[error]."assessed length is ".$length;
 	} else {
 		$data[error] = $data[error]."error getting start val".$_POST('start_val');
@@ -47,7 +47,7 @@ if($_GET['start']){
 else {
 	$data[first_30] = $image_json;
 	$data[more] = false;
-}*/
+}
 
 $data = json_encode($data);
 echo $data;
