@@ -81,8 +81,8 @@ body, html {
 	top: 2px;
 }
 
-.stop_pause {
-	float: right;
+#pause_button {
+	right: 70px;
 }
 
 .start_stop span {
