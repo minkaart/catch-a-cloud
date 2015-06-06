@@ -144,10 +144,8 @@ body, html {
 	background-color: #DEF7FF;
 	width : 80%;
 	left : 20%;
-	/*height : 80%;
-	top : 10%;
-	margin : 8%;
-	overflow-y : auto;*/
+	margin : 5%;
+	overflow-y : auto;
 }
 
 #single_image {
