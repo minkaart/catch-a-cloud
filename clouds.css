@@ -140,6 +140,10 @@ body, html {
 	font-size: 8px; 
 }
 
+#single_image_content {
+	background-color: #DEF7FF;
+}
+
 #images {
 	width: 100%;
 	top: 50px;

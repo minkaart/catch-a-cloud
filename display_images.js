@@ -511,18 +511,5 @@ load_route(false);
 			$("#single_image_content").html('<figure><img width="90%" src="'+img_src+'"><figcaption>'+img_text+'</figcaption></figure>');
 		});
 
-		$("#image_close_cross").click(function(){
-
-		})
-
-		$("#image_close").click(function(){
-
-		})
-
-		function closeimage(){
-			$("#single_image_content").html("");
-			$("#single_image").hide();
-		}
-
 	});
 }(jQuery));				
