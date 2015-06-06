@@ -268,7 +268,7 @@ load_route(false);
 				$("#images").scrollLeft(0);
 				$("#images").css({
 						"height" : "",
-						"overflow" : "visible"
+						"overflow" : ""
 				});
 				load_route(true);
 				$("#start_button").hide();

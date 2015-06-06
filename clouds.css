@@ -81,6 +81,10 @@ body, html {
 	top: 2px;
 }
 
+.stop_pause {
+	float: right;
+}
+
 .start_stop span {
 	position: absolute;
 	bottom: 5px;
