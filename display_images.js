@@ -273,6 +273,7 @@ load_route(false);
 				load_route(true);
 				$("#start_button").hide();
 				$("#stop_button").show();
+				$("#start_button").off("click");
 			});
 			
 		}
