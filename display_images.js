@@ -505,10 +505,12 @@ load_route(false);
 			console.log("click registered");
 			console.log($(this).attr('src'));
 			console.log($(this).parent().children('figcaption').text());
+			$("#single_image").show();
 			var img_src = $(this).attr('src');
 			var img_text = $(this).parent().children('figcaption').text();
-			$("#single_image").show();
-			$("#single_image_content").html('<figure><img src="'+img_src+'"><figcaption>'+img_text+'</figcaption></figure>');
+			var width = $("#single_image_content").width() - 10; 
+			
+			$("#single_image_content").html('<figure><img width="'+width+'" src="'+img_src+'"><figcaption>'+img_text+'</figcaption></figure>');
 		});
 
 	});
