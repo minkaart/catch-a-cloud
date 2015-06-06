@@ -318,7 +318,7 @@ load_route(false);
 				console.log("ani_running caught at 2");
 				var left = parseInt($(containerlist[1]).css("left"));
 				var travelled = $(window).width() - left; 
-				var remaining = $(containerlist[i]).width()+$(window).width() - travelled; 
+				var remaining = ($(containerlist[i+1]).width()+$(window).width()) - travelled; 
 				console.log("travelled: "+travelled+
 					"remaining: "+remaining+"left: "+left);
 
