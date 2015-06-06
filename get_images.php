@@ -20,7 +20,13 @@ $data[total] = count($images);
 
 
 if ($data[total] > 30) {
-	$length = $_POST['start_val'] * 30; 
+	if($_POST['start_val']){
+		$length = $_POST['start_val'] * 30; 
+		$data[error] = $data[error]."assessed length is ".$length;
+	} else {
+		$data[error] = $data[error]."error getting start val".$_POST("start_val");
+	}
+	
 	$images = array_slice($images, 0, $length);
 	$data[first_30] = json_encode($images);
 	if($length < count($images)){
