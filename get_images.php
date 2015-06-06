@@ -18,21 +18,13 @@ try {
 $images = json_decode($image_json, true);
 $data[total] = count($images); 
 
-$data[first_30] = $image_json;
-
-if($_GET['start']){
-	$data[error] = $data[error]."post start val exists";	
-} else {
-	$data[error] = $data[error]."post start val does not exist";
-}
-
 
 if ($data[total] > 30) {
 	if($_GET['start']){
 		$length = $_GET['start'] * 30; 
 		$data[error] = $data[error]."assessed length is ".$length;
 	} else {
-		$data[error] = $data[error]."error getting start val".$_POST('start_val');
+		$data[error] = $data[error]."error getting start_val does not exist";
 	}
 	
 	$images = array_slice($images, 0, $length);
