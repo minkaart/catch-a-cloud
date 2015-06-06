@@ -46,7 +46,7 @@ load_route(false);
 					populatedivs(containerArray, imageObjects, function (){
 						for (var i =0; i< containerArray.length; i+=2){
 							update_vars(containerArray[i], containerArray[i+1]);
-							$(containerArray[i]).css("left", "0");
+							$(containerArray[i]).css("left", "0px");
 							animatediv1(containerArray[i], containerArray[i+1], $(window).width());
 						}
 						$("#start_button").hide();
@@ -268,7 +268,7 @@ load_route(false);
 				$("#images").scrollLeft(0);
 				$("#images").css({
 						"height" : "",
-						"overflow" : ""
+						"overflow" : "visible"
 				});
 				load_route(false);
 				$("#start_button").hide();
