@@ -296,8 +296,8 @@ load_route(false);
 				console.log("ani_running caught at 1 or 3");
 				// calculate new target/ani_distance for 1 based on left
 				var left = $(containerlist[0]).css("left");
-				var travelled = $(window).width - left; 
-				var remaining = $(window).width*2 - travelled; 
+				var travelled = $(window).width() - left; 
+				var remaining = $(window).width()*2 - travelled; 
 				console.log("travelled: "+travelled+
 					"remaining: "+remaining+"left: "+left);
 
