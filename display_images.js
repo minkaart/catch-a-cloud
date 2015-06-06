@@ -235,7 +235,7 @@ load_route(false);
 			$("#start_button").show();
 
 			$("#images").css({
-				"height" : $(window).height-50+"px",
+				"height" : $(window).height()-50+"px",
 				"overflow" : "auto"
 			});
 			
@@ -261,7 +261,7 @@ load_route(false);
 			$("#start_button").click(function(){
 				for(var i =0; i < containerlist.length; i+=2){
 					$("#images").css({
-						"height" : $(window).height-50+"px",
+						"height" : "",
 						"overflow" : ""
 					});
 				}
