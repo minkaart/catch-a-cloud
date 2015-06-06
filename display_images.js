@@ -501,7 +501,7 @@ load_route(false);
 		update_needed = true;
 		});
 
-		$(".images img").click(function(){
+		$("img").click(function(){
 			console.log("click registered");
 			console.log($(this).children("img"));
 		})
