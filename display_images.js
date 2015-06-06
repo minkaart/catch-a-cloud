@@ -298,6 +298,8 @@ load_route(false);
 				var left = $(containerlist[0]).css("left");
 				var travelled = $(window).width - left; 
 				var remaining = $(window).width*2 - travelled; 
+				console.log("travelled: "+travelled+
+					"remaining: "+remaining+"left: "+left);
 
 				//start handler
 				//if 1, call 1
@@ -317,6 +319,8 @@ load_route(false);
 				var left = $(containerlist[1]).css("left");
 				var travelled = $(window).width() - left; 
 				var remaining = $(containerlist[i].width()+$(window).width()) - travelled; 
+				console.log("travelled: "+travelled+
+					"remaining: "+remaining+"left: "+left);
 
 				//if 2, call 2
 				$("#start_button").click(function(){
