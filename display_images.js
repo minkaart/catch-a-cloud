@@ -225,7 +225,7 @@ load_route(false);
 		//stops animations 
 		function stopanimation(containerlist, imagelist){
 			//stop animation, clear current images, 
-			$(".images").stop(true);
+			$(".images").stop(true, true);
 			console.log("stopped");
 			ani_running = 0; 
 			$(".images").empty();
@@ -261,12 +261,11 @@ load_route(false);
 			//add listener for start button? 
 			$("#start_button").click(function(){
 				console.log("running embedded start");
-				for(var i =0; i < containerlist.length; i+=2){
-					$("#images").css({
+				$("#images").scrollLeft(0);
+				$("#images").css({
 						"height" : "",
 						"overflow" : ""
-					});
-				}
+				});
 				load_route(true);
 				$("#start_button").hide();
 				$("#stop_button").show();
