@@ -503,7 +503,7 @@ load_route(false);
 
 		$(document).on("click", ".images figure img", function(){
 			console.log("click registered");
-			console.log($(this));
+			console.log($(this).currentSRC);
 		});
 
 	});
