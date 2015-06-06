@@ -50,7 +50,7 @@ load_route(false);
 							animatediv1(containerArray[i], containerArray[i+1], $(window).width());
 						}
 						$("#start_button").hide();
-						$("#stop_button").show();
+						$(".stop_pause").show();
 
 					});
 				});	
@@ -231,7 +231,7 @@ load_route(false);
 			ani_running = 0; 
 			$(".images").empty();
 			console.log("emptied");
-			$("#stop_button").hide();
+			$(".stop_pause").hide();
 			$("#start_button").show();
 
 			$("#images").css({
@@ -272,7 +272,7 @@ load_route(false);
 				});
 				load_route(true);
 				$("#start_button").hide();
-				$("#stop_button").show();
+				$(".stop_pause").show();
 				$("#start_button").off("click");
 			});
 			
@@ -383,7 +383,7 @@ load_route(false);
 					complete: function(){
 						if(update_needed){
 							console.log("update detected");
-							stopanimation(containerArray);
+							stopanimation(containerArray, imageObjects);
 							load_route(true);
 						}
 						else {
