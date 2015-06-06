@@ -505,6 +505,10 @@ load_route(false);
 			console.log("click registered");
 			console.log($(this).attr('src'));
 			console.log($(this).parent().children('figcaption').text());
+			var img_src = $(this).attr('src');
+			var img_text = $(this).parent().children('figcaption').text();
+			$("#single_image").show();
+			$("#single_image").html('<figure><img width="90%" src="'+img_src+'"><figcaption>'+img_text+'</figcaption></figure>');
 		});
 
 	});
