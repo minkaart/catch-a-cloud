@@ -270,7 +270,7 @@ load_route(false);
 						"height" : "",
 						"overflow" : ""
 				});
-				load_route(true);
+				load_route(false);
 				$("#start_button").hide();
 				$("#stop_button").show();
 			});
