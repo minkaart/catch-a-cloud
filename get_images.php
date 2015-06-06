@@ -24,7 +24,7 @@ if ($data[total] > 30) {
 		$length = $_POST['start_val'] * 30; 
 		$data[error] = $data[error]."assessed length is ".$length;
 	} else {
-		$data[error] = $data[error]."error getting start val".$_POST("start_val");
+		$data[error] = $data[error]."error getting start val".$_POST('start_val');
 	}
 	
 	$images = array_slice($images, 0, $length);
