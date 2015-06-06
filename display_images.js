@@ -36,6 +36,7 @@ load_route(false);
 				console.log("updating");
 				imageArray = [];
 				imageObjects = [];
+				console.log("clear image objects: "+imageObjects);
 				containerArray = [];
 				$(".images").empty();
 				$("#images").empty();
