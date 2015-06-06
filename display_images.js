@@ -20,7 +20,7 @@
 		var on_server = 0; //remembers number of images on server in last server call
 
 		//holds the images to be displayed	
-		var imageArray = [];
+		//var imageArray = [];
 		var containerArray = [];
 		var holdingContainer = "#images";
 		var imageObjects = [];
@@ -34,7 +34,7 @@ load_route(false);
 			if (update){
 
 				console.log("updating");
-				imageArray.length = 0;
+				//imageArray.length = 0;
 				imageObjects.length = 0;
 				console.log("clear image objects: "+imageObjects);
 				containerArray.length = 0;
@@ -151,7 +151,7 @@ load_route(false);
 					};
 
 					imageObjects.push(imageObject);
-					imageArray.push(key);	
+					//imageArray.push(key);	
 				});		
 				if(callback){
 					if (typeof callback === "function"){
@@ -208,7 +208,7 @@ load_route(false);
 
 		}
 
-		//checks if new images have appeared on server, creates new imageArray of new images
+		//checks if new images have appeared on server
 		function checkforupdate(){
 			console.log("checking for update");
 			var images_in_file = 0;
@@ -284,7 +284,8 @@ load_route(false);
 
 
 		/** adjusts given array to maintain target image in position [0]
-			appends target image to target div **/
+			appends target image to target div 
+			note: passed imagelist must be an array of IMAGE OBJECTS not IMAGES!!**/
 		function looping_image_display(targetdiv, imagelist){
 			var newobject = imagelist[0];
 			var newimage = newobject.image_ref;
