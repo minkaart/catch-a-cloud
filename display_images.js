@@ -233,16 +233,17 @@ load_route(false);
 			console.log("emptied");
 			$("#stop_button").hide();
 			$("#start_button").show();
+
+			$("#images").css({
+				"height" : $(window).height-50+"px",
+				"overflow" : "auto"
+			});
 			
 
 			//move shorts to left : 0 , set overflow property of divs
 			for(var i=0; i < containerlist.length; i+=2){
 				$(containerlist[i]).css(
-				"left","0px"
-				/**{	"left" : "0px",
-					"overflow-x" : "scroll",
-					"overflow-y" : "visible"}**/
-					);
+				"left","0px");
 			}
 
 			//populate populate shorts with all content?
@@ -260,8 +261,9 @@ load_route(false);
 			$("#start_button").click(function(){
 				for(var i =0; i < containerlist.length; i+=2){
 					$("#images").css({
-						/**"overflow-x" : "hidden",
-						"overflow-y" : "visible"**/});
+						"height" : $(window).height-50+"px",
+						"overflow" : ""
+					});
 				}
 				load_route(true);
 				$("#start_button").hide();
