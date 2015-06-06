@@ -472,10 +472,6 @@ load_route(false);
 
 		$(window).on("focusout", pause);
 
-		$("#text_input").submit(function(){
-			load_route(true);
-		})
-
 		$("#stop_button").click(function(){
 			stopanimation(containerArray, imageObjects);
 		});
@@ -505,7 +501,7 @@ load_route(false);
 		update_needed = true;
 		});
 
-		$(".images figure").click(function(){
+		$(".images img").click(function(){
 			console.log("click registered");
 			console.log($(this).children("img"));
 		})
