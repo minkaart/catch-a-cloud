@@ -75,7 +75,17 @@
 		$("#home_menu").slideDown(500);
 	});
 
+	
+
+	/**annoying formatting functions**/
+	$(".tool").width($(".tool").height());
+		
+	$(window).resize(function(){
+		$(".tool").width($(".tool").height());
 	});
+
+	});
+
 	})(jQuery);
 	</script>
 </head>
@@ -91,6 +101,8 @@
 			<div id="reset_button" class="button_text button home_view"><span>RESET</span></div>
 			<div id="load_more" class="button_text button home_view"><span>LOAD MORE</span></div>	
 		</div>
+
+	<div class="instructions add_view">PLEASE DRAW YOUR CLOUD</span></div>
 	</div>
 
 	<div id="footer">
@@ -109,7 +121,34 @@
 	</div>
 	
 	<div id="draw" class="in add_view">
-		<div class="instructions">Please draw a cloud, drawing tools are to the left <br /><span> NOTE: some older mobile OS and devices not supporting html5 may not interact with the drawing interface as expected.  In this case, it is recommended that users access the application from a computer, laptop or later generation device. </span></div>
+
+		<div id="tool_menu" class="add_view">
+		<table>
+			<tr>
+				<td rowspan=2 ><div class="label"><span>TOOLS</span></div></td>
+					<td><div id="eraser" class="tool button"><span></span></div></td>
+				<td rowspan=2><div class="label"><span>LINE<br /> WEIGHT</span></div></td>
+					<td><div id="bold" class="button_text button"><span>BOLD</span></div></td>
+				<td rowspan=2><div class="label"><span>COLORS</span></div></td>
+					<td class="color"><div id="black" class="tool button"><span></span></div></td>
+					<td class="color"><div id="yellow" class="tool button"><span></span></div></td>
+					<td class="color"><div id="blue" class="tool button"><span></span></div></td>
+			</tr>
+			<tr>
+				<td><div id="pencil" class="tool button"><span></span></div></td>
+				<td><div id="thin" class="button_text button"><span>thin</span></div></td>
+				<td class="color"><div id="white" class="tool button"><span></span></div></td>
+				<td class="color"><div id="green" class="tool button"><span></span></div></td>
+				<td class="color"><div id="red" class="tool button"><span></span></div></td>
+			</tr>
+
+			
+			
+			
+		</table>
+		</div>
+
+		
 		<div id="canvas_close" class="button close_button"><img src="icons/close.svg" /></div>
 
 		
@@ -122,19 +161,6 @@
 		<div id="image_close_cross" class="button close_button"><img src="icons/close.svg" /></div>
 		<div id="single_image_content"></div>
 		<div id="image_close" class="function button close_button">CLOSE</div>
-	</div>
-
-	<div id="tool_menu" class="add_view">
-		<div id="eraser" class="tool button"><img src="icons/eraser.svg" /></div>
-		<div id="pencil" class="tool button"><img src="icons/pencil.svg" /></div>
-		<div id="bold" class="button_text tool button"><span>BOLD</span></div>
-		<div id="thin" class="button_text tool button"><span>thin</span></div>
-		<div id="black" class="tool button"><img src="icons/black.svg" /></div>
-		<div id="white" class="tool button"><img src="icons/white.svg" /></div>
-		<div id="yellow" class="tool button"><img src="icons/yellow.svg" /></div>
-		<div id="green" class="tool button"><img src="icons/green.svg" /></div>
-		<div id="blue" class="tool button"><img src="icons/blue.svg" /></div>
-		<div id="red" class="tool button"><img src="icons/red.svg" /></div>
 	</div>
 	
 	<div id="text_form" class="in add_text_view">

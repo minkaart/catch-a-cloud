@@ -145,11 +145,12 @@ body, html {
 
 .in {
 	display: block;
-	width: 80%;
-	left: 80px;
-	height: 70%;
+	width: 95%;
+	height: 75%;
 	top: 70px;
-	position: fixed;
+	position: relative;
+	margin-left: auto;
+	margin-right: auto;
 	background-color: white;
 	border-radius: 10px;
 }
@@ -170,6 +171,7 @@ body, html {
 	top: 0px;
 	position: absolute;
 	padding: 1%;
+	font-size: 150%;
 }
 
 .instructions span {
@@ -216,28 +218,92 @@ body, html {
 }
 
 /*TOOL MENU*/
+
 #tool_menu {
-	top: 50px;
-	left: 0px;
-	position: fixed;
-	width: 60px;
+	left: 8%;
+	bottom: -5%;
+	position: relative;
+	width: 85%;
 	background-color: white;
 }
 
 .tool {
 	display: inline-table;
 	position: relative;
+	height: 120%;
+	left: -30%;
+	padding-bottom: 10%; 
+}
+
+table {
+	font-size: 10pt;
+	font-weight: bold;
+}
+
+.label {
+	transform: rotate(-90deg);
+}
+
+#eraser {
+  background-image: url("icons/eraser.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+#pencil {
+	background-image: url("icons/pencil.svg");
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+
+#black {
+	background-image: url("icons/black.svg");
+  	background-repeat: no-repeat;
+  	background-size: contain;
+}
+
+#white {
+	background-image: url("icons/white.svg");
+  	background-repeat: no-repeat;
+  	background-size: contain;
+}
+
+#yellow {
+	background-image: url("icons/yellow.svg");
+  	background-repeat: no-repeat;
+  	background-size: contain;
+}
+
+#green {
+	background-image: url("icons/green.svg");
+  	background-repeat: no-repeat;
+  	background-size: contain;
+}
+
+#blue {
+	background-image: url("icons/blue.svg");
+  	background-repeat: no-repeat;
+  	background-size: contain;
+}
+
+#red {
+	background-image: url("icons/red.svg");
+  	background-repeat: no-repeat;
+  	background-size: contain;
 }
 
 #bold {
 	width: 50px;
-	height: 50px;
+	height: initial;
 }
 
 #thin {
 	width: 50px;
-	height: 50px;
+	height: initial;
+	font-weight: normal;
 }
+
+
 
 
 
@@ -297,15 +363,6 @@ body, html {
 	bottom: 2%;
 	display: block;
 	width: 100%;
-}
-
-
-
-/*TOOLS*/
-.tools {
-	width: 15%;
-	position: relative;
-	left: 0px;
 }
 
 
