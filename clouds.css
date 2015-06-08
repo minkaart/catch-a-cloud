@@ -1,7 +1,7 @@
 body, html {
 	background-color: #DEF7FF;
-	font-size: large; 
-	font-family: "Comic Sans MS", sans-serif; 
+	font-size: 150%; 
+	font-family: "Comic Sans MS", cursive, sans-serif; 
 }
 
 /**BUTTONS**/
