@@ -13,44 +13,67 @@
 	<script type="text/javascript">
 	(function($){
 	$(document).ready(function(){
+
+	function load_home_view(){
+		$(".landing_view").hide();
+		$(".add_view").hide();
+		$(".add_text_view").hide();
+		$(".single_view").hide();
+		$(".about_view").hide();
+		$(".home_view").show();
+	}
+
+	function load_about_view(){
+		$(".home_view").hide();
+		$(".landing_view").hide();
+		$(".add_view").hide();
+		$(".add_text_view").hide();
+		$(".single_view").hide();
+		$(".about_view").show();
+	}
+
+	function load_add_view(){
+		$(".home_view").hide();
+		$(".landing_view").hide();
+		$(".add_text_view").hide();
+		$(".single_view").hide();
+		$(".about_view").hide();
+		$(".add_view").show();
+	}
+
+	function load_landing_view(){
+		$(".home_view").hide();
+		$(".add_text_view").hide();
+		$(".single_view").hide();
+		$(".about_view").hide();
+		$(".add_view").hide();
+		$(".landing_view").show();
+	}
 		
-		
-		$("#about_content").hide();
-		$("#single_image").hide();
-		$("#text_form").hide();
-		$("#home_menu").hide();
-		$("#start_button").hide();
-		$("#load_more").hide();
 	
-		$("#add").click( function(){
-			$("#draw").toggle();
-			$("#tool_menu").toggle();
-		});
+	$("#add").click( function(){
+		load_add_view();
+	});
 
-		$("#about").click(function(){
-			$("#about_content").toggle();
-		});
+	$("#about").click(function(){
+		load_about_view();
+	});
 
-		$(".close_button").click(function(){
-			var par = $(this).parent();
-			$(par).hide();
-		});
+	$(".close_button").click(function(){
+		load_home_view();
+	});
 
-		$("#menu_button").click(function(){
-			$("#home_menu").slideDown(500);
-		});
+	$("#text_button").click(function(){
+		$(".images figcaption").toggle();
+	});
 
-		$("#text_button").click(function(){
-			$(".images figcaption").toggle();
-		});
+	$("#reset_button").click(function(){
+		//location.reload(); //possible move ot display_images -> loadroute false?
+	});
 
-		$("#reset_button").click(function(){
-			location.reload();
-		});
-
-		if($(window).width() < 500){
-		$(".start_stop span").hide();
-	};
+	$("#menu_button").click(function(){
+		$("#home_menu").slideDown(500);
+	});
 
 	});
 	})(jQuery);
@@ -58,53 +81,50 @@
 </head>
 <body>
 
-	<div id="images"></div>
+	<div id="images" class=".home_view"></div>
 	<div id="header">
 		<div id="header_button_wrapper">
 			<div id="menu_button" class="button"><img src="icons/menu.svg" /></div>
-			<div id="about" class="button_text button"><span>ABOUT</span></div>
-			<div id="add" class="button_text button"><span>ADD CLOUD</span></div>
-			<div id="text_button" class="button_text button"><span>TOGGLE TEXT</span></div>	
-			<div id="reset_button" class="button_text button"><span>RESET</span></div>
-			<div id="load_more" class="button_text button"><span>LOAD MORE</span></div>	
+			<div id="about" class="button_text button home_view"><span>ABOUT</span></div>
+			<div id="add" class="button_text button home_view about_view"><span>ADD CLOUD</span></div>
+			<div id="text_button" class="button_text button home_view"><span>TOGGLE TEXT</span></div>	
+			<div id="reset_button" class="button_text button home_view"><span>RESET</span></div>
+			<div id="load_more" class="button_text button home_view"><span>LOAD MORE</span></div>	
 		</div>
 	</div>
 
 	<div id="footer">
 		<div id="pause_stop_holder">
-			<div id="stop_button" class="stop_pause start_stop button"><figure><img src="icons/stop.svg" /><figcaption>STOP</figcaption></figure></div>
-			<div id="pause_button" class="stop_pause start_stop button"><figure><img src="icons/pause.svg" /><figcaption>PAUSE</figcaption></figure></div>
+			<div id="stop_button" class="stop_pause start_stop button home_view"><figure><img src="icons/stop.svg" /><figcaption>STOP</figcaption></figure></div>
+			<div id="pause_button" class="stop_pause start_stop button home_view"><figure><img src="icons/pause.svg" /><figcaption>PAUSE</figcaption></figure></div>
 		</div>
-			<div id="start_button" class="start_stop button"><span>START ANIMATION</span><img src="icons/start.svg" /></div>
-			<div id="mobile_stop"></div>
-			<div id="mobile_pause"></div>
+		
+		<div id="start_button" class="start_stop button home_view about_view"><span>START ANIMATION</span><img src="icons/start.svg" /></div>
+		
+		<div id="functions"> 
+			<div id="save" class="function button button_text add_view">SAVE</div>
+			<div id="reset" class="function button button_text add_view">RESET</div>
+			<div id="no" class="function button button_text add_view close_button">CLOSE</div>
+		</div>
 	</div>
-
-	<div id="home_menu" class=""></div>
 	
-	<div id="draw" class="in">
+	<div id="draw" class="in add_view">
 		<div class="instructions">Please draw a cloud, drawing tools are to the left <br /><span> NOTE: some older mobile OS and devices not supporting html5 may not interact with the drawing interface as expected.  In this case, it is recommended that users access the application from a computer, laptop or later generation device. </span></div>
 		<div id="canvas_close" class="button close_button"><img src="icons/close.svg" /></div>
 
 		
 		<div id="canvas_holder" style="border:1px solid #000000">
 			<canvas id="my_canvas"></canvas>
-		</div>
-
-		<div id="functions"> 
-				<div id="save" class="function button">SAVE</div>
-				<div id="reset" class="function button">RESET</div>
-				<div id="no" class="function button">CLOSE</div>
-		</div>
+		</div>	
 	</div>
 
-	<div id="single_image" class="in">
+	<div id="single_image" class="in single_view">
 		<div id="image_close_cross" class="button close_button"><img src="icons/close.svg" /></div>
 		<div id="single_image_content"></div>
 		<div id="image_close" class="function button close_button">CLOSE</div>
 	</div>
 
-	<div id="tool_menu">
+	<div id="tool_menu" class="add_view">
 		<div id="eraser" class="tool button"><img src="icons/eraser.svg" /></div>
 		<div id="pencil" class="tool button"><img src="icons/pencil.svg" /></div>
 		<div id="bold" class="button_text tool button"><span>BOLD</span></div>
@@ -117,7 +137,7 @@
 		<div id="red" class="tool button"><img src="icons/red.svg" /></div>
 	</div>
 	
-	<div id="text_form" class="in">
+	<div id="text_form" class="in add_text_view">
 		<div id="text_label" class="instructions">Does your cloud need some text? </br> Please enter it here. (40 char max)</div>
 		<form id="text_input">
 			<input type="text" maxlength="40" id="user_text"></input>
@@ -125,7 +145,7 @@
 		</form>
 	</div>
 
-	<div id="about_content" class="in">
+	<div id="about_content" class="in about_view">
 		<div class="button close_button"><img src="icons/close.svg" /></div>
 		<div id="about_text">
 			<header>ABOUT</header><p>Designed and built for Transmediale 2015 and in response to the theme: <i>Capture All</i>, <i>How to Catch a Cloud</i> is a proposition, an invitation and an experiment.  Referencing the parallel associations of inherent in the use of the term, <i>cloud,</i> we may extend the metaphor towards those parallels that exist between our technologically mediated experience and the way in which we exerience that most ubiquitous and equally indescribable phenomenon, the weather.  Both the internet and the climate are ubiquitous, necessary, and terrifying.  Both promise our success and our failure and are yet uncontrollable by any single individual; instead they are only modified by the coordinated actions of the whole.<br /><br />To capture is to acquire; to acquire is to consume.  Ownership is the opiate of the 21st century even as it is being radically redefined. In our current post/late/hyper/uber/alter/corporate/networked capitalism ownership is no longer a matter of possession or of accumulation, but of access.   We obsessively archive our experience in a manic cycle of perpetual recording and thus proof of our existence.<br /><br />What do we capture and place in this ephemeral space, this cloud?  Is it that indescribable idea of <i>the soul,</i> or is it perhaps merely a representation, a snapshot of a moment; perpetually updated, but always at a remove... never able to come fully into synchronicity with that it represents.</p>

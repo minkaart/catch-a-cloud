@@ -62,6 +62,8 @@ load_route(false);
 					calculaterows();
 					initiatepage(containerArray, imageObjects);
 				});	
+				$("#start_button").hide();
+				$(".stop_pause").show();
 			}
 		}
 
@@ -144,6 +146,9 @@ load_route(false);
 				more_images = data.more;
 				if (more_images){
 					$("#load_more").show();
+				}
+				else {
+					$("#load_more").hide();
 				}
 				var image_json = $.parseJSON(data.first_30);
 				$.each(image_json, function(key, val){

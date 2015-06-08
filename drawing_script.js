@@ -229,13 +229,10 @@
 
 	$("#canvas_close").click(function(){
 		ctx.clearRect(0,0,canvas.width,canvas.height);
-		$("#tool_menu").hide();
 	});
 
 	$("#no").click(function(){
 		ctx.clearRect(0,0,canvas.width,canvas.height);
-		$("#draw").hide();
-		$("#tool_menu").hide();
 	});
 
 	$(window).resize(function(){
