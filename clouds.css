@@ -1,5 +1,5 @@
 body, html {
-	background-color: #DEF7FF;
+	background-color: #aef4fe;
 	font-size: large; 
 	font-family: "Comic Sans MS", cursive, sans-serif; 
 }
@@ -100,7 +100,7 @@ body, html {
 	position: fixed;
 	top: 0px;
 	left: 0px;
-	background-color: white;
+	background-color: #def785;
 }
 
 #footer {
@@ -109,7 +109,7 @@ body, html {
 	position: fixed;
 	bottom: 0px;
 	left: 0px;
-	background-color: white;
+	background-color: #def785;
 }
 
 .footer_button_wrapper {
@@ -119,14 +119,12 @@ body, html {
 
 .in {
 	display: block;
-	width: 95%;
-	height: 65%%;
-	top: 17%;
-	position: relative;
-	margin-left: auto;
-	margin-right: auto;
-	background-color: white;
-	border-radius: 2%;
+	width: 100%;
+	height: 70%;
+	top: 15%;
+	left: 0%;
+	position: fixed;
+	background-color: #def785;
 }
 
 #about_content {
@@ -194,28 +192,32 @@ body, html {
 /*TOOL MENU*/
 
 #tool_menu {
-	left: 8%;
-	bottom: -5%;
+	left: 2%;
+	top: 7%;
 	position: relative;
-	width: 85%;
-	background-color: white;
+	width: 10%;
+	background-color: #ddeeff;
+	font-size: 80%;
+	font-weight: bold;
+	padding: 1%;
+	border-radius: 5px;
+}
+
+ul {
+	list-style-type: none;
+	padding: 0%;
+	margin: 0%;
 }
 
 .tool {
-	display: inline-table;
+	display: inline-block;
 	position: relative;
-	height: 120%;
-	left: -30%;
-	padding-bottom: 10%; 
+	height: 8%;
 }
 
 table {
 	font-size: 90%;
 	font-weight: bold;
-}
-
-.label {
-	transform: rotate(-90deg);
 }
 
 #eraser {
@@ -267,19 +269,22 @@ table {
 }
 
 #bold {
-	width: 10%;
-	height: initial;
+	display: inline-table;
+	font-weight: bolder;
+	border-radius: 5px;
+	font-size: 70%;
+	text-align: center;
+	margin-bottom: 9%;
 }
 
 #thin {
-	width: 10%;
-	height: initial;
+	display: inline-table;
 	font-weight: normal;
+	border-radius: 5px;
+	font-size: 70%;
+	text-align: center;
+	margin-bottom: 9%;
 }
-
-
-
-
 
 /*MOBILE*/
 #menu_button.mobile {
@@ -298,13 +303,13 @@ table {
 }
 
 #canvas_holder {
-	width: 80%;
-	height: 70%; 
-	left: 10%;
-	top: 25%;
+	width: 75%;
+	height: 80%; 
+	left: 15%;
+	top: 5%;
 	position: absolute;
 	margin: 1%;
-	background-color: #DEF7FF;
+	background-color: #aef4fe;
 	cursor: crosshair;
 }
 

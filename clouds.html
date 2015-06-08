@@ -40,6 +40,9 @@
 		$(".about_view").hide();
 		$(".add_view").show();
 		$(".tool").width($(".tool").height());
+		if($(window).width()<$(window).height()){
+			$("#tool_menu").css("top","2%");
+		}
 	}
 
 	function load_landing_view(){
@@ -129,31 +132,35 @@
 	
 	<div id="draw" class="in add_view">
 
-		<div id="tool_menu" class="add_view">
-		<table>
-			<tr>
-				<td rowspan=2 ><div class="label"><span>TOOLS</span></div></td>
-					<td><div id="eraser" class="tool button"><span></span></div></td>
-				<td rowspan=2><div class="label"><span>LINE<br /> WEIGHT</span></div></td>
-					<td><div id="bold" class="button_text button"><span>BOLD</span></div></td>
-				<td rowspan=2><div class="label"><span>COLORS</span></div></td>
-					<td class="color"><div id="black" class="tool button"><span></span></div></td>
-					<td class="color"><div id="yellow" class="tool button"><span></span></div></td>
-					<td class="color"><div id="blue" class="tool button"><span></span></div></td>
-			</tr>
-			<tr>
-				<td><div id="pencil" class="tool button"><span></span></div></td>
-				<td><div id="thin" class="button_text button"><span>thin</span></div></td>
-				<td class="color"><div id="white" class="tool button"><span></span></div></td>
-				<td class="color"><div id="green" class="tool button"><span></span></div></td>
-				<td class="color"><div id="red" class="tool button"><span></span></div></td>
-			</tr>
-
-			
-			
-			
-		</table>
-		</div>
+	<div id="tool_menu" class="add_view">	
+		<ul>
+			<li><span>TOOLS</span></li>
+			<li>
+			<div>
+				<div id="eraser" class="tool button"><span></span></div>
+				<div id="pencil" class="tool button"><span></span></div>
+			</div>
+			</li>
+			<li><span>LINE<br />WEIGHT</span></li>
+			<li>
+				<div id="bold" class="button_text tool button"><span>BOLD</span></div>
+				<div id="thin" class="button_text tool button"><span>thin</span></div>
+			</li>
+			<li><span>COLORS</span></li>
+			<li>
+				<div id="black" class="tool button"><span></span></div>
+				<div id="white" class="tool button"><span></span>
+			</li>
+			<li>
+				<div id="yellow" class="tool button"><span></span></div>
+				<div id="green" class="tool button"><span></span></div>
+			</li>
+			<li>
+				<div id="blue" class="tool button"><span></span></div>
+				<div id="red" class="tool button"><span></span></div>
+			</li>
+		</ul>
+	</div>
 
 		
 		<div id="canvas_close" class="button close_button"><img src="icons/close.svg" /></div>
