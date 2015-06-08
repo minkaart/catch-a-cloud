@@ -1,6 +1,6 @@
 body, html {
 	background-color: #DEF7FF;
-	font-size: 10pt; 
+	font-size: large; 
 	font-family: "Comic Sans MS", sans-serif; 
 }
 
@@ -9,7 +9,7 @@ body, html {
 /**all buttons**/
 .button {
 	cursor: pointer;
-	border-radius: 5px;
+	border-radius: 3%;
 	display: inline;
 }
 
@@ -120,13 +120,13 @@ body, html {
 .in {
 	display: block;
 	width: 95%;
-	height: 75%;
-	top: 70px;
+	height: 65%%;
+	top: 17%;
 	position: relative;
 	margin-left: auto;
 	margin-right: auto;
 	background-color: white;
-	border-radius: 10px;
+	border-radius: 2%;
 }
 
 #about_content {
@@ -149,7 +149,7 @@ body, html {
 }
 
 .instructions span {
-	font-size: 8px; 
+	font-size: 90%; 
 }
 
 #single_image_content {
@@ -167,7 +167,7 @@ body, html {
 
 #images {
 	width: 100%;
-	top: 50px;
+	top: 17%;
 	position: fixed;
 	display: inline-block;
 }
@@ -188,7 +188,7 @@ body, html {
 	vertical-align: middle;
 	position: relative;
 	top: 0px;	
-	margin: 5px;
+	margin: 2%;
 }
 
 /*TOOL MENU*/
@@ -210,7 +210,7 @@ body, html {
 }
 
 table {
-	font-size: 10pt;
+	font-size: 90%;
 	font-weight: bold;
 }
 
@@ -267,12 +267,12 @@ table {
 }
 
 #bold {
-	width: 50px;
+	width: 10%;
 	height: initial;
 }
 
 #thin {
-	width: 50px;
+	width: 10%;
 	height: initial;
 	font-weight: normal;
 }
@@ -297,22 +297,11 @@ table {
 	display: block;
 }
 
-#draw.mobile {
-	width: 100%;
-	height: 75%;
-	display: block;
-	position: absolute;
-	background-color: white;
-	top: 40px;
-	margin: 0%;
-	left: 0px;
-}
-
 #canvas_holder {
 	width: 80%;
 	height: 70%; 
 	left: 10%;
-	top: 20%;
+	top: 25%;
 	position: absolute;
 	margin: 1%;
 	background-color: #DEF7FF;
