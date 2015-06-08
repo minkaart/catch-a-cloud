@@ -41,7 +41,7 @@
 		});
 
 		$("#text_button").click(function(){
-			$("figcaption").toggle();
+			$(".images figcaption").toggle();
 		});
 
 		$("#reset_button").click(function(){
@@ -60,20 +60,24 @@
 
 	<div id="images"></div>
 	<div id="header">
-		<div id="menu_button" class="button"><img src="icons/menu.svg" /></div>
-		<div id="about" class="button_text button"><span>ABOUT</span></div>
-		<div id="add" class="button_text button"><span>ADD CLOUD</span></div>
-		<div id="text_button" class="button_text button"><span>TOGGLE TEXT</span></div>	
-		<div id="reset_button" class="button_text button"><span>RESET</span></div>
-		<div id="load_more" class="button_text button"><span>LOAD MORE</span></div>	
-		<div id="stop_button" class="stop_pause start_stop button"><span>STOP ANIMATION</span><img src="icons/stop.svg" /></div>
-		<div id="start_button" class="start_stop button"><span>START ANIMATION</span><img src="icons/start.svg" /></div>
-		<div id="pause_button" class="stop_pause start_stop button"><span>PAUSE ANIMATION</span><img src="icons/stop.svg" /></div>
+		<div id="header_button_wrapper">
+			<div id="menu_button" class="button"><img src="icons/menu.svg" /></div>
+			<div id="about" class="button_text button"><span>ABOUT</span></div>
+			<div id="add" class="button_text button"><span>ADD CLOUD</span></div>
+			<div id="text_button" class="button_text button"><span>TOGGLE TEXT</span></div>	
+			<div id="reset_button" class="button_text button"><span>RESET</span></div>
+			<div id="load_more" class="button_text button"><span>LOAD MORE</span></div>	
+		</div>
 	</div>
 
 	<div id="footer">
-		<div id="mobile_stop"></div>
-		<div id="mobile_pause"></div>
+		<div id="pause_stop_holder">
+			<div id="stop_button" class="stop_pause start_stop button"><figure><img src="icons/stop.svg" /><figcaption>STOP</figcaption></figure></div>
+			<div id="pause_button" class="stop_pause start_stop button"><figure><img src="icons/pause.svg" /><figcaption>PAUSE</figcaption></figure></div>
+		</div>
+			<div id="start_button" class="start_stop button"><span>START ANIMATION</span><img src="icons/start.svg" /></div>
+			<div id="mobile_stop"></div>
+			<div id="mobile_pause"></div>
 	</div>
 
 	<div id="home_menu" class=""></div>

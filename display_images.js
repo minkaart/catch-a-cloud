@@ -470,7 +470,7 @@ load_route(false);
 			pauseanimation(containerArray);
 		}
 
-		$(window).on("focusout", pause);
+		//$(window).on("focusout", pause);
 
 		$("#stop_button").click(function(){
 			stopanimation(containerArray, imageObjects);
