@@ -42,6 +42,7 @@
 		$(".tool").width($(".tool").height());
 		if($(window).width()<$(window).height()){
 			$("#tool_menu").css("top","2%");
+			$("#functions").css("bottom","0%");
 		}
 	}
 
@@ -125,7 +126,7 @@
 		
 		<div class="footer_button_wrapper" id="functions"> 
 			<div id="save" class="function button button_text add_view">SAVE</div>
-			<div id="reset" class="function button button_text add_view">RESET</div>
+			<div id="reset" class="function button button_text add_view">CLEAR</div>
 			<div id="no" class="function button button_text add_view close_button">CLOSE</div>
 		</div>
 	</div>
@@ -163,7 +164,7 @@
 	</div>
 
 		
-		<div id="canvas_close" class="button close_button"><img src="icons/close.svg" /></div>
+		<div id="canvas_close" class="button close_cross close_button"><img src="icons/close.svg" /></div>
 
 		
 		<div id="canvas_holder" style="border:1px solid #000000">
@@ -172,7 +173,7 @@
 	</div>
 
 	<div id="single_image" class="in single_view">
-		<div id="image_close_cross" class="button close_button"><img src="icons/close.svg" /></div>
+		<div id="image_close_cross" class="button close_cross close_button"><img src="icons/close.svg" /></div>
 		<div id="single_image_content"></div>
 		<div id="image_close" class="function button close_button">CLOSE</div>
 	</div>
@@ -186,7 +187,7 @@
 	</div>
 
 	<div id="about_content" class="in about_view">
-		<div class="button close_button"><img src="icons/close.svg" /></div>
+		<div class="button close_cross close_button"><img src="icons/close.svg" /></div>
 		<div id="about_text">
 			<header>ABOUT</header><p>Designed and built for Transmediale 2015 and in response to the theme: <i>Capture All</i>, <i>How to Catch a Cloud</i> is a proposition, an invitation and an experiment.  Referencing the parallel associations of inherent in the use of the term, <i>cloud,</i> we may extend the metaphor towards those parallels that exist between our technologically mediated experience and the way in which we exerience that most ubiquitous and equally indescribable phenomenon, the weather.  Both the internet and the climate are ubiquitous, necessary, and terrifying.  Both promise our success and our failure and are yet uncontrollable by any single individual; instead they are only modified by the coordinated actions of the whole.<br /><br />To capture is to acquire; to acquire is to consume.  Ownership is the opiate of the 21st century even as it is being radically redefined. In our current post/late/hyper/uber/alter/corporate/networked capitalism ownership is no longer a matter of possession or of accumulation, but of access.   We obsessively archive our experience in a manic cycle of perpetual recording and thus proof of our existence.<br /><br />What do we capture and place in this ephemeral space, this cloud?  Is it that indescribable idea of <i>the soul,</i> or is it perhaps merely a representation, a snapshot of a moment; perpetually updated, but always at a remove... never able to come fully into synchronicity with that it represents.</p>
 		</div>

@@ -9,7 +9,6 @@ body, html {
 /**all buttons**/
 .button {
 	cursor: pointer;
-	border-radius: 3%;
 	display: inline;
 }
 
@@ -41,7 +40,7 @@ body, html {
 	height: 60%;
 }
 
-.close_button {
+.close_cross {
 	position: absolute;
 	right: 5px;
 	top: 5px;
@@ -139,10 +138,9 @@ body, html {
 
 .instructions {
 	width: 80%;
-	left: 10%;
-	top: 0px;
+	left: 15%;
+	top: 19%;
 	position: absolute;
-	padding: 1%;
 	font-size: 150%;
 }
 
@@ -314,23 +312,16 @@ table {
 }
 
 .function {
-	position: relative;
-	bottom: 0px;
-	margin-bottom: 0;
-	margin-left: 1.5%;
-	margin-right: 2%;
 	float: right;
+	position: relative;
+	margin: 1%;
 	padding: 1%;
-	background-color: #999999;
-	width: 15%;
-	text-align: center;
 }
 
 #functions {
-	position: absolute;
-	bottom: 2%;
-	display: block;
-	width: 100%;
+	bottom: 31%;
+	right: 8%;
+	position: relative;
 }
 
 
