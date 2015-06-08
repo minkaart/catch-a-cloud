@@ -39,6 +39,7 @@
 		$(".single_view").hide();
 		$(".about_view").hide();
 		$(".add_view").show();
+		$(".tool").width($(".tool").height());
 	}
 
 	function load_landing_view(){
@@ -78,13 +79,15 @@
 	
 
 	/**annoying formatting functions**/
+	load_home_view();
+
 	$(".tool").width($(".tool").height());
 		
 	$(window).resize(function(){
 		$(".tool").width($(".tool").height());
 	});
 
-	if ($(window).width() < 500) {
+	if ($(window).width() < $(window).height()) {
 		$('body').css('font-size', '150%');
 	}
 
