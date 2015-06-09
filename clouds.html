@@ -56,11 +56,11 @@
 	}
 		
 	
-	$("#add").click( function(){
+	$(".add").click( function(){
 		load_add_view();
 	});
 
-	$("#about").click(function(){
+	$(".about").click(function(){
 		load_about_view();
 	});
 
@@ -104,6 +104,10 @@
 		$('body').css('font-size', '150%');
 	}
 
+	if($(window).width() < $(window).height()){
+		$("#landing_buttons").css("top", "15%");
+	}
+
 	});
 
 	})(jQuery);
@@ -117,8 +121,8 @@
 	<div id="header">
 		<div id="header_button_wrapper">
 			<div id="menu_button" class="button"><img src="icons/menu.svg" /></div>
-			<div id="about" class="button_text button home_view"><span>ABOUT</span></div>
-			<div id="add" class="button_text button home_view about_view"><span>ADD CLOUD</span></div>
+			<div id="about_button" class="button_text button about home_view"><span>ABOUT</span></div>
+			<div id="add_button" class="add button_text button home_view about_view"><span>ADD CLOUD</span></div>
 			<div id="text_button" class="button_text button home_view"><span>TOGGLE TEXT</span></div>	
 			<div id="reset_button" class="button_text button home_view"><span>RESET</span></div>
 			<div id="load_more" class="button_text button home_view"><span>LOAD MORE</span></div>	
@@ -128,7 +132,7 @@
 
 		<div id="text_label" class="instructions add_text_view">Does your cloud need some text? </br> Please enter it here. (40 char max)</div>
 
-		<div id="landing_text" class="landing_view">HOW TO CATCH A CLOUD<br />welcome</div>
+		<div id="landing_text" class="landing_view">HOW TO CATCH A CLOUD</div>
 	</div>
 
 <!--FOOTER !-->
@@ -145,6 +149,11 @@
 			<div id="reset" class="function button button_text add_view">CLEAR</div>
 			<div id="no" class="function button button_text add_view close_button">CLOSE</div>
 		</div>
+
+		<div id="landing_buttons" class="landing_view">
+			<div id="landing_about" class="landing_button button button_text about">ABOUT</div>
+			<div id="landing_add" class="add landing_button button button_text">ADD CLOUD</div>
+		</div>
 	</div>
 
 <!--BODY CONTAINERS !-->	
@@ -153,11 +162,11 @@
 
 <!--BODY CONTAINERS USING CLASS 'IN' !--> 
 	<div id="landing" class="in landing_view">
-		<div id="launch_button"><img class="button" width="40%" src="icons/landingstart.svg"></div>
-		<div id="landing_buttons">
-			<div id="about" class="button button_text">ABOUT</div>
-			<div id="add" class="button button_text">ADD CLOUD</div>
+		<div id="launch_button">
+			<img class="button" width="30%" src="icons/landingstart.svg">
+			<div><span>press to enter</span></div>
 		</div>
+
 	</div>
 
 

@@ -375,12 +375,31 @@ input.button_text {
 	text-align: center;
 	margin-right: auto;
 	margin-left: auto;
+	top: 14%;
+	position: relative;
 }
 
+#landing_buttons {
+	text-align: center;
+	position: relative;
+	top: -30%;
+}
 
+.landing_button {
+	padding: 1.5%;
+	margin-left: 4%;
+	margin-right: 4%;
+	margin-bottom: 5%;
+}
 
+#landing_about {
+	padding-right: 4%;
+	padding-left: 4%;
+}
 
-
+#landing_text {
+	font-size: 150%;
+}
 
 
 
