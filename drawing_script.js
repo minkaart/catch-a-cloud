@@ -223,6 +223,7 @@
 		}).done(function(o){
 			$("#user_text").val('');
 			$("#text_form").hide();
+			load_home_view();
 		});
 	});
 
