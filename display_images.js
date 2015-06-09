@@ -180,19 +180,20 @@ load_route(false);
 		function calculaterows (){
 			var win_width = $(window).width(); //holds the width of the browser window
 			img_width = win_width/4;
+			var win_height = $(window).height()*.7; 
+			var rows = 0;
+			var img_height = img_width*1.25;
+			
 			if ($(window).height() > $(window).width()){
 				img_width = $(window).width();
-			}
-			var img_height = img_width*1.25;
-			var win_height = $(window).height()*.6; 
-			var rows = 0;
-			if (win_height > $(window).width()){
-				rows = 1; 
+				rows = 0;
 			} else {
 				rows = win_height/img_height>>0;
 			}
+			
 			var divs = rows*2;
-			var diff = $(window).height() - img_height*rows;
+			var diff = win_height - img_height*rows;
+
 			console.log("rows: "+rows);
 			for (var i = 0; i < divs; i+=2) {
 					containerArray.push("#images"+i);
@@ -203,7 +204,7 @@ load_route(false);
 					
 					//update CSS for divs
 					if (i > 1){
-						var top = img_height * (i/2)+(diff/rows);	
+						var top = ($(window).width()*.17)+((i/2)*image_height);	
 					} else {
 						var top = img_height * (i/2);
 					}

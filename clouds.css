@@ -169,8 +169,6 @@ body, html {
 /*image targets*/
 .images {
 	top: ;
-	/*display: table;
-	table-layout: fixed;*/
 	vertical-align: top;
 	white-space: nowrap;
 	position: absolute;
@@ -367,6 +365,11 @@ input.button_text {
 	width: 30%;
 }
 
+/*LANDING VIEW*/
+#landing_text {
+	width: 100%;
+	text-align: center;
+}
 
 
 

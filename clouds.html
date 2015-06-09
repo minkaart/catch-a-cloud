@@ -106,8 +106,9 @@
 </head>
 <body>
 
-	<div id="images" class=".home_view"></div>
 	
+
+<!--HEADER !-->	
 	<div id="header">
 		<div id="header_button_wrapper">
 			<div id="menu_button" class="button"><img src="icons/menu.svg" /></div>
@@ -118,11 +119,14 @@
 			<div id="load_more" class="button_text button home_view"><span>LOAD MORE</span></div>	
 		</div>
 
-	<div class="instructions add_view">PLEASE DRAW YOUR CLOUD</span></div>
+		<div class="instructions add_view">PLEASE DRAW YOUR CLOUD</span></div>
 
-	<div id="text_label" class="instructions add_text_view">Does your cloud need some text? </br> Please enter it here. (40 char max)</div>
+		<div id="text_label" class="instructions add_text_view">Does your cloud need some text? </br> Please enter it here. (40 char max)</div>
+
+		<div id="landing_text" class="landing_view">HOW TO CATCH A CLOUD<br />welcome</div>
 	</div>
 
+<!--FOOTER !-->
 	<div id="footer">
 		<div class="footer_button_wrapper">
 			<div id="stop_button" class="stop_pause start_stop button home_view"><figure><img src="icons/stop.svg" /><figcaption>STOP</figcaption></figure></div>
@@ -137,7 +141,12 @@
 			<div id="no" class="function button button_text add_view close_button">CLOSE</div>
 		</div>
 	</div>
-	
+
+<!--BODY CONTAINERS !-->	
+	<div id="images" class="home_view"></div>
+
+
+<!--BODY CONTAINERS USING CLASS 'IN' !--> 
 	<div id="draw" class="in add_view">
 		<div id="tool_menu" class="add_view">	
 		<ul>
@@ -176,20 +185,20 @@
 		</div>	
 	</div>
 
+	<div id="text_form" class="in add_text_view">
+		<form id="text_input">
+			<input type="text" maxlength="40" id="user_text"></input>
+			<div id="form_button_holder">
+				<div id="text_close" class="button button_text close_button">CLOSE</div>
+				<div id="submit_button"><input class="button button_text" type="submit" value="SUBMIT"></input></div>
+			</div>
+		</form>
+	</div>
+
 	<div id="single_image" class="in single_view">
 		<div id="image_close_cross" class="button close_cross close_button"><img src="icons/close.svg" /></div>
 		<div id="single_image_content"></div>
 		<div id="image_close" class="function button close_button">CLOSE</div>
-	</div>
-	
-	<div id="text_form" class="in add_text_view">
-		<form id="text_input">
-			<input type="text" maxlength="40" id="user_text"></input>
-		<div id="form_button_holder">
-			<div id="text_close" class="button button_text close_button">CLOSE</div>
-			<div id="submit_button"><input class="button button_text" type="submit" value="SUBMIT"></input></div>
-		</div>
-		</form>
 	</div>
 
 	<div id="about_content" class="in about_view">
