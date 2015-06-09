@@ -34,7 +34,6 @@
 
 				console.log("updating");
 				update_needed = false; 
-				//imageArray.length = 0;
 				imageObjects.length = 0;
 				console.log("clear image objects: "+imageObjects);
 				containerArray.length = 0;
@@ -243,8 +242,9 @@
 			$("#start_button").show();
 
 			$("#images").css({
-				"height" : $(window).height()-50+"px",
-				"overflow" : "auto"
+				"height" : "65%",
+				"overflow-x" : "auto",
+				"overflow-y" : "hidden"
 			});
 			
 			console.log(imagelist);
@@ -278,6 +278,7 @@
 						"height" : "",
 						"overflow" : ""
 					});
+				$("#images").empty();
 				load_route(true);
 				$("#start_button").hide();
 				$(".stop_pause").show();
@@ -475,6 +476,19 @@
 			pauseanimation(containerArray);
 		}
 
+		function animation_start_restart(){
+			if (ani_running === 0){
+				$("#images").empty();
+				imageObjects.length = 0;
+				containerArray.length = 0;
+				load_route(true);
+			} else {
+				load_route(false);
+			}
+		}
+
+/**EVENT HANDLING**/
+
 		//$(window).on("focusout", pause);
 
 		$("#stop_button").click(function(){
@@ -506,10 +520,14 @@
 		update_needed = true;
 		});
 
+		$("#text_input").submit(function(){
+			animation_start_restart();
+		});
+
 		$(document).on("click", ".images figure img", function(){
-			console.log("click registered");
-			console.log($(this).attr('src'));
-			console.log($(this).parent().children('figcaption').text());
+			//console.log("click registered");
+			//console.log($(this).attr('src'));
+			//console.log($(this).parent().children('figcaption').text());
 			$("#single_image").show();
 			var img_src = $(this).attr('src');
 			var img_text = $(this).parent().children('figcaption').text();
@@ -518,9 +536,17 @@
 			$("#single_image_content").html('<figure><img width="'+width+'" src="'+img_src+'"><figcaption>'+img_text+'</figcaption></figure>');
 		});
 
-		$(".launch").click(function(){
-			load_route(false);
-		})
+		$("#launch_button").click(function(){
+			load_route(true);
+		});
+
+		$(".relaunch").click(function(){
+			animation_start_restart();
+		});
+
+		$(".close_button").click(function(){
+			animation_start_restart();
+		});
 
 	});
 }(jQuery));				
