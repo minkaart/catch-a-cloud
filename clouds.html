@@ -84,10 +84,15 @@
 		load_home_view();
 		/*NOTE: the remainder of the submit logic is handled in display_images.js*/
 	})
+
+	$("#launch_button").click(function(){
+		load_home_view();
+		/*NOTE: the remainder of this logic is handled by display_images.js*/
+	})
 	
 
 	/**annoying formatting functions**/
-	load_home_view();
+	load_landing_view();
 
 	$(".tool").width($(".tool").height());
 		
@@ -147,6 +152,15 @@
 
 
 <!--BODY CONTAINERS USING CLASS 'IN' !--> 
+	<div id="landing" class="in landing_view">
+		<div id="launch_button"><img class="button" width="40%" src="icons/landingstart.svg"></div>
+		<div id="landing_buttons">
+			<div id="about" class="button button_text">ABOUT</div>
+			<div id="add" class="button button_text">ADD CLOUD</div>
+		</div>
+	</div>
+
+
 	<div id="draw" class="in add_view">
 		<div id="tool_menu" class="add_view">	
 		<ul>

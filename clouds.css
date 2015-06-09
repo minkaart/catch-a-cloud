@@ -371,6 +371,11 @@ input.button_text {
 	text-align: center;
 }
 
+#launch_button {
+	text-align: center;
+	margin-right: auto;
+	margin-left: auto;
+}
 
 
 

@@ -27,7 +27,6 @@
 		var update_needed = false; 
 		var ani_running = 0;	
 
-load_route(false);
 
 		//determines whether population is an update or an initial pageload based on update value (passed) and calls respective functions accordingly - either populates divs anew or appends new data to existing divs. 
 		function load_route(update){
@@ -518,6 +517,10 @@ load_route(false);
 			
 			$("#single_image_content").html('<figure><img width="'+width+'" src="'+img_src+'"><figcaption>'+img_text+'</figcaption></figure>');
 		});
+
+		$("launch_button").click(function(){
+			load_route(false);
+		})
 
 	});
 }(jQuery));				
