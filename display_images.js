@@ -184,7 +184,7 @@ load_route(false);
 				img_width = $(window).width();
 			}
 			var img_height = img_width*1.25;
-			var win_height = $(window).height(); 
+			var win_height = $(window).height()*.6; 
 			var rows = 0;
 			if (win_height > $(window).width()){
 				rows = 1; 
