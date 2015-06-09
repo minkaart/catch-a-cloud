@@ -103,6 +103,7 @@
 <body>
 
 	<div id="images" class=".home_view"></div>
+	
 	<div id="header">
 		<div id="header_button_wrapper">
 			<div id="menu_button" class="button"><img src="icons/menu.svg" /></div>
@@ -114,6 +115,8 @@
 		</div>
 
 	<div class="instructions add_view">PLEASE DRAW YOUR CLOUD</span></div>
+
+	<div id="text_label" class="instructions add_text_view">Does your cloud need some text? </br> Please enter it here. (40 char max)</div>
 	</div>
 
 	<div id="footer">
@@ -132,8 +135,7 @@
 	</div>
 	
 	<div id="draw" class="in add_view">
-
-	<div id="tool_menu" class="add_view">	
+		<div id="tool_menu" class="add_view">	
 		<ul>
 			<li><span>TOOLS</span></li>
 			<li>
@@ -161,13 +163,11 @@
 				<div id="red" class="tool button"><span></span></div>
 			</li>
 		</ul>
-	</div>
+		</div>
 
-		
 		<div id="canvas_close" class="button close_cross close_button"><img src="icons/close.svg" /></div>
-
 		
-		<div id="canvas_holder" style="border:1px solid #000000">
+		<div id="canvas_holder" style="border:4px solid #000000">
 			<canvas id="my_canvas"></canvas>
 		</div>	
 	</div>
@@ -179,10 +179,12 @@
 	</div>
 	
 	<div id="text_form" class="in add_text_view">
-		<div id="text_label" class="instructions">Does your cloud need some text? </br> Please enter it here. (40 char max)</div>
 		<form id="text_input">
 			<input type="text" maxlength="40" id="user_text"></input>
-			<div id="submit_button"><input type="submit" value="Submit"></input></div>
+		<div id="form_button_holder">
+			<div id="text_close" class="button button_text close_button">CLOSE</div>
+			<div id="submit_button"><input class="button button_text" type="submit" value="SUBMIT"></input></div>
+		</div>
 		</form>
 	</div>
 

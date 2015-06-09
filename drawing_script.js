@@ -205,9 +205,8 @@
 	$("#save").click(function(){
 		imageData = canvas.toDataURL("image/png");
 		ctx.clearRect(0,0,canvas.width,canvas.height);
-		$("#draw").hide();
-		$("#text_form").show();
-		$("#tool_menu").hide();
+		$(".add_text_view").show();
+		$(".add_view").hide();
 	});
 
 	$("#text_input").submit(function(event){
@@ -233,6 +232,11 @@
 
 	$("#no").click(function(){
 		ctx.clearRect(0,0,canvas.width,canvas.height);
+	});
+
+	$("#text_close").click(function(){
+		ctx.clearRect(0,0,canvas.width,canvas.height);
+		$("#user_text").val('');
 	});
 
 	$(window).resize(function(){

@@ -21,8 +21,6 @@ body, html {
 
 /* buttons containing only text*/
 .button_text {
-	/*width: 90px;
-	height: 38px;*/
 	display: inline-table;
 	background-color: #999999;
 	overflow: hidden;
@@ -63,7 +61,7 @@ body, html {
 }
 
 #stop_button {
-	margin-right: 140px;
+	margin-right: 0px;
 }
 
 #pause_stop_holder figure{
@@ -123,7 +121,7 @@ body, html {
 	top: 15%;
 	left: 0%;
 	position: fixed;
-	background-color: #def785;
+	background-color: white;
 }
 
 #about_content {
@@ -296,7 +294,6 @@ table {
 
 /*DRAWING CONTAINERS*/
 #draw {
-	background-color: white;
 	display: block;
 }
 
@@ -326,31 +323,49 @@ table {
 
 
 /*TEXT FORM*/
-#text_label {
-	left: 10px;
-	top: 10px;
-}
 
 #text_input {
-	position: absolute;
-	top: 70px;
-	left: 20px;
-	width: 100%;
+	position: relative;
+	top: 10%;
+	margin-left: auto;
+	margin-right: auto;
+	width: 90%;
 }
 
 #user_text {
-	width: 90%;
-	
+	border: 5px solid #aef4fe;
+	font-size: 100%;
+	font-family: "Comic Sans MS", cursive, sans-serif;
+	width: 100%;
 }
 
 #submit_button {
-	position: absolute;
-	top: 70px;
-	right: 40px;
-	
+	position: relative;
+	display: inline;
+	margin: 0%;
 }
 
+input.button_text {
+	border: none;
+	align-items: initial;
+	font-family: "Comic Sans MS", cursive, sans-serif;
+	font-size: inherit;
+	padding: 3%;
+}
 
+#text_close {
+	padding: 3%;
+	margin-right: 8%;
+	padding-right: 6%;
+	padding-left: 6%;
+}
+
+#form_button_holder {
+	position: fixed;
+	top: 30%;
+	right: 8%;
+	width: 30%;
+}
 
 
 
