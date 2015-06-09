@@ -518,7 +518,7 @@
 			$("#single_image_content").html('<figure><img width="'+width+'" src="'+img_src+'"><figcaption>'+img_text+'</figcaption></figure>');
 		});
 
-		$("#launch_button").click(function(){
+		$(".launch").click(function(){
 			load_route(false);
 		})
 
