@@ -300,20 +300,18 @@
 		}
 
 		function pauseanimation(containerlist){
+			if (ani_running === 0){
+				console.log("error: animation was not running");
+				return ; 
+			}
+
 			//stop animation 
 			$(".images").stop(true);
 			
 			//adjust display
 			$(".stop_pause").hide();
 			$("#start_button").show();
-
-			
-			//considering overflow on paused animation ... will require back-filling divs 
-			/**$("#images").css({
-				"height" : $(window).height()-50+"px",
-				"overflow" : "auto"
-			});**/
-
+			$(".launch").off("click");
 
 			//check for ani_running at 1, 2, or 3
 			if(ani_running%2 !== 0 && ani_running !== 0){ //if ani_running is 1 or 3 and not 0
@@ -333,8 +331,6 @@
 					}
 				});
 
-			} else if (ani_running === 0){
-				console.log("error: animation was not running");
 			} else if (ani_running === 2) {
 				// calculate new target/ani_distance for 2 based on left 
 				var left = parseInt($(containerlist[1]).css("left"));
@@ -356,7 +352,7 @@
 			}
 
 
-			$("#start_button").click(function(){
+			$("#start_button, .launch").click(function(){
 				//console.log("calling reset start functions");
 				$(".stop_pause").show();
 				$("#start_button").hide();
@@ -496,6 +492,10 @@
 			load_route();
 		});
 
+		//other event functions
+		$(".add, .about").click(function(){
+			pauseanimation(containerArray);
+		}
 
 		//$(window).on("focusout", pause);
 

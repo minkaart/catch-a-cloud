@@ -15,6 +15,7 @@
 	$(document).ready(function(){
 
 	function load_home_view(){
+		$("#ani_buttons").show();
 		$(".landing_view").hide();
 		$(".add_view").hide();
 		$(".add_text_view").hide();
@@ -24,6 +25,7 @@
 	}
 
 	function load_about_view(){
+		$("#ani_buttons").hide();
 		$(".home_view").hide();
 		$(".landing_view").hide();
 		$(".add_view").hide();
@@ -33,6 +35,7 @@
 	}
 
 	function load_add_view(){
+		$("#ani_buttons").hide();
 		$(".home_view").hide();
 		$(".landing_view").hide();
 		$(".add_text_view").hide();
@@ -47,6 +50,7 @@
 	}
 
 	function load_landing_view(){
+		$("#ani_buttons").hide();
 		$(".home_view").hide();
 		$(".add_text_view").hide();
 		$(".single_view").hide();
@@ -76,7 +80,7 @@
 		$("#home_menu").slideDown(500);
 	});
 
-	$(".launch").click(function(){
+	$(".show_home").click(function(){
 		load_home_view();
 		/*NOTE: the remainder of this logic is handled by display_images.js
 		call load_route()*/
@@ -120,7 +124,7 @@
 			<div id="menu_button" class="button"><img src="icons/menu.svg" /></div>
 			<div id="about_button" class="button_text button about home_view"><span>ABOUT</span></div>
 			<div id="add_button" class="add button_text button home_view about_view"><span>ADD CLOUD</span></div>
-			<div id="about_launch" class="launch button_text button about_view"><span>VIEW CLOUDS</span></div>
+			<div id="about_launch" class="launch show_home button_text button about_view"><span>VIEW CLOUDS</span></div>
 			<div id="text_button" class="button_text button home_view"><span>TOGGLE TEXT</span></div>	
 			<div id="reset_button" class="button_text button home_view"><span>RESET</span></div>
 			<div id="load_more" class="button_text button home_view"><span>LOAD MORE</span></div>	
@@ -135,7 +139,7 @@
 
 <!--FOOTER !-->
 	<div id="footer">
-		<div class="footer_button_wrapper">
+		<div id="ani_buttons" class="footer_button_wrapper">
 			<div id="stop_button" class="stop_pause start_stop button"><figure><img src="icons/stop.svg" /><figcaption>STOP</figcaption></figure></div>
 			<div id="pause_button" class="stop_pause start_stop button"><figure><img src="icons/pause.svg" /><figcaption>PAUSE</figcaption></figure></div>
 			<div id="start_button" class="start_stop button"><span>START ANIMATION</span><img src="icons/start.svg" /></div>
@@ -146,7 +150,7 @@
 		<div class="footer_button_wrapper" id="functions"> 
 			<div id="save" class="function button button_text add_view">SAVE</div>
 			<div id="reset" class="function button button_text add_view">CLEAR</div>
-			<div id="no" class="function button button_text add_view launch">CLOSE</div>
+			<div id="no" class="function button button_text add_view launch show_home">CLOSE</div>
 		</div>
 
 		<div id="landing_buttons" class="landing_view">
@@ -161,7 +165,7 @@
 
 <!--BODY CONTAINERS USING CLASS 'IN' !--> 
 	<div id="landing" class="in landing_view">
-		<div id="launch_button" class="launch">
+		<div id="launch_button" class="launch show_home">
 			<img class="button" width="30%" src="icons/landingstart.svg">
 			<div><span>press to enter</span></div>
 		</div>
@@ -200,7 +204,7 @@
 		</ul>
 		</div>
 
-		<div id="canvas_close" class="button close_cross launch"><img src="icons/close.svg" /></div>
+		<div id="canvas_close" class="button close_cross launch show_home"><img src="icons/close.svg" /></div>
 		
 		<div id="canvas_holder" style="border:4px solid #000000">
 			<canvas id="my_canvas"></canvas>
@@ -211,20 +215,20 @@
 		<form id="text_input">
 			<input type="text" maxlength="40" id="user_text"></input>
 			<div id="form_button_holder">
-				<div id="text_close" class="button button_text launch">CLOSE</div>
+				<div id="text_close" class="button button_text launch show_home">CLOSE</div>
 				<div id="submit_button"><input class="button button_text" type="submit" value="SUBMIT"></input></div>
 			</div>
 		</form>
 	</div>
 
 	<div id="single_image" class="in single_view">
-		<div id="image_close_cross" class="button close_cross launch"><img src="icons/close.svg" /></div>
+		<div id="image_close_cross" class="button close_cross launch show_home"><img src="icons/close.svg" /></div>
 		<div id="single_image_content"></div>
-		<div id="image_close" class="button_text function button launch">CLOSE</div>
+		<div id="image_close" class="button_text function button launch show_home">CLOSE</div>
 	</div>
 
 	<div class="in about_view">
-		<div class="button close_cross launch"><img src="icons/close.svg" /></div>
+		<div class="button close_cross launch show_home"><img src="icons/close.svg" /></div>
 		<div id="about_text">
 			<header>ABOUT</header><p>Designed and built for Transmediale 2015 and in response to the theme: <i>Capture All</i>, <i>How to Catch a Cloud</i> is a proposition, an invitation and an experiment.  Referencing the parallel associations of inherent in the use of the term, <i>cloud,</i> we may extend the metaphor towards those parallels that exist between our technologically mediated experience and the way in which we exerience that most ubiquitous and equally indescribable phenomenon, the weather.  Both the internet and the climate are ubiquitous, necessary, and terrifying.  Both promise our success and our failure and are yet uncontrollable by any single individual; instead they are only modified by the coordinated actions of the whole.<br /><br />To capture is to acquire; to acquire is to consume.  Ownership is the opiate of the 21st century even as it is being radically redefined. In our current post/late/hyper/uber/alter/corporate/networked capitalism ownership is no longer a matter of possession or of accumulation, but of access.   We obsessively archive our experience in a manic cycle of perpetual recording and thus proof of our existence.<br /><br />What do we capture and place in this ephemeral space, this cloud?  Is it that indescribable idea of <i>the soul,</i> or is it perhaps merely a representation, a snapshot of a moment; perpetually updated, but always at a remove... never able to come fully into synchronicity with that it represents.</p>
 		</div>
