@@ -213,7 +213,7 @@
 					$(holdingContainer).append('<div id="images'+i+'" class="images" style="height:'+img_height+'"></div>');
 					
 					containerArray.push("#images"+(i+1));
-					$(holdingContainer).append('<div id="images'+(i+1)+'" class="images"></div>');
+					$(holdingContainer).append('<div id="images'+(i+1)+'" class="images" style="height:'+img_height+'"></div>');
 					
 					//update CSS top to properly place divs in window
 					if (i > 1){
