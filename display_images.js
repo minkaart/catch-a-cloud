@@ -29,7 +29,16 @@
 
 
 		//determines whether population is an update or an initial pageload based on update value (passed) and calls respective functions accordingly - either populates divs anew or appends new data to existing divs. 
-		function load_route(update){
+		function load_route(){
+			var update; 
+
+			if(imageObjects.length > 0){
+				update = true; 
+			}
+			else {
+				update = false; 
+			}
+
 			if (update){
 
 				console.log("updating");
@@ -66,6 +75,8 @@
 		}
 
 		function initiatepage(containerlist, imagelist) {
+			more_images = false;
+			start_val = 1;
 		
 			populatedivs(containerlist, imagelist);
 
@@ -279,7 +290,7 @@
 						"overflow" : ""
 					});
 				$("#images").empty();
-				load_route(true);
+				load_route();
 				$("#start_button").hide();
 				$(".stop_pause").show();
 				$("#start_button").off("click");
@@ -460,7 +471,7 @@
 						if(update_needed){
 							console.log("update detected");
 							//stopanimation(containerArray, imageObjects);
-							load_route(true);
+							load_route();
 						}
 						else {
 							reset_div(target2);
@@ -472,37 +483,22 @@
 			
 		}
 
-		function pause(){
-			pauseanimation(containerArray);
-		}
-
-		function animation_start_restart(){
-			if (ani_running === 0){
-				$("#images").empty();
-				imageObjects.length = 0;
-				containerArray.length = 0;
-				load_route(true);
-			} else {
-				load_route(false);
-			}
-		}
-
 /**EVENT HANDLING**/
+
+		//Home view entry functions//
+
+		$(".launch").click(function(){
+			load_route();
+		});
+
+		$("#text_input").submit(function(){
+			load_route();
+		});
+
 
 		//$(window).on("focusout", pause);
 
-		$("#stop_button").click(function(){
-			stopanimation(containerArray, imageObjects);
-		});
-
-		$("#pause_button").click(function(){
-			pauseanimation(containerArray);
-		});
-
-		$("#load_more").click(function(){
-			start_val++;
-			load_route(true);
-		})
+		
 
 		$(window).resize(function(){
 		console.log(ani_running);
@@ -520,9 +516,18 @@
 		update_needed = true;
 		});
 
-		$("#text_input").submit(function(){
-			animation_start_restart();
+		$("#stop_button").click(function(){
+			stopanimation(containerArray, imageObjects);
 		});
+
+		$("#pause_button").click(function(){
+			pauseanimation(containerArray);
+		});
+
+		$("#load_more").click(function(){
+			start_val++;
+			load_route());
+		})
 
 		$(document).on("click", ".images figure img", function(){
 			//console.log("click registered");
@@ -531,21 +536,8 @@
 			$("#single_image").show();
 			var img_src = $(this).attr('src');
 			var img_text = $(this).parent().children('figcaption').text();
-			var width = $("#single_image_content").width() - 10; 
 			
-			$("#single_image_content").html('<figure><img width="'+width+'" src="'+img_src+'"><figcaption>'+img_text+'</figcaption></figure>');
-		});
-
-		$("#launch_button").click(function(){
-			load_route(true);
-		});
-
-		$(".relaunch").click(function(){
-			animation_start_restart();
-		});
-
-		$(".close_button").click(function(){
-			animation_start_restart();
+			$("#single_image_content").html('<figure><img src="'+img_src+'"><figcaption>'+img_text+'</figcaption></figure>');
 		});
 
 	});
