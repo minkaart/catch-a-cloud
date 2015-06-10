@@ -102,8 +102,8 @@
 			var img_text = $(this).parent().children('figcaption').text();
 			
 			$("#single_image_content").html('<figure><img src="'+img_src+'"><figcaption>'+img_text+'</figcaption></figure>');
-			var img_w = $("#single_image_content").parent().width();
-			var img_h = $("#single_image_content").parent().height();
+			var img_w = $("#single_image_content").width();
+			var img_h = $("#single_image_content").height();
 
 			$("#single_image_content img").css({
 				"max-width":img_w,
