@@ -379,7 +379,7 @@
 			var newtext = newobject.obj_text; 
 			imagelist.shift();
 			imagelist.push(newobject);
-			$(targetdiv).append('<figure><img width="'+img_width+'" src="'+newimage+'"><figcaption>'+newtext+'</figcaption></figure>');				
+			$(targetdiv).append('<figure><img max-width="'+img_width+'" max-height="'+img_width*.8+'" src="'+newimage+'"><figcaption>'+newtext+'</figcaption></figure>');				
 
 		}
 
