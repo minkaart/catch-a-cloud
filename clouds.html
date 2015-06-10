@@ -91,6 +91,24 @@
 		/*NOTE: other events are bound in display_images.js and drawing_script.js*/
 	});
 
+	$(document).on("click", ".images figure img", function(){
+			//console.log("click registered");
+			//console.log($(this).attr('src'));
+			//console.log($(this).parent().children('figcaption').text());
+			$("#single_image").show();
+			var img_src = $(this).attr('src');
+			var img_text = $(this).parent().children('figcaption').text();
+			
+			$("#single_image_content").html('<figure><img src="'+img_src+'"><figcaption>'+img_text+'</figcaption></figure>');
+
+			$("#single_image_content img").css("max-width":$(this).parent().width(),
+				"max-height":$(this).parent().height());
+	});
+
+	$(".single_close").click(function(){
+		$(this).parent().close();
+	})
+
 
 	/**annoying formatting functions**/
 	load_landing_view();
@@ -222,9 +240,9 @@
 	</div>
 
 	<div id="single_image" class="in single_view">
-		<div id="image_close_cross" class="button close_cross launch show_home"><img src="icons/close.svg" /></div>
+		<div id="image_close_cross" class="button close_cross single_close"><img src="icons/close.svg" /></div>
 		<div id="single_image_content"></div>
-		<div id="image_close" class="button_text function button launch show_home">CLOSE</div>
+		<div id="image_close" class="button_text function button single_close">CLOSE</div>
 	</div>
 
 	<div class="in about_view">
