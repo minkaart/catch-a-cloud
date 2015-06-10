@@ -65,6 +65,7 @@
 			}
 			else
 			{
+				console.log("initiating");
 				popimageArray(function(){
 					calculaterows();
 					initiatepage(containerArray, imageObjects);
