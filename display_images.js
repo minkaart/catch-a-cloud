@@ -311,7 +311,7 @@
 			//adjust display
 			$(".stop_pause").hide();
 			$("#start_button").show();
-			$(".launch").off("click");
+			//$(".launch").off("click");
 
 			//check for ani_running at 1, 2, or 3
 			if(ani_running%2 !== 0 && ani_running !== 0){ //if ani_running is 1 or 3 and not 0
