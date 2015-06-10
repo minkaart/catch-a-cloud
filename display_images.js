@@ -186,25 +186,28 @@
 		list (array) of divs required to fill given height. 
 		(note: the total divs are *2 for short (ani-fill) and long divs). 
 		Change variables for image size (height and width) here.
+		As img_height and width are set here -- creates square image containers and forces two rows
+		in landscape and 1 in portrait
 		RETURNS IMAGE WIDTH as calculated based on height variables**/ 
 		function calculaterows (){
 			var win_width = $(window).width(); //holds the width of the browser window
-			img_width = win_width/4;
 			var win_height = $(window).height()*.7; 
 			var rows = 0;
-			var img_height = img_width*1.25;
 			
-			if ($(window).height() > $(window).width()){
+			if ($(window).height() > $(window).width()){ //change here and below to change image size
 				img_width = $(window).width();
-				rows = 0;
 			} else {
-				rows = win_height/img_height>>0;
+				img_width = win_height/2; 
 			}
 			
+			var img_height = img_width; //and change here 
+			rows = win_height/img_height>>0;
+
 			var divs = rows*2;
 			var diff = win_height - img_height*rows;
 
 			console.log("rows: "+rows);
+			//creates container divs for images
 			for (var i = 0; i < divs; i+=2) {
 					containerArray.push("#images"+i);
 					$(holdingContainer).append('<div id="images'+i+'" class="images"></div>');
@@ -212,11 +215,11 @@
 					containerArray.push("#images"+(i+1));
 					$(holdingContainer).append('<div id="images'+(i+1)+'" class="images"></div>');
 					
-					//update CSS for divs
+					//update CSS top to properly place divs in window
 					if (i > 1){
-						var top = ($(window).width()*.17)+((i/2)*image_height);	
+						var top = ((i/2)*image_height);	
 					} else {
-						var top = img_height * (i/2);
+						var top = 0;
 					}
 					
 					var target1 = "#images"+i; 
