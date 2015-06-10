@@ -229,6 +229,19 @@ ul {
 	height: 8%;
 }
 
+.selected_tool {
+	background-color: #0099FF;
+}
+
+.selected_weight {
+	background-color: #515151;
+	color: white;
+}
+
+.selected_color {
+	border-width: 2px;
+}
+
 table {
 	font-size: 90%;
 	font-weight: bold;

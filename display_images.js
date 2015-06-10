@@ -502,9 +502,9 @@
 			pauseanimation(containerArray);
 		});
 
-		//$(window).on("focusout", pause);
-
-		
+		$(window).on("focusout", function(){
+			pauseanimation(containerArray);
+		});
 
 		$(window).resize(function(){
 		console.log(ani_running);
