@@ -495,7 +495,7 @@
 		//other event functions
 		$(".add, .about").click(function(){
 			pauseanimation(containerArray);
-		}
+		});
 
 		//$(window).on("focusout", pause);
 
