@@ -14,6 +14,8 @@
 	(function($){
 	$(document).ready(function(){
 
+	load_landing_view();
+
 	function load_home_view(){
 		$("#ani_buttons").show();
 		$(".landing_view").hide();
@@ -100,9 +102,11 @@
 			var img_text = $(this).parent().children('figcaption').text();
 			
 			$("#single_image_content").html('<figure><img src="'+img_src+'"><figcaption>'+img_text+'</figcaption></figure>');
+			var img_w = $(this).parent().width();
+			var img_h = $(this).parent().height();
 
-			$("#single_image_content img").css("max-width":$(this).parent().width(),
-				"max-height":$(this).parent().height());
+			$("#single_image_content img").css("max-width":img_w,
+				"max-height":img_h);
 	});
 
 	$(".single_close").click(function(){
@@ -111,7 +115,6 @@
 
 
 	/**annoying formatting functions**/
-	load_landing_view();
 
 	$(".tool").width($(".tool").height());
 		
