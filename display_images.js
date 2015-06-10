@@ -217,7 +217,7 @@
 					
 					//update CSS top to properly place divs in window
 					if (i > 1){
-						var top = ((i/2)*image_height);	
+						var top = (i/2)*img_height;	
 					} else {
 						var top = 0;
 					}
