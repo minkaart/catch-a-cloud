@@ -352,7 +352,7 @@
 			}
 
 
-			$("#start_button, .launch").click(function(){
+			$("#start_button").click(function(){
 				//console.log("calling reset start functions");
 				$(".stop_pause").show();
 				$("#start_button").hide();
