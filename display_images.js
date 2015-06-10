@@ -527,8 +527,8 @@
 
 		$("#load_more").click(function(){
 			start_val++;
-			load_route());
-		})
+			load_route();
+		});
 
 		$(document).on("click", ".images figure img", function(){
 			//console.log("click registered");
