@@ -485,7 +485,7 @@
 		//Home view entry functions//
 
 		var launch = function(){
-			load_route
+			load_route();
 		};
 
 		$(".launch").on("click", launch);
