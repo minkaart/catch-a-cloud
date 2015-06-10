@@ -140,6 +140,8 @@
 	$("#thin").addClass("selected_weight");
 	$("#blue").addClass("selected_color");
 
+
+	//EVENT HANDLERS//
 	j_canvas.on('touchmousedown', function(event){
 		var off = j_canvas.offset();
 		last_mouse.x = (event.pageX - off.left);

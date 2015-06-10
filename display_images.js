@@ -249,10 +249,10 @@
 		function stopanimation(containerlist, imagelist){
 			//stop animation, clear current images, 
 			$(".images").stop(true);
-			console.log("stopped");
+			//console.log("stopped");
 			ani_running = 0; 
 			$(".images").empty();
-			console.log("emptied");
+			//console.log("emptied");
 			$(".stop_pause").hide();
 			$("#start_button").show();
 
@@ -262,7 +262,7 @@
 				"overflow-y" : "hidden"
 			});
 			
-			console.log(imagelist);
+			//console.log(imagelist);
 
 			//move shorts to left : 0
 			for(var i=0; i < containerlist.length; i+=2){
@@ -494,6 +494,11 @@
 		$(".launch").on("click", launch);
 
 		$("#text_input").submit(function(){
+			load_route();
+		});
+
+		$("#reset").click(function(){
+			imageObjects.length = 0; 
 			load_route();
 		});
 

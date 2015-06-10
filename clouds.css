@@ -134,7 +134,7 @@ body, html {
 #about_text {
 	width: 90%;
 	height: 93%;
-	overflow-y: scroll;
+	overflow-y: auto;
 	margin-left: auto;
 	margin-right: auto;
 	top: 4%;
