@@ -257,7 +257,7 @@
 			$("#start_button").show();
 
 			$("#images").css({
-				"height" : "65%",
+				"height" : "72%",
 				"overflow-x" : "auto",
 				"overflow-y" : "hidden"
 			});
