@@ -105,8 +105,10 @@
 			var img_w = $(this).parent().width();
 			var img_h = $(this).parent().height();
 
-			$("#single_image_content img").css("max-width":img_w,
-				"max-height":img_h);
+			$("#single_image_content img").css({
+				"max-width":img_w,
+				"max-height":img_h
+			});
 	});
 
 	$(".single_close").click(function(){
