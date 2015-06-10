@@ -210,7 +210,7 @@
 			//creates container divs for images
 			for (var i = 0; i < divs; i+=2) {
 					containerArray.push("#images"+i);
-					$(holdingContainer).append('<div id="images'+i+'" class="images"></div>');
+					$(holdingContainer).append('<div id="images'+i+'" class="images" style="height:'+img_height+'"></div>');
 					
 					containerArray.push("#images"+(i+1));
 					$(holdingContainer).append('<div id="images'+(i+1)+'" class="images"></div>');
