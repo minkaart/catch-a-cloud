@@ -175,6 +175,8 @@ body, html {
 	top: 10%;
 	position: relative;
 	background-color: #aef4fe;
+	border-style: solid;
+	border-width: 3px;
 }
 
 #images {
@@ -227,6 +229,7 @@ ul {
 	display: inline-block;
 	position: relative;
 	height: 8%;
+	border-radius: 5px;
 }
 
 .selected_tool {
@@ -239,7 +242,7 @@ ul {
 }
 
 .selected_color {
-	border-width: 2px;
+	background-color: #0099FF;
 }
 
 table {
