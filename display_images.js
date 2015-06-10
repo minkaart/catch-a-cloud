@@ -497,7 +497,7 @@
 			load_route();
 		});
 
-		$("#reset").click(function(){
+		$("#reset_button").click(function(){
 			imageObjects.length = 0; 
 			load_route();
 		});
