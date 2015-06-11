@@ -343,7 +343,7 @@
 				url: "saveimage.php",
 				data: {
 					img : imageData,
-					text : user_text
+					text : imageText
 				}, 
 		}).done(function(o){
 			imageText = "";

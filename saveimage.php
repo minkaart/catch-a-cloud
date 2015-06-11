@@ -41,7 +41,4 @@ $s3->registerStreamWrapper();
 	
 	//success check
 	print $success ? $file : 'Unable to save the file.';
-
-	unset($_POST);
-
 ?>
