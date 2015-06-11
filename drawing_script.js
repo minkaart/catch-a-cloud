@@ -146,6 +146,7 @@
 
 	//EVENT HANDLERS//
 	j_canvas.on('touchmousedown', function(event){
+		console.log(drawing_params);
 		draw_check = true;
 		var off = j_canvas.offset();
 		last_mouse.x = (event.pageX - off.left);
