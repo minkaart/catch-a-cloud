@@ -285,7 +285,7 @@
 					looping_image_display(containerlist[i], imagelist);
 				}
 				total_added++;
-			}while (total_added < imagelist.length/2)
+			}while (total_added < imagelist.length/rows)
 
 			//add listener for start button? 
 			$("#start_button").click(function(){
