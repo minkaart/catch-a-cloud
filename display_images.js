@@ -198,7 +198,7 @@
 		function calculaterows (){
 			var win_width = $(window).width(); //holds the width of the browser window
 			var win_height = $(window).height()*.7; 
-			var rows = 0;
+			rows = 0;
 			
 			if ($(window).height() > $(window).width()){ //change here and below to change image size
 				img_width = $(window).width();
