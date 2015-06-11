@@ -150,10 +150,6 @@
 		function popimageArray(callback){
 			//console.log("calling get_images...");
 			console.log("start is: "+start_val);
-			$.ajaxSetup({
-				async: false
-			});
-			console.log("async false");
 
 			$.getJSON("get_images.php", 'start='+start_val)
 				.done(function(data){
@@ -189,11 +185,6 @@
 			}).fail(function(){
 					console.log("request failed miserably");
 				});
-
-			$.ajaxSetup({
-						async: true
-					});
-				console.log("async true");
 
 		}
 
