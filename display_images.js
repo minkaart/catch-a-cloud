@@ -118,6 +118,8 @@
 			
 			var lengthdiff = imagelist.length - shortcontent;
 			var iterations = lengthdiff/rows;
+			console.log("lengthdiff "+lengthdiff);
+			console.log("rows: "+rows);
 			console.log("iterations: "+iterations);
 
 			for (var i = 0; i < lengthdiff; i++) {
