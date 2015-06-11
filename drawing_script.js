@@ -150,6 +150,10 @@
 		j_canvas = $("#my_canvas");
 		ctx = canvas.getContext('2d');
 		off = j_canvas.offset();
+
+		set_width();
+		set_height();
+		console.log("height and width set");
 		draw_check = false;
 		drawing_params = {
 			'lineWidth': "8",
@@ -159,8 +163,6 @@
 			'globalCompositeOperation': 'source-over'
 		};   
 		set_drawing_params(drawing_params, ctx, function(){
-			set_width();
-			set_height();
 			$('#pencil').addClass("selected_tool");
 			$("#thin").addClass("selected_weight");
 			$("#blue").addClass("selected_color");	
