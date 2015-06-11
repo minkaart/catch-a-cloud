@@ -271,7 +271,7 @@
 			}
 
 			//populate shorts with all content
-			console.log("image list first: "+imageObjects[0]);image_ref);
+			console.log("image list first: "+imageObjects[0].image_ref);
 			var total_added = 0; 
 			do {
 				for (var i=0; i<containerlist.length; i+=2){
