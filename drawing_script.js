@@ -117,10 +117,10 @@
 	
 	//sets drawing parameters
 	function set_drawing_params(params, context, callback){
-		var ctx = context; 
+		var thisctx = context; 
 		$.each(params, function(key, value){
 			console.log(key+":"+value);
-			ctx[key] = value;
+			thisctx[key] = value;
 		});
 
 		if(callback){
@@ -146,6 +146,18 @@
 
 	//PAGE INITIALIZATION && EVENT HANDLERS//
 	function initialize_page(){
+		canvas = $("#my_canvas").get(0);
+		j_canvas = $("#my_canvas");
+		ctx = canvas.getContext('2d');
+		off = j_canvas.offset();
+		draw_check = false;
+		drawing_params = {
+			'lineWidth': "8",
+			'lineJoin': 'round',
+			'lineCap': 'round',
+			'strokeStyle': 'blue', 
+			'globalCompositeOperation': 'source-over'
+		};   
 		set_drawing_params(drawing_params, ctx, function(){
 			set_width();
 			set_height();
