@@ -122,10 +122,12 @@
 				$.each(longs, function(index, val){
 					looping_image_display(longs[index], imagelist);
 				});
+				console.log("finished populating long");
 			};
 			var longwidth = checkwidth(longs[longs.length-1]);
 			if(longwidth){
 				do{
+					console.log("long failed widthcheck");
 					for (var i = 0; i < longs.length; i++) {
 						looping_image_display(longs[i], imagelist);
 					};
