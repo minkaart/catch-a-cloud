@@ -146,6 +146,7 @@
 
 	//PAGE INITIALIZATION && EVENT HANDLERS//
 	function initialize_page(){
+		$("#canvas_holder").show();
 		canvas = $("#my_canvas").get(0);
 		j_canvas = $("#my_canvas");
 		ctx = canvas.getContext('2d');
