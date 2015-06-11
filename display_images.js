@@ -270,17 +270,17 @@
 				"left","0px");
 			}
 
-			//populate shorts with all content?
-			for (var j=0; j< imagelist.length; j++){
-				console.log("image list length: ");
+			//populate shorts with all content
+			console.log("image list first: "+imageObjects[0].image_ref);
+			var total_added = 0; 
+			do {
 				for (var i=0; i<containerlist.length; i+=2){
 					//console.log("containerlist[i]: "+containerlist[i]);
 					looping_image_display(containerlist[i], imagelist);
 				}
-			}
+				total_added++;
+			}while (total_added < imagelist.length/2)
 
-			
-			
 			//add listener for start button? 
 			$("#start_button").click(function(){
 				console.log("running embedded start");
@@ -470,7 +470,6 @@
 						console.log("detecting update?...");
 						if(update_needed){
 							console.log("update detected");
-							//stopanimation(containerArray, imageObjects);
 							load_route();
 						}
 						else {
