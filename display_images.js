@@ -170,23 +170,13 @@
 					}
 					var image_json = $.parseJSON(data.first_30);
 					$.each(image_json, function(key, val){
-					var imageObject = {
-						"image_ref" : "https://euroclouds.s3.amazonaws.com/"+key,
-						"obj_text" : val
-					};
+						var imageObject = {
+							"image_ref" : "https://euroclouds.s3.amazonaws.com/"+key,
+							"obj_text" : val
+						};
 
-					imageObjects.push(imageObject);
-					//imageArray.push(key);	
-				})
-				.fail(function(){
-					console.log("request failed miserably");
-				});
-
-				$.ajaxSetup({
-						async: true
+						imageObjects.push(imageObject);
 					});
-				console.log("async true");
-
 
 				if(callback){
 					if (typeof callback === "function"){
@@ -196,7 +186,15 @@
 						console.log("type error"+callback+"is not a function");
 					}
 				}		
-			});
+			}).fail(function(){
+					console.log("request failed miserably");
+				});
+
+			$.ajaxSetup({
+						async: true
+					});
+				console.log("async true");
+
 		}
 
 		/**calculates the #of rows needed based on window height and creates a 
