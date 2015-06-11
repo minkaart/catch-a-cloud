@@ -51,6 +51,9 @@
 
 				popimageArray(function(){
 					calculaterows();
+					if(rows === 1){
+						px_rate = 1000; 
+					}
 					populatedivs(containerArray, imageObjects, function (){
 						for (var i =0; i< containerArray.length; i+=2){
 							update_vars(containerArray[i], containerArray[i+1]);
@@ -68,6 +71,9 @@
 				console.log("initiating");
 				popimageArray(function(){
 					calculaterows();
+					if(rows === 1){
+						px_rate = 1000; 
+					}
 					initiatepage(containerArray, imageObjects);
 				});	
 				$("#start_button").hide();
