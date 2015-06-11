@@ -118,7 +118,7 @@
 			
 			var lengthdiff = imagelist.length - shortcontent;
 
-			for (var i = 0; i < lengthdiff; i++) {
+			for (var i = 0; i < lengthdiff/rows; i++) {
 				$.each(longs, function(index, val){
 					looping_image_display(longs[index], imagelist);
 				});
