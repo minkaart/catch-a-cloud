@@ -251,7 +251,7 @@
 			$(".images").stop(true);
 			//console.log("stopped");
 			ani_running = 0; 
-			$(".images").empty();
+			$(".images").html("");
 			//console.log("emptied");
 			$(".stop_pause").hide();
 			$("#start_button").show();
