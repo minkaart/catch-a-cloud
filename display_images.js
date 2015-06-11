@@ -499,6 +499,7 @@
 		});
 
 		$("#reset_button").click(function(){
+			pauseanimation(containerArray);
 			imageObjects.length = 0; 
 			load_route();
 		});
