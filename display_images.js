@@ -1,4 +1,4 @@
-/**jQuery library? to animate images in a continuous (infinite) loop - scrolling left across a page
+/**jQuery to animate images in a continuous (infinite) loop - scrolling left across a page
 
 **/
 
@@ -150,21 +150,26 @@
 		function popimageArray(callback){
 			//console.log("calling get_images...");
 			console.log("start is: "+start_val);
-			$.getJSON("get_images.php", 'start='+start_val, function(data){
-				console.log("data 1-30: "+data.first_30);
-				console.log(data.error);
-				on_server = data.total;
-				console.log(data.total);
-				console.log(data.more);
-				more_images = data.more;
-				if (more_images){
-					$("#load_more").show();
-				}
-				else {
-					$("#load_more").hide();
-				}
-				var image_json = $.parseJSON(data.first_30);
-				$.each(image_json, function(key, val){
+			$.ajaxSetup({
+				async: false
+			});
+			console.log("async false");
+
+			$.getJSON("get_images.php", 'start='+start_val)
+				.done(function(data){
+					console.log(data.error);
+					on_server = data.total;
+					console.log(data.total);
+					console.log(data.more);
+					more_images = data.more;
+					if (more_images){
+						$("#load_more").show();
+					}
+					else {
+						$("#load_more").hide();
+					}
+					var image_json = $.parseJSON(data.first_30);
+					$.each(image_json, function(key, val){
 					var imageObject = {
 						"image_ref" : "https://euroclouds.s3.amazonaws.com/"+key,
 						"obj_text" : val
@@ -172,7 +177,16 @@
 
 					imageObjects.push(imageObject);
 					//imageArray.push(key);	
-				});		
+				})
+				.fail(function(){
+					console.log("request failed miserably");
+				});
+
+				$.ajaxSetup({
+						async: true
+					});
+				console.log("async true");
+
 
 				if(callback){
 					if (typeof callback === "function"){
