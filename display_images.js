@@ -155,8 +155,8 @@
 				.done(function(data){
 					console.log(data.error);
 					on_server = data.total;
-					console.log(data.total);
-					console.log(data.more);
+					//console.log(data.total);
+					//console.log(data.more);
 					more_images = data.more;
 					if (more_images){
 						$("#load_more").show();

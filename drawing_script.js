@@ -211,6 +211,11 @@
 
 	//EVENT HANDLERS//
 	j_canvas.on('touchmousedown', function(event){
+		event.preventDefault();
+		j_canvas.on("taphold", function(event){
+			event.preventDefault();
+		});
+
 		console.log(drawing_params);
 		draw_check = true;
 		var off = j_canvas.offset();
