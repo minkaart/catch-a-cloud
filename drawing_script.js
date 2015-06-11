@@ -144,32 +144,64 @@
 
 	}
 
+
+	//copied from clouds.html//
+	function load_add_view(callback){
+		$("#ani_buttons").hide();
+		$(".home_view").hide();
+		$(".landing_view").hide();
+		$(".add_text_view").hide();
+		$(".single_view").hide();
+		$(".about_view").hide();
+		$(".add_view").show();
+		$(".tool").width($(".tool").height());
+		if($(window).width()<$(window).height()){
+			$("#tool_menu").css("top","2%");
+			$("#functions").css("bottom","0%");
+		}
+
+		if(callback){
+			if(typeof callback === "function"){
+				callback();
+			} else {
+				console.log("ERROR: "+callback+" is not a function!");
+			}
+		}
+
+	}
+
 	//PAGE INITIALIZATION && EVENT HANDLERS//
 	function initialize_page(){
-		$("#canvas_holder").show();
-		canvas = $("#my_canvas").get(0);
-		j_canvas = $("#my_canvas");
-		ctx = canvas.getContext('2d');
-		off = j_canvas.offset();
+		load_add_view(function(){
+			canvas = $("#my_canvas").get(0);
+			j_canvas = $("#my_canvas");
+			ctx = canvas.getContext('2d');
+			off = j_canvas.offset();
 
-		set_width();
-		set_height();
-		console.log("height and width set");
-		draw_check = false;
-		drawing_params = {
-			'lineWidth': "8",
-			'lineJoin': 'round',
-			'lineCap': 'round',
-			'strokeStyle': 'blue', 
-			'globalCompositeOperation': 'source-over'
-		};   
-		set_drawing_params(drawing_params, ctx, function(){
-			$('#pencil').addClass("selected_tool");
-			$("#thin").addClass("selected_weight");
-			$("#blue").addClass("selected_color");	
-			console.log('drawing page initialized');
+			set_width();
+			set_height();
+
+			console.log("height and width set");
+			draw_check = false;
+		
+			drawing_params = {
+				'lineWidth': "8",
+				'lineJoin': 'round',
+				'lineCap': 'round',
+				'strokeStyle': 'blue', 
+				'globalCompositeOperation': 'source-over'
+			};   
+		
+			set_drawing_params(drawing_params, ctx, function(){
+				$('#pencil').addClass("selected_tool");
+				$("#thin").addClass("selected_weight");
+				$("#blue").addClass("selected_color");	
+				console.log('drawing page initialized');
+			});
 		});
 	}
+
+	
 
 	$("#add_button").click(function(){
 		initialize_page();
