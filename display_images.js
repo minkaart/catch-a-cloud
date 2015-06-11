@@ -118,16 +118,13 @@
 			
 			var lengthdiff = imagelist.length - shortcontent;
 			var iterations = lengthdiff/rows;
-			console.log("lengthdiff "+lengthdiff);
-			console.log("rows: "+rows);
-			console.log("iterations: "+iterations);
-
-			for (var i = 0; i < lengthdiff; i++) {
+			
+			for (var i = 0; i < iterations; i++) {
 				$.each(longs, function(index, val){
 					looping_image_display(longs[index], imagelist);
 				});
-				console.log("finished populating long");
 			};
+			console.log("finished populating long");
 			var longwidth = checkwidth(longs[longs.length-1]);
 			if(longwidth){
 				do{
