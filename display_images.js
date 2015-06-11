@@ -117,8 +117,10 @@
 			} while (widthcheck)		
 			
 			var lengthdiff = imagelist.length - shortcontent;
+			var iterations = lengthdiff/rows;
+			console.log("iterations: "+iterations);
 
-			for (var i = 0; i < lengthdiff/rows; i++) {
+			for (var i = 0; i < lengthdiff; i++) {
 				$.each(longs, function(index, val){
 					looping_image_display(longs[index], imagelist);
 				});
