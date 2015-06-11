@@ -81,6 +81,7 @@
 	var j_canvas = $("#my_canvas");
 	var ctx = canvas.getContext('2d');
 
+
 	//AJAX variables
 	var imageData; 
 	var imageText; 
@@ -90,6 +91,7 @@
 	//vars hold current and previous mouse positions
 	var mouse = {"x":0, "y":0};
 	var last_mouse = {"x":0, "y":0};
+	var draw_check = false;
 
 	//drawing parameter variable/object
 	var drawing_params = {
@@ -117,6 +119,7 @@
 	function set_drawing_params(params, context){
 		var ctx = context; 
 		$.each(params, function(key, value){
+			console.log(key+":"+value);
 			ctx[key] = value;
 		});
 
@@ -143,6 +146,7 @@
 
 	//EVENT HANDLERS//
 	j_canvas.on('touchmousedown', function(event){
+		draw_check = true;
 		var off = j_canvas.offset();
 		last_mouse.x = (event.pageX - off.left);
 		last_mouse.y = (event.pageY - off.top);
@@ -229,16 +233,23 @@
 		$("#red").addClass("selected_color");
 	});
 
+
+	//UI EVENTS - CLOSE, SAVE, CLEAR//
 	$('#reset').click(function(){
 		ctx.clearRect(0,0,canvas.width,canvas.height); 
 	});
 
 	$("#save").click(function(){
-		imageData = canvas.toDataURL("image/png");
-		console.log(imageData);
-		ctx.clearRect(0,0,canvas.width,canvas.height);
-		$(".add_text_view").show();
-		$(".add_view").hide();
+		if (draw_check){
+			imageData = canvas.toDataURL("image/png");
+			//console.log(imageData);
+			ctx.clearRect(0,0,canvas.width,canvas.height);
+			$(".add_text_view").show();
+			$(".add_view").hide();
+		} else {
+			alert("Please draw something first!");
+		}
+		
 	});
 
 	$("#canvas_close").click(function(){
@@ -252,20 +263,28 @@
 	//TEXT INPUT FORM HANDLERS//
 
 	$("#text_input").submit(function(event){
-		var user_text = $('#user_text').val();
-		$("#user_text").val('');
 		event.preventDefault();
-		$.ajax({
-			type : "POST",
-			contentType: "application/x-www-form-urlencoded",
-			url: "saveimage.php",
-			data: {
-				img : imageData,
-				text : user_text
-			}, 
+		if (imageData === null || draw_check === false){
+			console.log("Error: data appears to have been submitted already");
+			return; 
+		} else {
+			imageText = $('#user_text').val();
+			$("#user_text").val('');
+			
+			$.ajax({
+				type : "POST",
+				contentType: "application/x-www-form-urlencoded",
+				url: "saveimage.php",
+				data: {
+					img : imageData,
+					text : user_text
+				}, 
 		}).done(function(o){
+			imageText = "";
+			imageData = null;
 			console.log("POST image SUCCESS!!");
-		});
+			});
+		}
 	});
 
 	$("#text_close").click(function(){

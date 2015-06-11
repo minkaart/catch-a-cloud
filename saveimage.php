@@ -24,9 +24,6 @@ $s3->registerStreamWrapper();
 			echo "error uploading image file";
 		}
 
-
-	
-
 	//creates JSON formatting for image file name
 	$text = $_POST['text'];
 	$text = str_replace('"',"&quot;", $text);
@@ -42,10 +39,9 @@ $s3->registerStreamWrapper();
 	fwrite($json_handle, $all_img);
 	fclose($json_handle);
 	
-
-	
-
 	//success check
 	print $success ? $file : 'Unable to save the file.';
+
+	unset($_POST);
 
 ?>
