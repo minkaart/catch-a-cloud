@@ -116,12 +116,21 @@
 	};
 	
 	//sets drawing parameters
-	function set_drawing_params(params, context){
+	function set_drawing_params(params, context, callback){
 		var ctx = context; 
 		$.each(params, function(key, value){
 			console.log(key+":"+value);
 			ctx[key] = value;
 		});
+
+		if(callback){
+				if (typeof callback === "function"){
+					callback();
+				}
+				else {
+					console.log("type error"+callback+"is not a function");
+				}
+			}
 
 	}
 
@@ -136,12 +145,21 @@
 	}
 
 	//PAGE INITIALIZATION && EVENT HANDLERS//
-	set_drawing_params(drawing_params, ctx);
-	set_width();
-	set_height();
-	$('#pencil').addClass("selected_tool");
-	$("#thin").addClass("selected_weight");
-	$("#blue").addClass("selected_color");
+	function initialize_page(){
+		set_drawing_params(drawing_params, ctx, function(){
+			set_width();
+			set_height();
+			$('#pencil').addClass("selected_tool");
+			$("#thin").addClass("selected_weight");
+			$("#blue").addClass("selected_color");	
+			console.log('drawing page initialized');
+		});
+	}
+
+	$("#add_button").click(function(){
+		initialize_page();
+	});
+	
 
 
 	//EVENT HANDLERS//
