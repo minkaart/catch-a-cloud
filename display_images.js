@@ -494,6 +494,7 @@
 		$(".launch").on("click", launch);
 
 		$("#text_input").submit(function(){
+			console.log("load_route");
 			load_route();
 		});
 

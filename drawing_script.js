@@ -235,6 +235,7 @@
 
 	$("#save").click(function(){
 		imageData = canvas.toDataURL("image/png");
+		console.log(imageData);
 		ctx.clearRect(0,0,canvas.width,canvas.height);
 		$(".add_text_view").show();
 		$(".add_view").hide();
@@ -252,6 +253,7 @@
 
 	$("#text_input").submit(function(event){
 		var user_text = $('#user_text').val();
+		$("#user_text").val('');
 		event.preventDefault();
 		$.ajax({
 			type : "POST",
@@ -262,7 +264,7 @@
 				text : user_text
 			}, 
 		}).done(function(o){
-			$("#user_text").val('');
+			console.log("POST image SUCCESS!!");
 		});
 	});
 
