@@ -349,7 +349,7 @@
 				data: {
 					img : imageData,
 					text : imageText
-				}, 
+				} 
 		}).done(function(o){
 			imageText = "";
 			imageData = null;
