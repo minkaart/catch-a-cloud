@@ -52,7 +52,7 @@
 				popimageArray(function(){
 					calculaterows();
 					if(rows === 1){
-						px_rate = $(window).width(); 
+						px_rate = $(window).width()/2; 
 					}
 					populatedivs(containerArray, imageObjects, function (){
 						for (var i =0; i< containerArray.length; i+=2){
