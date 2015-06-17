@@ -44,24 +44,27 @@
 				console.log("updating");
 				update_needed = false; 
 				imageObjects.length = 0;
-				console.log("clear image objects: "+imageObjects);
 				containerArray.length = 0;
-				$(".images").empty();
 				$("#images").empty();
+				$("#images").css({
+					"overflow-x" : "visible",
+					"overflow-y" : "hidden"
+				});
 
 				popimageArray(function(){
-					calculaterows();
-					if(rows === 1){
-						px_rate = $(window).width()/2; 
-					}
+					calculaterows(function(){
+						if(rows === 1){
+							px_rate = $(window).width()/2; 
+						});
+					
 					populatedivs(containerArray, imageObjects, function (){
 						for (var i =0; i< containerArray.length; i+=2){
 							update_vars(containerArray[i], containerArray[i+1]);
 							$(containerArray[i]).css("left", "0px");
 							animatediv1(containerArray[i], containerArray[i+1], $(window).width());
 						}
-						$("#start_button").hide();
-						$(".stop_pause").show();
+					$("#start_button").hide();
+					$(".stop_pause").show();
 
 					});
 				});	
@@ -70,10 +73,12 @@
 			{
 				console.log("initiating");
 				popimageArray(function(){
-					calculaterows();
-					if(rows === 1){
-						px_rate = 1000; 
-					}
+					calculaterows(function(){
+						if(rows === 1){
+							px_rate = $(window).width()/2; 
+						}
+					});
+				
 					initiatepage(containerArray, imageObjects);
 				});	
 				$("#start_button").hide();
@@ -201,7 +206,7 @@
 		As img_height and width are set here -- creates square image containers and forces two rows
 		in landscape and 1 in portrait
 		RETURNS IMAGE WIDTH as calculated based on height variables**/ 
-		function calculaterows (){
+		function calculaterows (callback){
 			var win_width = $(window).width(); //holds the width of the browser window
 			var win_height = $(window).height()*.7; 
 			rows = 0;
@@ -217,6 +222,15 @@
 
 			var divs = rows*2;
 			var diff = win_height - img_height*rows;
+
+			if(callback){
+				if (typeof callback === "function"){
+					callback();
+				}
+				else {
+					console.log("type error"+callback+"is not a function");
+				}
+			}
 
 			console.log("rows: "+rows);
 			//creates container divs for images
@@ -303,7 +317,7 @@
 				$("#images").scrollLeft(0);
 				$("#images").css({
 						"height" : "",
-						"overflow" : ""
+						"overflow" : "visible"
 					});
 				$("#images").empty();
 				load_route();
