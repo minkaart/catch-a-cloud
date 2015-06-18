@@ -285,7 +285,7 @@
 
 			$("#images").css({
 				"height" : "72%",
-				"overflow-x" : "auto",
+				"overflow-x" : "scroll",
 				"overflow-y" : "hidden"
 			});
 			
@@ -319,7 +319,7 @@
 				console.log("resetting overflow");
 				$("#images").css({
 						"height" : "",
-						"overflow-x" : "visible",
+						"overflow-x" : "initial",
 						"overflow-y" : "hidden"
 					});
 				$("#images").empty();
