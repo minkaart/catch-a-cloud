@@ -6,6 +6,7 @@ $bucket = getenv('S3_BUCKET')?: die('No "S3 Bucket" config var found in env!');
 $s3->registerStreamWrapper();
 
 $data = array('total' => 0, 'first_30' => "", 'more' => false, 'error' => "error: ");
+$dir = "s3://".$bucket."/images/";
 
 try {
 	$image_json = file_get_contents('s3://'.$bucket.'/image_JSON.json');
@@ -13,9 +14,22 @@ try {
 	$data[error] = $data[error].$e;
 	}
 
-$images = json_decode($image_json, true);
-$data[total] = count($images); 
+try {
+	$image_list = scandir($dir);	
+} catch (Exception $e) {
+	$data[error] = $data[error].$e;
+}
 
+if($image_list){
+	$img_number = count($image_list);
+}
+else {
+	$img_number = -1; 
+}
+
+$images = json_decode($image_json, true);
+
+$data[total] = $img_number; 
 
 if ($data[total] > 30) {
 	if($_GET['start']){
