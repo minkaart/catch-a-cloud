@@ -47,7 +47,7 @@
 				containerArray.length = 0;
 				$("#images").empty();
 				$("#images").css({
-					"overflow-x" : "visible",
+					"overflow-x" : "hidden",
 					"overflow-y" : "hidden"
 				});
 
