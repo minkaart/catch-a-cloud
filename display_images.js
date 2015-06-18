@@ -319,7 +319,7 @@
 				console.log("resetting overflow");
 				$("#images").css({
 						"height" : "",
-						"overflow-x" : "initial",
+						"overflow-x" : "hidden",
 						"overflow-y" : "hidden"
 					});
 				$("#images").empty();
