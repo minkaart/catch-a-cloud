@@ -13,8 +13,6 @@ try {
 	$data[error] = $data[error].$e;
 	}
 
-
-
 $images = json_decode($image_json, true);
 $data[total] = count($images); 
 

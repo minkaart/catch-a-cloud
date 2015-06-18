@@ -316,9 +316,11 @@
 						"left","");
 				}
 				$("#images").scrollLeft(0);
+				console.log("resetting overflow");
 				$("#images").css({
 						"height" : "",
-						"overflow" : "visible"
+						"overflow-x" : "visible",
+						"overflow-y" : "hidden"
 					});
 				$("#images").empty();
 				load_route();
