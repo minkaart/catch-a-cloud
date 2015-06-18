@@ -520,7 +520,8 @@
 		});
 
 		$("#reset_button").click(function(){
-			pauseanimation(containerArray);
+			$(".images").stop(true);
+			$("#images").empty();
 			imageObjects.length = 0; 
 			load_route();
 		});
