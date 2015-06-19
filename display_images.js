@@ -311,17 +311,18 @@
 			//add listener for start button? 
 			$("#start_button").click(function(){
 				console.log("running embedded start");
+				$("#images").scrollLeft(0);
 				for(var i=0; i < containerlist.length; i+=2){
 					$(containerlist[i]).css(
-						"left","");
+						"left",$(window).width());
 				}
-				$("#images").scrollLeft(0);
+				$("#images").empty();
+				imageObjects.length = 0;
 				load_route();
 				$("#start_button").hide();
 				$(".stop_pause").show();
 				$("#start_button").off("click");
 			});
-			
 		}
 
 		function pauseanimation(containerlist){
@@ -524,6 +525,7 @@
 			$(".images").each(function(){
 				reset_div(this);
 			});
+			start_val = 1; 
 			$("#images").empty();
 			imageObjects.length = 0; 
 			load_route();
