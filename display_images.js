@@ -421,6 +421,7 @@
 		function update_vars(div1, div2){
 			div1_width = $(window).width(); //should be just < or = win_width -- verify possible removal
 			div2_width = $(div2).width();
+			console.log("update div 2 width: "+div2_width);
 			//win_width = $(window).width();
 					
 			//first animation calculations
