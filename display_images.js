@@ -419,7 +419,7 @@
 		//function to update width and animation duration variables	
 		//NOTE: Consider moving animation duration vars out of here 
 		function update_vars(div1, div2){
-			div1_width = $(div1).width(); //should be just < or = win_width -- verify possible removal
+			div1_width = $(window).width(); //should be just < or = win_width -- verify possible removal
 			div2_width = $(div2).width();
 			//win_width = $(window).width();
 					
@@ -434,8 +434,7 @@
 
 		//sets the "left" property of the target div to reset location 
 		function reset_div (targetdiv){
-			targetdiv = $(targetdiv);
-			targetdiv.css("left", $(window).width());
+			$(targetdiv).css("left", $(window).width());
 		}
 
 		function apply_animations(div1, div2){
@@ -521,6 +520,9 @@
 
 		$("#reset_button").click(function(){
 			$(".images").stop(true, false);
+			$(".images").each(function(){
+				reset_div(this);
+			});
 			$("#images").empty();
 			imageObjects.length = 0; 
 			load_route();
