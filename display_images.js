@@ -275,7 +275,7 @@
 		//stops animations 
 		function stopanimation(containerlist, imagelist){
 			//stop animation, clear current images, 
-			$(".images").stop(true);
+			$(".images").stop(true, false);
 			//console.log("stopped");
 			ani_running = 0; 
 			$(".images").html("");
@@ -331,7 +331,7 @@
 			}
 
 			//stop animation 
-			$(".images").stop(true);
+			$(".images").stop(true, false);
 			
 			//adjust display
 			$(".stop_pause").hide();
@@ -520,7 +520,7 @@
 		});
 
 		$("#reset_button").click(function(){
-			$(".images").stop(true);
+			$(".images").stop(true, false);
 			$("#images").empty();
 			imageObjects.length = 0; 
 			load_route();
