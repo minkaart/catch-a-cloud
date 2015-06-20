@@ -280,31 +280,29 @@
 
 		//stops animations 
 		function stopanimation(containerlist, imagelist){
-			//stop animation, clear current images, 
-			$(".images").stop(true, false);
-			//console.log("stopped");
-			ani_running = 0; 
-			$(".images").html("");
-			//console.log("emptied");
 			$(".stop_pause").hide();
 			$("#start_button").show();
 
+			//stop animation, clear current images, 
+			$(".images").stop(true, false);
+			ani_running = 0; 
+			//empty all divs of class images (clears animatable divs but not #image holder)
+			$(".images").empty();	
 			$("#images").css({
 				"height" : "72%",
 				"overflow-x" : "scroll",
 				"overflow-y" : "hidden"
 			});
 			
-			//console.log(imagelist);
-
 			//move shorts to left : 0
+			//hides longs
 			for(var i=0; i < containerlist.length; i+=2){
 				$(containerlist[i]).css(
-				"left","0px");
+					"left","0px");
+				$(containerlist[i+1]).hide();
 			}
 
 			//populate shorts with all content
-			console.log("image list first: "+imageObjects[0].image_ref);
 			var total_added = 0; 
 			do {
 				for (var i=0; i<containerlist.length; i+=2){
@@ -314,16 +312,18 @@
 				total_added++;
 			}while (total_added < imagelist.length/rows)
 
-			//add listener for start button? 
+			//add start button functionality
 			$("#start_button").click(function(){
 				console.log("running embedded start");
 				$("#images").scrollLeft(0);
+				//reshow containers
 				for(var i=0; i < containerlist.length; i+=2){
-					$(containerlist[i]).css(
-						"left",$(window).width());
+					$(containerlist[i+1]).show();
 				}
+				//empty everything
 				$("#images").empty();
 				imageObjects.length = 0;
+				//re-initialize page
 				load_route();
 				$("#start_button").hide();
 				$(".stop_pause").show();
