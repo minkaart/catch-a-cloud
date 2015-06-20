@@ -218,6 +218,7 @@
 			var win_width = $(window).width(); //holds the width of the browser window
 			var win_height = $(window).height()*.7; 
 			rows = 0;
+			containerArray.length = 0;
 			
 			if ($(window).height() > $(window).width()){ //change here and below to change image size
 				img_width = $(window).width();
