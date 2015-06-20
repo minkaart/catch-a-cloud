@@ -139,7 +139,7 @@
 				});
 			};
 			console.log("finished populating long");
-			console.log("long width: "+$(longs[i]).width());
+			console.log("long width: "+$(longs[0]).width());
 			var longwidth = checkwidth(longs[longs.length-1]);
 			if(longwidth){
 				do{
