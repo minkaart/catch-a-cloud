@@ -485,7 +485,8 @@
 		function animatediv2(target1, target2, ani_width){
 			var div2_first_run = true; 
 			var goal_left = $(window).width() - $(target2).width();
-			console.log("div 2: "+div2_width);
+			console.log("div 2: "+$(target2).width());
+			console.log("goal_left: "+goal_left);
 			$(target2).animate({left : ["-="+ani_width, "linear"]},
 				{
 				queue: true,
