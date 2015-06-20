@@ -158,6 +158,7 @@
 
 			if(callback){
 				if (typeof callback === "function"){
+					console.log("populate divs callback");
 					callback();
 				}
 				else {
