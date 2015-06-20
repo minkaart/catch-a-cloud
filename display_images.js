@@ -447,10 +447,10 @@
 						if(value_left < 1){
 							if(div1_first_run){
 								div1_first_run = false;
-								animatediv2(target1, target2, $(target2).width()+$(window).width());	
+								animatediv2(target1, target2, $(target2).outerWidth()+$(window).width());	
 								ani_running = 3; 
 								console.log("animating target 2");
-								console.log("target 2 width = "+$(target2).width());
+								console.log("target 2 width = "+$(target2).outerWidth());
 							};
 						};
 					},
@@ -465,19 +465,19 @@
 
 		function animatediv2(target1, target2, ani_width){
 			var div2_first_run = true; 
-			var goal_left = $(window).width() - $(target2).width();
-			console.log("div 2: "+$(target2).width());
+			var goal_left = $(window).width() - $(target2).outerWidth();
+			console.log("div 2: "+$(target2).outerWidth());
 			console.log("goal_left: "+goal_left);
 			$(target2).animate({left : ["-="+ani_width, "linear"]},
 				{
 				queue: true,
 				duration: (ani_width/px_rate)*2000, 
 					step: function(target_left){
-						console.log("div 2 left: "+target_left);
 						if(target_left < goal_left){
 							if(div2_first_run){
 								div2_first_run = false;
 								animatediv1(target1, target2, $(window).width()*2);
+								console.log("div 2 left: "+target_left);
 								console.log("animating target 1");
 							};
 						};
