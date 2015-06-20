@@ -354,14 +354,14 @@
 				var left = parseInt($(containerlist[0]).css("left"));
 				var travelled = $(window).width() - left; 
 				var remaining = $(window).width()*2 - travelled; 
-				/**console.log("travelled: "+travelled+
+				console.log("travelled: "+travelled+
 					"remaining: "+remaining+"left: "+left);**/
 
 				//start handler
 				//if 1, call 1 || if 3, call 1
 				$("#start_button").click(function(){
 					for(i= 0; i < containerlist.length; i+=2){
-						//console.log("calling animation 1 on "+containerlist[i]);
+						console.log("calling animation 1 on "+containerlist[i]);
 						animatediv1(containerlist[i], containerlist[i+1], remaining);
 					}
 				});
@@ -371,13 +371,13 @@
 				var left = parseInt($(containerlist[1]).css("left"));
 				var travelled = $(window).width() - left; 
 				var remaining = ($(containerlist[1]).width()+$(window).width()) - travelled; 
-				/**console.log("travelled: "+travelled+
+				console.log("travelled: "+travelled+
 					"remaining: "+remaining+"left: "+left);**/
 
 				//if 2, call 2
 				$("#start_button").click(function(){
 					for(i= 0; i < containerlist.length; i+=2){
-						//console.log("calling animation 2 on "+containerlist[i]);
+						console.log("calling animation 2 on "+containerlist[i]);
 						animatediv2(containerlist[i], containerlist[i+1], remaining);
 					}
 				});
@@ -391,11 +391,6 @@
 				$(".stop_pause").show();
 				$("#start_button").hide();
 				$("#start_button").off("click");
-				//considering overflow on paused animation ... will require back-filling divs 
-				/**$("#images").css({
-				"height" : $(window).height()-50+"px",
-				"overflow" : "auto"
-				});**/
 			});
 		}
 
