@@ -59,6 +59,7 @@
 							console.log("update: animating "+containerArray[i]+" & "+containerArray[i+1]);
 							console.log("second div width: "+$(containerArray[i+1]).width());
 							animatediv1(containerArray[i], containerArray[i+1], $(window).width()*2);
+							ani_running = 1;
 						}
 					$("#start_button").hide();
 					$(".stop_pause").show();
@@ -348,7 +349,7 @@
 			$("#start_button").show();
 			$(".launch").off("click", launch);
 
-			//check for ani_running at 1, 2, or 3
+			//check for ani_running at 1, 2, 3, or 4
 			if(ani_running%2 !== 0 && ani_running !== 0){ //if ani_running is 1 or 3 and not 0
 				// calculate new target/ani_distance for 1 based on left
 				var left = parseInt($(containerlist[0]).css("left"));
@@ -366,7 +367,7 @@
 					}
 				});
 
-			} else if (ani_running === 2) {
+			} else if (ani_running%2 == 0 && ani_running !== 0) { //if ani_running is 2 or 4
 				// calculate new target/ani_distance for 2 based on left 
 				var left = parseInt($(containerlist[1]).css("left"));
 				var travelled = $(window).width() - left; 
@@ -374,7 +375,7 @@
 				console.log("travelled: "+travelled+
 					"remaining: "+remaining+"left: "+left);
 
-				//if 2, call 2
+				//if 2, call 2 || if 4, call 2
 				$("#start_button").click(function(){
 					for(i= 0; i < containerlist.length; i+=2){
 						console.log("calling animation 2 on "+containerlist[i]);
@@ -428,10 +429,10 @@
 		function apply_animations(div1, div2){
 			console.log("applying animations to: "+div1+" & "+div2);
 			animatediv1(div1, div2, $(window).width()*2);
+			ani_running =1;
 		}
 
 		function animatediv1(target1, target2, ani_width){
-			ani_running = 1;
 			var div1_first_run = true; 
 			$(target1).animate({left : ["-="+ani_width, "linear"]},
 				{
@@ -441,7 +442,7 @@
 						if(value_left < 1){
 							if(div1_first_run){
 								div1_first_run = false;
-								animatediv2(target1, target2, $(target2).width()+$(window).width());	
+								animatediv2(target1, target2, $(target2).width()+ani_width/2);	
 								ani_running = 3; 
 								console.log("animating target 2");
 								console.log("target 2 width = "+$(target2).width());
@@ -471,12 +472,14 @@
 							if(div2_first_run){
 								div2_first_run = false;
 								animatediv1(target1, target2, $(window).width()*2);
+								ani_running = 4; 
 								console.log("div 2 left: "+target_left);
 								console.log("animating target 1");
 							};
 						};
 					},	
 					complete: function(){
+						ani_running = 1;
 						console.log("detecting update?...");
 						if(update_needed){
 							console.log("update detected");
