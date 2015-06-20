@@ -55,10 +55,10 @@
 					
 					populatedivs(containerArray, imageObjects, function (){
 						for (var i =0; i< containerArray.length; i+=2){
-							$(containerArray[i]).css("left", "0px");
+							$(containerArray[i]).css("left", $(window).width());
 							console.log("update: animating "+containerArray[i]+" & "+containerArray[i+1]);
 							console.log("second div width: "+$(containerArray[i+1]).width());
-							animatediv1(containerArray[i], containerArray[i+1], $(window).width());
+							animatediv1(containerArray[i], containerArray[i+1], $(window).width()*2);
 						}
 					$("#start_button").hide();
 					$(".stop_pause").show();
