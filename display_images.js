@@ -372,7 +372,7 @@
 				var travelled = $(window).width() - left; 
 				var remaining = ($(containerlist[1]).width()+$(window).width()) - travelled; 
 				console.log("travelled: "+travelled+
-					"remaining: "+remaining+"left: "+left);**/
+					"remaining: "+remaining+"left: "+left);
 
 				//if 2, call 2
 				$("#start_button").click(function(){
