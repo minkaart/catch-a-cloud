@@ -355,7 +355,7 @@
 				var travelled = $(window).width() - left; 
 				var remaining = $(window).width()*2 - travelled; 
 				console.log("travelled: "+travelled+
-					"remaining: "+remaining+"left: "+left);**/
+					"remaining: "+remaining+"left: "+left);
 
 				//start handler
 				//if 1, call 1 || if 3, call 1
