@@ -6,8 +6,6 @@
 	$(document).ready(function(){
 		var img_width = 0; //holds the width of the image (initiated in calculaterows())		
 		var rows = 0; //number of rows to display images
-		var ani1_duration = 0; //holds animation length in seconds*1000 (for millisec)
-		var ani2_duration = 0;
 		var ani_interval = 0; //holds the animation duration for looping (Timeout)
 		var px_rate = 100; //# pixels the animation should travel per second
 
@@ -59,6 +57,7 @@
 						for (var i =0; i< containerArray.length; i+=2){
 							$(containerArray[i]).css("left", "0px");
 							console.log("update: animating "+containerArray[i]+" & "+containerArray[i+1]);
+							console.log("second div width: "+containerArray[i+1].width());
 							animatediv1(containerArray[i], containerArray[i+1], $(window).width());
 						}
 					$("#start_button").hide();
@@ -447,10 +446,10 @@
 						if(value_left < 1){
 							if(div1_first_run){
 								div1_first_run = false;
-								animatediv2(target1, target2, $(target2).outerWidth()+$(window).width());	
+								animatediv2(target1, target2, $(target2).width()+$(window).width());	
 								ani_running = 3; 
 								console.log("animating target 2");
-								console.log("target 2 width = "+$(target2).outerWidth());
+								console.log("target 2 width = "+$(target2).width());
 							};
 						};
 					},
@@ -465,8 +464,8 @@
 
 		function animatediv2(target1, target2, ani_width){
 			var div2_first_run = true; 
-			var goal_left = $(window).width() - $(target2).outerWidth();
-			console.log("div 2: "+$(target2).outerWidth());
+			var goal_left = $(window).width() - $(target2).width();
+			console.log("div 2: "+$(target2).width());
 			console.log("goal_left: "+goal_left);
 			$(target2).animate({left : ["-="+ani_width, "linear"]},
 				{
