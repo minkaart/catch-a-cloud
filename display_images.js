@@ -348,6 +348,7 @@
 			$(".stop_pause").hide();
 			$("#start_button").show();
 			$(".launch").off("click", launch);
+			console.log("animation state: "+ani_running);
 
 			//check for ani_running at 1, 2, 3, or 4
 			if(ani_running%2 !== 0 && ani_running !== 0){ //if ani_running is 1 or 3 and not 0
@@ -362,6 +363,7 @@
 				//if 1, call 1 || if 3, call 1
 				$("#start_button").click(function(){
 					for(i= 0; i < containerlist.length; i+=2){
+						console.log("start: animation state: "+ani_running);
 						console.log("calling animation 1 on "+containerlist[i]);
 						animatediv1(containerlist[i], containerlist[i+1], remaining);
 					}
@@ -378,6 +380,7 @@
 				//if 2, call 2 || if 4, call 2
 				$("#start_button").click(function(){
 					for(i= 0; i < containerlist.length; i+=2){
+						console.log("start: animation state: "+ani_running);
 						console.log("calling animation 2 on "+containerlist[i]);
 						animatediv2(containerlist[i], containerlist[i+1], remaining);
 					}
