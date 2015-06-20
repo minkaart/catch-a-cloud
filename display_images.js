@@ -96,6 +96,7 @@
 					"overflow-y" : "hidden"
 			});
 		
+			console.log(containerlist);
 			populatedivs(containerlist, imagelist);
 
 			for (var i = 0; i < containerlist.length; i+=2) {
