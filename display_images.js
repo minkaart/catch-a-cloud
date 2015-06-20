@@ -6,13 +6,9 @@
 	$(document).ready(function(){
 		var img_width = 0; //holds the width of the image (initiated in calculaterows())		
 		var rows = 0; //number of rows to display images
-		var div1_width = 0; //holds width of first animated series (gap fill)
-		var div2_width = 0; //holds width of second animated series - remaining images
 		var ani1_duration = 0; //holds animation length in seconds*1000 (for millisec)
 		var ani2_duration = 0;
 		var ani_interval = 0; //holds the animation duration for looping (Timeout)
-		var ani1_width = 0; // twice window width (first animation travel distance)
-		var ani2_width = 0;
 		var px_rate = 100; //# pixels the animation should travel per second
 
 		var start_val = 1; //holds the number of php requests sent to server for loading more images
@@ -60,7 +56,6 @@
 					
 					populatedivs(containerArray, imageObjects, function (){
 						for (var i =0; i< containerArray.length; i+=2){
-							update_vars(containerArray[i], containerArray[i+1]);
 							$(containerArray[i]).css("left", "0px");
 							console.log("update: animating "+containerArray[i]+" & "+containerArray[i+1]);
 							animatediv1(containerArray[i], containerArray[i+1], $(window).width());
@@ -101,7 +96,6 @@
 			populatedivs(containerlist, imagelist);
 
 			for (var i = 0; i < containerlist.length; i+=2) {
-				update_vars(containerlist[i], containerlist[i+1]); //updating vars for containers in the event of stop or reset
 				apply_animations(containerlist[i], containerlist[i+1]);
 			};
 			
@@ -427,23 +421,6 @@
 			}
 		}
 
-		//function to update width and animation duration variables	
-		//NOTE: Consider moving animation duration vars out of here 
-		function update_vars(div1, div2){
-			div1_width = $(window).width(); //should be just < or = win_width -- verify possible removal
-			div2_width = $(div2).width();
-			console.log("update div 2 width: "+div2_width);
-			//win_width = $(window).width();
-					
-			//first animation calculations
-			ani1_width = $(window).width()*2; //first animation travel distance
-			//ani1_duration = (ani1_width/px_rate)*2000; 
-
-			//second animation calculations
-			ani2_width = div2_width+$(window).width();
-			//ani2_duration = (ani2_width/px_rate)*2000; 
-		}
-
 		//sets the "left" property of the target div to reset location 
 		function reset_div (targetdiv){
 			$(targetdiv).css("left", $(window).width());
@@ -451,13 +428,11 @@
 
 		function apply_animations(div1, div2){
 			console.log("applying animations to: "+div1+" & "+div2);
-			update_vars(div1, div2);
 			animatediv1(div1, div2, $(window).width()*2);
 		}
 
 		function animatediv1(target1, target2, ani_width){
 			ani_running = 1;
-			update_vars(target1, target2);
 			var div1_first_run = true; 
 			$(target1).animate({left : ["-="+ani_width, "linear"]},
 				{
