@@ -41,6 +41,7 @@
 				update_needed = false; 
 				imageObjects.length = 0;
 				containerArray.length = 0;
+				$(".images").stop(true, false);
 				$("#images").empty();
 				$("#images").css({
 					"overflow-x" : "hidden",
@@ -557,6 +558,7 @@
 		});
 
 		$("#load_more").click(function(){
+			console.log("load more clicked");
 			start_val++;
 			load_route();
 		});
