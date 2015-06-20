@@ -62,6 +62,7 @@
 						for (var i =0; i< containerArray.length; i+=2){
 							update_vars(containerArray[i], containerArray[i+1]);
 							$(containerArray[i]).css("left", "0px");
+							console.log("update: animating "+containerArray[i]+" & "+containerArray[i+1]);
 							animatediv1(containerArray[i], containerArray[i+1], $(window).width());
 						}
 					$("#start_button").hide();
@@ -468,6 +469,7 @@
 								animatediv2(target1, target2, $(target2).width()+$(window).width());	
 								ani_running = 3; 
 								console.log("animating target 2");
+								console.log("target 2 width = "+$(target2).width());
 							};
 						};
 					},
