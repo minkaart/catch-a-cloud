@@ -386,7 +386,6 @@
 				console.log("error: ani_running undefined or invalid: ani_running: "+ani_running);
 			}
 
-
 			$("#start_button").click(function(){
 				//console.log("calling reset start functions");
 				$(".stop_pause").show();
@@ -507,11 +506,6 @@
 		};
 
 		$(".launch").on("click", launch);
-
-		$("#text_input").submit(function(){
-			console.log("load_route");
-			load_route();
-		});
 
 		$("#reset_button").click(function(){
 			$(".images").stop(true, false);
