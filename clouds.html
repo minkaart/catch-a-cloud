@@ -16,8 +16,12 @@
 
 	load_landing_view();
 
-	alert("user agent: "+navigator.userAgent);
-
+	if (navigator.userAgent.indexOf("Firefox") <= 0){
+		alert("user agent Firefox");
+	} else if (navigator.userAgent.indexOf("MSIE") <= 0){
+		alert("user agent IE");
+	}
+	
 	function load_home_view(){
 		$("#ani_buttons").show();
 		$("#images").show(); //trying add
