@@ -263,6 +263,10 @@
 
 		//checks if new images have appeared on server
 		function checkforupdate(){
+			if (update_needed){
+				return ; 				
+			}
+
 			console.log("checking for update");
 			var images_in_file = 0;
 
@@ -468,6 +472,7 @@
 				queue: true,
 				duration: (ani_width/px_rate)*2000, 
 					step: function(target_left){
+						console.log("div 2 left: "+target_left);
 						if(target_left < goal_left){
 							if(div2_first_run){
 								div2_first_run = false;
