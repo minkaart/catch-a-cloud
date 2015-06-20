@@ -88,12 +88,18 @@
 		}
 
 		function initiatepage(containerlist, imagelist) {
+			//resetting variables that may have been overwritten (in the event of stop/start or reset)
 			more_images = false;
 			start_val = 1;
+			$("#images").css({
+					"overflow-x" : "hidden",
+					"overflow-y" : "hidden"
+			});
 		
 			populatedivs(containerlist, imagelist);
 
 			for (var i = 0; i < containerlist.length; i+=2) {
+				update_vars(containerlist[i], containerlist[i+1]); //updating vars for containers in the event of stop or reset
 				apply_animations(containerlist[i], containerlist[i+1]);
 			};
 			
