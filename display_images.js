@@ -356,6 +356,7 @@
 				var left = parseInt($(containerlist[0]).css("left"));
 				var travelled = $(window).width() - left; 
 				var remaining = $(window).width()*2 - travelled; 
+				ani_running = 0;
 				console.log("travelled: "+travelled+
 					"remaining: "+remaining+"left: "+left);
 
@@ -376,6 +377,8 @@
 				var remaining = ($(containerlist[1]).width()+$(window).width()) - travelled; 
 				console.log("travelled: "+travelled+
 					"remaining: "+remaining+"left: "+left);
+
+				ani_running = 0;
 
 				//if 2, call 2 || if 4, call 2
 				$("#start_button").click(function(){
