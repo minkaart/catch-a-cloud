@@ -356,7 +356,7 @@
 				var left = parseInt($(containerlist[0]).css("left"));
 				var travelled = $(window).width() - left; 
 				var remaining = $(window).width()*2 - travelled; 
-				ani_running = 0;
+				
 				console.log("travelled: "+travelled+
 					"remaining: "+remaining+"left: "+left);
 
@@ -370,6 +370,18 @@
 					}
 				});
 
+				if(ani_running == 1){
+					$("#start_button").click(function(){
+						ani_running = 1;
+					});
+				} else {
+					$("#start_button").click(function(){
+						ani_running = 3;
+					});
+				}
+
+				ani_running = 0;
+
 			} else if (ani_running%2 == 0 && ani_running !== 0) { //if ani_running is 2 or 4
 				// calculate new target/ani_distance for 2 based on left 
 				var left = parseInt($(containerlist[1]).css("left"));
@@ -377,8 +389,6 @@
 				var remaining = ($(containerlist[1]).width()+$(window).width()) - travelled; 
 				console.log("travelled: "+travelled+
 					"remaining: "+remaining+"left: "+left);
-
-				ani_running = 0;
 
 				//if 2, call 2 || if 4, call 2
 				$("#start_button").click(function(){
@@ -388,6 +398,19 @@
 						animatediv2(containerlist[i], containerlist[i+1], remaining);
 					}
 				});
+
+				if(ani_running == 2){
+					$("#start_button").click(function(){
+						ani_running = 2;
+					});
+				} else {
+					$("#start_button").click(function(){
+						ani_running = 4;
+					});
+				}
+
+
+				ani_running = 0;
 		
 			} else {
 				console.log("error: ani_running undefined or invalid: ani_running: "+ani_running);
@@ -475,7 +498,10 @@
 				duration: (ani_width/px_rate)*2000, 
 					step: function(target_left){
 						if(target_left < goal_left){
-							if(div2_first_run){
+							if(update_needed){
+									console.log("update detected");
+									load_route();
+								} else if(div2_first_run){
 								div2_first_run = false;
 								animatediv1(target1, target2, $(window).width()*2);
 								ani_running = 4; 
@@ -487,15 +513,8 @@
 					complete: function(){
 						ani_running = 1;
 						console.log("detecting update?...");
-						if(update_needed){
-							console.log("update detected");
-							load_route();
-						}
-						else {
-							reset_div(target2);
-							div2_first_run = true; 
-						};
-						
+						reset_div(target2);
+						div2_first_run = true; 						
 					}
 				});
 			
