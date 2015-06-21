@@ -122,9 +122,9 @@
 
 	function fontsize() {
 		if ($(window).width() < $(window).height()){
-			$("body").css("font-size", $(window).height()*.1);
+			$("body").css("font-size", $(window).height()*.016);
 		} else {
-			$("body").css("font-size", $(window).height()*.04);
+			$("body").css("font-size", $(window).height()*.03);
 		}	
 	}
 	
@@ -134,10 +134,6 @@
 		$(".tool").width($(".tool").height());
 		fontsize();
 	});
-
-	if ($(window).width() < $(window).height()) {
-		$('body').css('font-size', '150%');
-	}
 
 	if($(window).width() < $(window).height()){
 		$("#landing_buttons").css("top", "15%");
