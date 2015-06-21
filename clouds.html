@@ -17,9 +17,9 @@
 	load_landing_view();
 
 	if (navigator.userAgent.indexOf("Firefox") >= 0){
-		alert('"How to Catch a Cloud" is not supported by Internet Explorer or Firefox.  As such many functions may not work as expected if using such browsers.  Please access via Chrome, Opera or Safari' );
+		alert('"How to Catch a Cloud" is not supported by Internet Explorer or Firefox. As such many functions may not work as expected if using such browsers. Please access via Chrome, Opera or Safari' );
 	} else if (navigator.userAgent.indexOf("MSIE") >= 0){
-		alert('"How to Catch a Cloud" is not supported by Internet Explorer or Firefox.  As such many functions may not work as expected if using such browsers.  Please access via Chrome, Opera or Safari' );
+		alert('"How to Catch a Cloud" is not supported by Internet Explorer or Firefox. As such many functions may not work as expected if using such browsers. Please access via Chrome, Opera or Safari' );
 	}
 
 	function load_home_view(){
@@ -116,12 +116,23 @@
 	});
 
 
-	/**annoying formatting functions**/
+	/**annoying FORMATTING FUNCTIONS**/
 
 	$(".tool").width($(".tool").height());
+
+	function fontsize() {
+		if ($(window).width() < $(window).height()){
+			$("body").css("font-size", $(window).height()*.1);
+		} else {
+			$("body").css("font-size", $(window).height()*.04);
+		}	
+	}
+	
+	fontsize();
 		
 	$(window).resize(function(){
 		$(".tool").width($(".tool").height());
+		fontsize();
 	});
 
 	if ($(window).width() < $(window).height()) {
@@ -253,7 +264,7 @@
 	<div class="in about_view">
 		<div class="button close_cross launch show_home"><img src="icons/close.svg" /></div>
 		<div id="about_text">
-			<header>ABOUT</header><p>For the digitally tethered, life is defined at the intersection of the virtual and the physical. Our experience is necessarily tempered by a stream of simultaneous meta interactions, each an archive, an extension, and a reflection of some experienced reality.  “How to Catch a Cloud” is a tool, a web-based application for the communal creation of such a stream.  It also results in a democratically rendered, visual archive of experiences and impressions. But, more than either of these it is a proposition, an invitation, and an experiment.<br /><br />We manifest our existence through a process of obsessive archival.  By referencing the parallel associations inherent in the use of the term, “cloud,” this work proposes the possibility of capturing that which exists, but cannot be located, the climate.  Finally, it wonders what we are truly collecting/creating in this manic cycle of perpetual archival.  What are we placing in this uncontrollable and ephemeral space, this cloud? Is it, perhaps, that equally indescribable idea of “the soul,” or is it merely another representation, perpetually updated but always at a remove… never able to come fully into synchronicity with the experience it represents.<br /><br /> "How to Catch a Cloud was originally designed for Transmediale 2015 in response to the theme: <i>Capture All</i>, <i>How to Catch a Cloud</i>, where it was released in early-stage beta.  Since it has been expanded and re-released for the Creativity and Cognition 2015 conference in Glasgow, Scotland.  Consider this version 1.0. </p>
+			<header>ABOUT</header><p>For the digitally tethered, life is defined at the intersection of the virtual and the physical. Our experience is necessarily tempered by a stream of simultaneous meta interactions, each an archive, an extension, and a reflection of some experienced reality. <i>How to Catch a Cloud</i> is a tool, a web-based application for the communal creation of such a stream. It also results in a democratically rendered, visual archive of experiences and impressions. But, more than either of these it is a proposition, an invitation, and an experiment.<br /><br />We manifest our existence through a process of obsessive archival. By referencing the parallel associations inherent in the use of the term, <i>cloud,</i> this work proposes the possibility of capturing that which exists, but cannot be located, the climate. Finally, it wonders what we are truly collecting/creating in this manic cycle of perpetual archival. What are we placing in this uncontrollable and ephemeral space, this cloud? Is it, perhaps, that equally indescribable idea of <i>the soul,</i> or is it merely another representation, perpetually updated but always at a remove... never able to come fully into synchronicity with the experience it represents.<br /><br /> <i>How to Catch a Cloud</i> was originally designed for Transmediale 2015 in response to the theme: <i>Capture All</i>, <i>How to Catch a Cloud</i>, where it was released in early-stage beta. Since it has been expanded and re-released for the Creativity and Cognition 2015 conference in Glasgow, Scotland. Consider this version 1.0. </p>
 		</div>
 	</div>
 </body>
