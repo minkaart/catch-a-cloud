@@ -412,13 +412,14 @@ input.button_text {
 	margin-right: auto;
 	margin-left: auto;
 	top: 14%;
+	width: 70%;
 	position: relative;
 }
 
 #landing_buttons {
 	text-align: center;
 	position: relative;
-	top: -30%;
+	top: -50%;
 }
 
 .landing_button {
